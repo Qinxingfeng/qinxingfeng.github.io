@@ -85,7 +85,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:12px 0}
 <div class="ttl">威尔士 vs 葡萄牙（欧国联）<span class="badge focus">重心比赛（外部 · Opta 超级计算机）</span></div>
 <p>方向：葡萄牙客胜 @1.44 ｜ Opta 超级计算机客胜概率 65.3%（当日池内最高倾向）｜ 注码 1%</p>
 <div class="bar"><i style="width:65.3%"></i></div>
-<p class="small">外部重心与模型自选分开记账，见「历史记录」外部分段。赛果：威尔士 2-3 葡萄牙，方向命中，应记 +44；因赛果数据源停用暂未入账，恢复后补记。</p>
+<p class="small">外部重心与模型自选分开记账，见「历史记录」外部分段。赛果：威尔士 2-3 葡萄牙，方向命中，已入账 +44（记在外部重心分段）。</p>
 </div>
 
 <div class="match">
@@ -152,9 +152,9 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:12px 0}
 <tr><th>口径</th><th class="num">场次</th><th class="num">命中率</th><th class="num">Yield</th></tr>
 <tr><td>回测主选 · 英超（大小球+双进，ev_first）</td><td class="num">13</td><td class="num">61.5%</td><td class="num">+9.46%</td></tr>
 <tr><td>回测主选 · 多联赛</td><td class="num">76</td><td class="num">61.8%</td><td class="num">+7.96%</td></tr>
-<tr><td>实盘台账（已结算，与回测分开）</td><td class="num">7</td><td class="num">42.86%</td><td class="num">−17.86%</td></tr>
+<tr><td>实盘台账（已结算，与回测分开）</td><td class="num">8</td><td class="num">50.00%</td><td class="num">−4.11%</td></tr>
 </table>
-<p class="small">概率验证规模：5,024 场历史比赛样本外验证，1X2 Brier 0.6035。实盘台账净盈亏 −62.5，ROI −0.62%，CLV 暂不可测（缺可信收盘价快照）。</p>
+<p class="small">概率验证规模：5,024 场历史比赛样本外验证，1X2 Brier 0.6035。实盘台账净盈亏 −18.5，ROI −0.19%，CLV 暂不可测（缺可信收盘价快照）。</p>
 <p class="warn">注：回测主选样本量小（13 / 76 场），正收益脆弱，盈利未经证明。本站不保证胜率与盈利。</p>
 </section>
 
@@ -197,12 +197,13 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:12px 0}
 <tr><td>哈萨克斯坦 vs 斯洛伐克</td><td>大 2.5</td><td class="num">1.96</td><td><span class="win">红</span> 2-2</td><td class="num">+48</td></tr>
 <tr><td>瑞士 vs 苏格兰</td><td>双进-否</td><td class="num">1.80</td><td><span class="win">红</span></td><td class="num">+40</td></tr>
 <tr><td>菲尼克斯太阳 vs 丹佛（NBA）</td><td>太阳 +10</td><td class="num">1.99</td><td><span class="win">红</span> 105-117</td><td class="num">+49.5</td></tr>
+<tr><td>威尔士 vs 葡萄牙</td><td>客胜（外部重心 · Opta）</td><td class="num">1.44</td><td><span class="win">红</span> 2-3</td><td class="num">+44</td></tr>
 <tr><td>法罗群岛 vs 摩尔多瓦</td><td>双进-是</td><td class="num">2.10</td><td><span class="lose">黑</span> 1-0</td><td class="num">−50</td></tr>
 <tr><td>希腊 vs 塞尔维亚</td><td>双进-是</td><td class="num">1.97</td><td><span class="lose">黑</span> 1-0</td><td class="num">−50</td></tr>
 <tr><td>北马其顿 vs 斯洛文尼亚</td><td>小 2.5</td><td class="num">1.67</td><td><span class="lose">黑</span> 0-3</td><td class="num">−50</td></tr>
 <tr><td>阿尔巴塞特 vs 塞尔塔B队</td><td>双进-是</td><td class="num">1.67</td><td><span class="lose">黑</span> 1-0</td><td class="num">−50</td></tr>
 </table>
-<p class="small">已结算 7 场：3 红 4 黑，命中率 42.86%，净 −62.5，Yield −17.86%，ROI −0.62%，CLV 不可测 0/7。外部重心（Opta）威尔士 vs 葡萄牙客胜已命中，因赛果源停用暂未入账。完整分段台账（分市场/分联赛/重心场次）见站长维护的电子表格。</p>
+<p class="small">已结算 8 场：4 红 4 黑，命中率 50.00%，净 −18.5，Yield −4.11%，ROI −0.19%，CLV 不可测 0/8。其中外部重心（Opta）1 场：威尔士 vs 葡萄牙客胜，红 +44，单独分段统计。完整分段台账（分市场/分联赛/重心场次）见站长维护的电子表格。</p>
 </section>
 
 <section id="faq">
@@ -216,7 +217,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:12px 0}
 <section class="qr">
 <h2>关注公众号</h2>
 <img src="qr.jpg" alt="微信公众号二维码">
-<p class="small">微信扫码关注，每日前瞻与复盘同步推送。</p>
+<p class="small">微信扫码关注，每日前瞻同步推送。</p>
 </section>
 
 <footer>
