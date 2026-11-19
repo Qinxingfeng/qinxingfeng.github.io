@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实盘台账 · 总览 | 特助模型</title>
+<meta name="description" content="特助模型实盘盈利台账可视化总览：命中率、Yield、ROI、累计盈亏曲线与逐场红黑明细。">
+<style>
+:root{
+  --ink:#e9eef7; --muted:#9fb0c9; --muted2:#7e90ad;
+  --card:#121b31; --line:rgba(148,178,255,.16);
+  --blue:#4f8cff; --cyan:#2dd4ee; --purple:#b07cff; --gold:#ffc44d;
+  --teal:#2fe0c8; --rose:#ff6b8a; --green:#3ddc97;
+  --profit:#2fe6a8; --loss:#ff7a7a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.65;padding-bottom:40px;
+  background:
+    radial-gradient(720px 420px at 12% -60px, rgba(244,63,94,.20), transparent 62%),
+    radial-gradient(760px 460px at 88% 240px, rgba(59,90,246,.20), transparent 62%),
+    radial-gradient(640px 520px at 50% 115%, rgba(16,120,90,.16), transparent 60%),
+    linear-gradient(168deg,#0a1330 0%,#0a1a33 46%,#071322 100%);
+  background-attachment:fixed}
+.wrap{max-width:860px;margin:0 auto;padding:0 14px 40px}
+.topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:0 -14px;padding:10px 16px;background:rgba(7,13,30,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(120,160,255,.18)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16.5px;letter-spacing:.5px;color:#fff}
+.brand .ball{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;
+  background:linear-gradient(135deg,#f43f5e,#f59e0b 55%,#2563eb);box-shadow:0 4px 14px rgba(245,158,11,.35)}
+.topbar .pill{font-size:13px;color:#dbeafe;text-decoration:none;padding:6px 14px;border-radius:999px;
+  border:1px solid rgba(120,160,255,.4);background:linear-gradient(135deg,rgba(59,90,246,.35),rgba(124,58,237,.35))}
+h1{font-size:24px;color:#fff;margin:20px 0 2px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:6px}
+section{--acc:var(--blue);background:linear-gradient(180deg,rgba(24,36,64,.92),rgba(13,21,40,.96));
+  border:1px solid var(--line);border-top:3px solid var(--acc);border-radius:18px;
+  padding:18px;margin:16px 0;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+section h2{font-size:18px;margin:0 0 12px;color:#fff}
+section h2::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--acc);
+  margin-right:9px;box-shadow:0 0 12px var(--acc)}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.kpi{border-radius:14px;padding:12px 10px;text-align:center;border:1px solid var(--line);background:rgba(10,18,40,.55)}
+.kpi .v{font-size:23px;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums;color:#fff}
+.kpi .k{font-size:12px;color:var(--muted);margin-top:3px}
+.kpi.c1 .v{color:#7dd3fc} .kpi.c2 .v{color:#d8b4fe} .kpi.c3 .v{color:var(--gold)}
+.pos{color:var(--profit)!important} .neg{color:var(--loss)!important}
+.chart{width:100%;height:auto;display:block}
+.svgt{fill:#9fb0c9;font-size:11px;font-variant-numeric:tabular-nums}
+.svgt.sm{font-size:10px}
+.grid{stroke:rgba(148,178,255,.10);stroke-width:1}
+.zero{stroke:rgba(233,238,247,.45);stroke-width:1.2;stroke-dasharray:5 4}
+.segs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{border:1px solid var(--line);border-radius:14px;padding:13px 14px;background:rgba(10,18,40,.5)}
+.seg-t{font-weight:700;color:#fff;font-size:15px}
+.seg-n{color:var(--muted);font-size:13px;margin:2px 0 8px}
+.seg-row{display:flex;justify-content:space-between;font-size:13.5px;padding:3px 0;border-top:1px dashed rgba(148,178,255,.12)}
+.seg-row b{font-variant-numeric:tabular-nums}
+.seg-note{font-size:12px;color:var(--muted2);margin-top:8px}
+.badge-warn{font-size:11px;color:#0a1330;background:var(--gold);border-radius:999px;padding:1px 8px;font-weight:700;vertical-align:2px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+.tblwrap{overflow-x:auto}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:12.5px;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px;border-bottom:1px solid rgba(148,178,255,.08);vertical-align:top}
+td.b{font-weight:700}
+.nowrap{white-space:nowrap}
+.muted{color:var(--muted)} .sm2{font-size:12px}
+.badge{display:inline-block;font-size:12px;font-weight:800;border-radius:8px;padding:1px 9px;color:#08130c}
+.badge.win{background:linear-gradient(135deg,#2fe6a8,#17b978)}
+.badge.lose{background:linear-gradient(135deg,#ff7a7a,#e0483e);color:#1a0b0b}
+.prog{height:16px;border-radius:999px;background:rgba(148,178,255,.14);overflow:hidden;margin:10px 0 6px}
+.prog i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#d97706,#facc15);box-shadow:0 0 14px rgba(250,204,21,.5)}
+.kpi-big{font-size:30px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+.foot{font-size:12.5px;color:var(--muted2);line-height:1.8}
+@media(max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}.segs{grid-template-columns:1fr}h1{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar">
+  <div class="brand"><span class="ball">⚽</span>特助模型 · 实盘台账</div>
+  <a class="pill" href="index.html">← 返回主页</a>
+</div>
+
+<h1>盈利台账 · 可视化总览</h1>
+<div class="sub">全部数字由实盘台账 <b>settled_picks.jsonl</b> 逐条现算 · 更新 2026-11-19 · 金额口径与台账一致（名义本金 ¥10,000：主选注码 100 = 1%，次选 50 = 0.5%）</div>
+
+<section style="--acc:var(--cyan)">
+<h2>核心指标</h2>
+<div class="kpis">
+  <div class="kpi c1"><div class="v">15</div><div class="k">已结算场次</div></div>
+  <div class="kpi c2"><div class="v">53.3%</div><div class="k">命中率（8 红 7 黑）</div></div>
+  <div class="kpi"><div class="v pos">+78</div><div class="k">净盈亏</div></div>
+  <div class="kpi"><div class="v pos">+9.75%</div><div class="k">Yield（总投注 800）</div></div>
+  <div class="kpi"><div class="v pos">+0.78%</div><div class="k">ROI（对本金 10,000）</div></div>
+</div>
+<div class="sub" style="margin-top:10px">平均赔率 1.94 · CLV 不可测（15 场均无可信收盘价，见页脚）</div>
+</section>
+
+<section style="--acc:var(--gold)">
+<h2>月盈利 KPI · 目标 ¥3,000 / 月</h2>
+<div class="kpi-big">+78 <span style="font-size:15px;color:var(--muted)">/ ¥3,000（11 月已结算净盈亏）</span></div>
+<div class="prog"><i style="width:2.6%"></i></div>
+<div class="sub">已完成 <b style="color:#fff">2.6%</b> · 构成：模型自选 +34（14 场） + 外部重心（Opta）+44（1 场），两段分开记账</div>
+<div class="sub">月末线性预估：<b style="color:#fff">+292.5</b>（约达目标 9.7%）——按 11-16 至今 4 天日均净盈亏 +19.5/天 × 剩余 11 天简单线性外推，<b>样本很小、仅供参考</b>，不构成预测。</div>
+</section>
+
+<section style="--acc:var(--teal)">
+<h2>累计盈亏曲线</h2>
+<svg viewBox="0 0 820 280" class="chart" role="img" aria-label="累计盈亏曲线">
+<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2dd4ee" stop-opacity=".30"/><stop offset="1" stop-color="#2dd4ee" stop-opacity=".02"/>
+</linearGradient></defs>
+<line x1="46" y1="231.4" x2="806" y2="231.4" class="grid"/><text x="40" y="234.4" class="svgt" text-anchor="end">-150</text><line x1="46" y1="189.1" x2="806" y2="189.1" class="grid"/><text x="40" y="192.1" class="svgt" text-anchor="end">-100</text><line x1="46" y1="146.9" x2="806" y2="146.9" class="grid"/><text x="40" y="149.9" class="svgt" text-anchor="end">-50</text><line x1="46" y1="104.6" x2="806" y2="104.6" class="grid"/><text x="40" y="107.6" class="svgt" text-anchor="end">0</text><line x1="46" y1="62.4" x2="806" y2="62.4" class="grid"/><text x="40" y="65.4" class="svgt" text-anchor="end">50</text><line x1="46" y1="20.1" x2="806" y2="20.1" class="grid"/><text x="40" y="23.1" class="svgt" text-anchor="end">100</text>
+<line x1="46" y1="104.6" x2="806" y2="104.6" class="zero"/>
+<path d="M46.0,104.6 L46.0,104.6 L96.7,146.9 L147.3,106.3 L198.0,148.6 L248.7,190.8 L299.3,233.1 L350.0,199.3 L400.7,157.5 L451.3,120.3 L502.0,162.5 L552.7,204.8 L603.3,160.4 L654.0,130.0 L704.7,34.9 L755.3,77.2 L806.0,38.7 L806.0,104.6 Z" fill="url(#ag)"/>
+<polyline points="46.0,104.6 96.7,146.9 147.3,106.3 198.0,148.6 248.7,190.8 299.3,233.1 350.0,199.3 400.7,157.5 451.3,120.3 502.0,162.5 552.7,204.8 603.3,160.4 654.0,130.0 704.7,34.9 755.3,77.2 806.0,38.7" fill="none" stroke="#2dd4ee" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="46.0" cy="104.6" r="3.6" fill="#2fe6a8" stroke="#0a1330" stroke-width="1.2"/><circle cx="96.7" cy="146.9" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="147.3" cy="106.3" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="198.0" cy="148.6" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="248.7" cy="190.8" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="299.3" cy="233.1" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="350.0" cy="199.3" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="400.7" cy="157.5" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="451.3" cy="120.3" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="502.0" cy="162.5" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="552.7" cy="204.8" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="603.3" cy="160.4" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="654.0" cy="130.0" r="3.6" fill="#ff7a7a" stroke="#0a1330" stroke-width="1.2"/><circle cx="704.7" cy="34.9" r="3.6" fill="#2fe6a8" stroke="#0a1330" stroke-width="1.2"/><circle cx="755.3" cy="77.2" r="3.6" fill="#2fe6a8" stroke="#0a1330" stroke-width="1.2"/><circle cx="806.0" cy="38.7" r="3.6" fill="#2fe6a8" stroke="#0a1330" stroke-width="1.2"/><text x="46.0" y="96.6" class="svgt" text-anchor="middle">0</text><text x="96.7" y="161.9" class="svgt" text-anchor="middle">-50</text><text x="147.3" y="98.3" class="svgt" text-anchor="middle">-2</text><text x="198.0" y="163.6" class="svgt" text-anchor="middle">-52</text><text x="248.7" y="182.8" class="svgt" text-anchor="middle">-102</text><text x="299.3" y="248.1" class="svgt" text-anchor="middle">-152</text><text x="350.0" y="191.3" class="svgt" text-anchor="middle">-112</text><text x="400.7" y="172.5" class="svgt" text-anchor="middle">-62.5</text><text x="451.3" y="112.3" class="svgt" text-anchor="middle">-18.5</text><text x="502.0" y="177.5" class="svgt" text-anchor="middle">-68.5</text><text x="552.7" y="196.8" class="svgt" text-anchor="middle">-118.5</text><text x="603.3" y="175.4" class="svgt" text-anchor="middle">-66</text><text x="654.0" y="122.0" class="svgt" text-anchor="middle">-30</text><text x="704.7" y="49.9" class="svgt" text-anchor="middle">+82.5</text><text x="755.3" y="69.2" class="svgt" text-anchor="middle">+32.5</text><text x="806.0" y="53.7" class="svgt" text-anchor="middle">+78</text>
+<text x="46" y="274" class="svgt">起点 0</text>
+<text x="806" y="274" class="svgt" text-anchor="end">第 15 场后 +78</text>
+</svg>
+<div class="sub">逐场结算后累计净盈亏（按日期顺序，节点标注累计值）。前期国家队批次一度探至 −152，11-18 校准后批次起回升转正。</div>
+</section>
+
+<section style="--acc:var(--rose)">
+<h2>逐场盈亏</h2>
+<svg viewBox="0 0 820 250" class="chart" role="img" aria-label="逐场盈亏柱状图">
+<line x1="46" y1="116.0" x2="806" y2="116.0" class="zero"/>
+<rect x="49.0" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="99.7" y="83.5" width="44.7" height="32.5" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="150.3" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="201.0" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="251.7" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="302.3" y="88.9" width="44.7" height="27.1" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="353.0" y="82.4" width="44.7" height="33.6" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="403.7" y="86.2" width="44.7" height="29.8" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="454.3" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="505.0" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="555.7" y="80.4" width="44.7" height="35.6" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="606.3" y="91.6" width="44.7" height="24.4" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="657.0" y="39.7" width="44.7" height="76.3" rx="3" fill="#2fe6a8" opacity=".88"/><rect x="707.7" y="116.0" width="44.7" height="33.9" rx="3" fill="#ff7a7a" opacity=".88"/><rect x="758.3" y="85.2" width="44.7" height="30.8" rx="3" fill="#2fe6a8" opacity=".88"/><text x="71.3" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="71.3" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 71.3 130.0)">法罗群岛</text><text x="122.0" y="78.5" class="svgt" text-anchor="middle">+48</text><text x="122.0" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 122.0 130.0)">哈萨克斯坦</text><text x="172.7" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="172.7" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 172.7 130.0)">希腊</text><text x="223.3" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="223.3" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 223.3 130.0)">北马其顿</text><text x="274.0" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="274.0" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 274.0 130.0)">阿尔巴塞特</text><text x="324.7" y="83.9" class="svgt" text-anchor="middle">+40</text><text x="324.7" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 324.7 130.0)">瑞士</text><text x="375.3" y="77.4" class="svgt" text-anchor="middle">+49.5</text><text x="375.3" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 375.3 130.0)">太阳让分</text><text x="426.0" y="81.2" class="svgt" text-anchor="middle">+44</text><text x="426.0" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 426.0 130.0)">威尔士</text><text x="476.7" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="476.7" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 476.7 130.0)">贝西克塔斯</text><text x="527.3" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="527.3" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 527.3 130.0)">尤文双进</text><text x="578.0" y="75.4" class="svgt" text-anchor="middle">+52.5</text><text x="578.0" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 578.0 130.0)">切尔西双进</text><text x="628.7" y="86.6" class="svgt" text-anchor="middle">+36</text><text x="628.7" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 628.7 130.0)">克鲁塞罗</text><text x="679.3" y="34.7" class="svgt" text-anchor="middle">+112.5</text><text x="679.3" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 679.3 130.0)">赫根小球</text><text x="730.0" y="162.9" class="svgt" text-anchor="middle">-50</text><text x="730.0" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 730.0 130.0)">掘金让分</text><text x="780.7" y="80.2" class="svgt" text-anchor="middle">+45.5</text><text x="780.7" y="130.0" class="svgt sm" text-anchor="end" transform="rotate(-38 780.7 130.0)">国王大分</text>
+</svg>
+</section>
+
+<section style="--acc:var(--purple)">
+<h2>分段战绩 · 来源</h2>
+<div class="segs"><div class="seg">
+<div class="seg-t">模型自选（v4） </div>
+<div class="seg-n">7 红 · 7 黑 <span class="muted">（n=14）</span></div>
+<div class="seg-row"><span>命中率</span><b>50.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+34</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+4.86%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">外部重心（Opta） <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">1 红 · 0 黑 <span class="muted">（n=1）</span></div>
+<div class="seg-row"><span>命中率</span><b>100.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+44</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+44.00%</b></div>
+<div class="seg-note">与模型自选分开记账，不混入模型战绩</div>
+</div></div>
+</section>
+
+<section style="--acc:var(--blue)">
+<h2>分段战绩 · 市场</h2>
+<div class="segs"><div class="seg">
+<div class="seg-t">大小球 / 总分 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">4 红 · 2 黑 <span class="muted">（n=6）</span></div>
+<div class="seg-row"><span>命中率</span><b>66.7%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+142</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+47.33%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">双进（BTTS） <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">2 红 · 4 黑 <span class="muted">（n=6）</span></div>
+<div class="seg-row"><span>命中率</span><b>33.3%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="neg">-107.5</b></div>
+<div class="seg-row"><span>Yield</span><b class="neg">-35.83%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">让分 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">1 红 · 1 黑 <span class="muted">（n=2）</span></div>
+<div class="seg-row"><span>命中率</span><b>50.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="neg">-0.5</b></div>
+<div class="seg-row"><span>Yield</span><b class="neg">-0.50%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">胜平负（1X2） <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">1 红 · 0 黑 <span class="muted">（n=1）</span></div>
+<div class="seg-row"><span>命中率</span><b>100.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+44</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+44.00%</b></div>
+
+</div></div>
+</section>
+
+<section style="--acc:var(--indigo, #8ea2ff)">
+<h2>分段战绩 · 等级与重心</h2>
+<div class="segs"><div class="seg">
+<div class="seg-t">主选 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">1 红 · 0 黑 <span class="muted">（n=1）</span></div>
+<div class="seg-row"><span>命中率</span><b>100.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+44</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+44.00%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">次选 </div>
+<div class="seg-n">7 红 · 7 黑 <span class="muted">（n=14）</span></div>
+<div class="seg-row"><span>命中率</span><b>50.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+34</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+4.86%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">每日重心场次 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">1 红 · 1 黑 <span class="muted">（n=2）</span></div>
+<div class="seg-row"><span>命中率</span><b>50.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="neg">-6</b></div>
+<div class="seg-row"><span>Yield</span><b class="neg">-4.00%</b></div>
+<div class="seg-note">重心与等级有重叠：尤文为次选级模型重心、威尔士为主选级外部重心</div>
+</div></div>
+</section>
+
+<section style="--acc:var(--green)">
+<h2>分段战绩 · 联赛 / 赛事</h2>
+<div class="segs"><div class="seg">
+<div class="seg-t">UEFA Nations League <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">3 红 · 3 黑 <span class="muted">（n=6）</span></div>
+<div class="seg-row"><span>命中率</span><b>50.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="neg">-18</b></div>
+<div class="seg-row"><span>Yield</span><b class="neg">-5.14%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">西乙 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">0 红 · 1 黑 <span class="muted">（n=1）</span></div>
+<div class="seg-row"><span>命中率</span><b>0.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="neg">-50</b></div>
+<div class="seg-row"><span>Yield</span><b class="neg">-100.00%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">NBA <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">2 红 · 1 黑 <span class="muted">（n=3）</span></div>
+<div class="seg-row"><span>命中率</span><b>66.7%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+45</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+30.00%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">EuroLeague <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">0 红 · 1 黑 <span class="muted">（n=1）</span></div>
+<div class="seg-row"><span>命中率</span><b>0.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="neg">-50</b></div>
+<div class="seg-row"><span>Yield</span><b class="neg">-100.00%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">UWCL 女足欧冠 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">2 红 · 1 黑 <span class="muted">（n=3）</span></div>
+<div class="seg-row"><span>命中率</span><b>66.7%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+115</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+76.67%</b></div>
+
+</div><div class="seg">
+<div class="seg-t">巴西甲 <span class="badge-warn">样本不足</span></div>
+<div class="seg-n">1 红 · 0 黑 <span class="muted">（n=1）</span></div>
+<div class="seg-row"><span>命中率</span><b>100.0%</b></div>
+<div class="seg-row"><span>净盈亏</span><b class="pos">+36</b></div>
+<div class="seg-row"><span>Yield</span><b class="pos">+72.00%</b></div>
+
+</div></div>
+</section>
+
+<section style="--acc:var(--cyan)">
+<h2>逐场明细</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>日期</th><th>比赛</th><th>玩法</th><th>赔率</th><th>注码</th><th>比分</th><th>结果</th><th>盈亏</th></tr></thead>
+<tbody>
+<tr>
+<td class="nowrap">11-16</td>
+<td><b>法罗群岛 vs 摩尔多瓦</b><br><span class="muted sm2">UEFA Nations League · 模型自选</span></td>
+<td class="nowrap">双进是</td>
+<td class="nowrap">2.10</td>
+<td class="nowrap">50</td>
+<td class="nowrap">1-0</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-16</td>
+<td><b>哈萨克斯坦 vs 斯洛伐克</b><br><span class="muted sm2">UEFA Nations League · 模型自选</span></td>
+<td class="nowrap">大2.5</td>
+<td class="nowrap">1.96</td>
+<td class="nowrap">50</td>
+<td class="nowrap">2-2</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+48</td>
+</tr><tr>
+<td class="nowrap">11-16</td>
+<td><b>希腊 vs 塞尔维亚</b><br><span class="muted sm2">UEFA Nations League · 模型自选</span></td>
+<td class="nowrap">双进是</td>
+<td class="nowrap">1.97</td>
+<td class="nowrap">50</td>
+<td class="nowrap">1-0</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-16</td>
+<td><b>北马其顿 vs 斯洛文尼亚</b><br><span class="muted sm2">UEFA Nations League · 模型自选</span></td>
+<td class="nowrap">小2.5</td>
+<td class="nowrap">1.67</td>
+<td class="nowrap">50</td>
+<td class="nowrap">0-3</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-16</td>
+<td><b>阿尔巴塞特 vs 塞尔塔福图纳</b><br><span class="muted sm2">西乙 · 模型自选</span></td>
+<td class="nowrap">双进是</td>
+<td class="nowrap">1.67</td>
+<td class="nowrap">50</td>
+<td class="nowrap">1-0</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-16</td>
+<td><b>瑞士 vs 苏格兰</b><br><span class="muted sm2">UEFA Nations League · 模型自选</span></td>
+<td class="nowrap">双进否</td>
+<td class="nowrap">1.80</td>
+<td class="nowrap">50</td>
+<td class="nowrap">4-0</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+40</td>
+</tr><tr>
+<td class="nowrap">11-17</td>
+<td><b>丹佛掘金 vs 菲尼克斯太阳</b><br><span class="muted sm2">NBA · 模型自选</span></td>
+<td class="nowrap">让分客队</td>
+<td class="nowrap">1.99</td>
+<td class="nowrap">50</td>
+<td class="nowrap">105-117</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+49.5</td>
+</tr><tr>
+<td class="nowrap">11-17</td>
+<td><b>威尔士 vs 葡萄牙</b><br><span class="muted sm2">UEFA Nations League · 外部重心 · Opta</span></td>
+<td class="nowrap">客胜</td>
+<td class="nowrap">1.44</td>
+<td class="nowrap">100</td>
+<td class="nowrap">2-3</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+44</td>
+</tr><tr>
+<td class="nowrap">11-18</td>
+<td><b>贝西克塔斯 vs 皇家马德里</b><br><span class="muted sm2">EuroLeague · 模型自选</span></td>
+<td class="nowrap">大分179.5</td>
+<td class="nowrap">1.85</td>
+<td class="nowrap">50</td>
+<td class="nowrap">83-79</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-18</td>
+<td><b>尤文图斯女足 vs 鲁汶女足</b><br><span class="muted sm2">UWCL 女足欧冠 · 模型重心</span></td>
+<td class="nowrap">双进是</td>
+<td class="nowrap">1.83</td>
+<td class="nowrap">50</td>
+<td class="nowrap">2-0</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-18</td>
+<td><b>切尔西女足 vs 巴黎圣日耳曼女足</b><br><span class="muted sm2">UWCL 女足欧冠 · 模型自选</span></td>
+<td class="nowrap">双进否</td>
+<td class="nowrap">2.05</td>
+<td class="nowrap">50</td>
+<td class="nowrap">1-0</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+52.5</td>
+</tr><tr>
+<td class="nowrap">11-18</td>
+<td><b>克鲁塞罗 vs 帕尔梅拉斯</b><br><span class="muted sm2">巴西甲 · 模型自选</span></td>
+<td class="nowrap">大2.5</td>
+<td class="nowrap">1.72</td>
+<td class="nowrap">50</td>
+<td class="nowrap">2-1</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+36</td>
+</tr><tr>
+<td class="nowrap">11-18</td>
+<td><b>赫根女足 vs 曼城女足</b><br><span class="muted sm2">UWCL 女足欧冠 · 模型自选</span></td>
+<td class="nowrap">小2.5</td>
+<td class="nowrap">3.25</td>
+<td class="nowrap">50</td>
+<td class="nowrap">0-2</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+112.5</td>
+</tr><tr>
+<td class="nowrap">11-19</td>
+<td><b>丹佛掘金 vs 波士顿凯尔特人</b><br><span class="muted sm2">NBA · 模型自选</span></td>
+<td class="nowrap">让分客队</td>
+<td class="nowrap">1.94</td>
+<td class="nowrap">50</td>
+<td class="nowrap">105-101</td>
+<td><span class="badge lose">黑</span></td>
+<td class="nowrap b neg">-50</td>
+</tr><tr>
+<td class="nowrap">11-19</td>
+<td><b>萨克拉门托国王 vs 菲尼克斯太阳</b><br><span class="muted sm2">NBA · 模型自选</span></td>
+<td class="nowrap">大分227</td>
+<td class="nowrap">1.91</td>
+<td class="nowrap">50</td>
+<td class="nowrap">107-128</td>
+<td><span class="badge win">红</span></td>
+<td class="nowrap b pos">+45.5</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section style="--acc:var(--muted2)">
+<h2>口径与说明</h2>
+<div class="foot">
+· <b>样本仍小</b>：已结算 15 场，统计上不足以证明或证伪盈利能力，Yield/ROI 波动会很大，请勿据此判断模型长期水平。<br>
+· <b>CLV 不可测</b>：15 场的收盘赔率均为 null（无可信收盘价来源），按规则不估算、不填造，CLV 一栏记为不可测（可测 0/15）。<br>
+· <b>分段口径</b>：命中率 = 红 / 已结算；Yield = 净盈亏 / 总投注；ROI = 净盈亏 / 名义本金 10,000；外部重心（Opta）与模型自选分开记账、互不混入。<br>
+· <b>数据来源</b>：实盘台账 data/ledger/settled_picks.jsonl（15 条）；比分经公开赛果多源交叉核对（复盘文件与方向审计报告存档）。<br>
+· 本页仅作记录与复盘展示，不构成投注建议；不保证胜率与盈利。更新时间：2026-11-19。
+</div>
+</section>
+
+</div>
+</body>
+</html>
