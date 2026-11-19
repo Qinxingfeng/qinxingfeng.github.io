@@ -147,7 +147,7 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <header class="hero">
 <h1>特助模型 · 足球篮球AI预测</h1>
 <div class="sub">大小球 · 双进（BTTS）· 篮球让分与总分 ｜ 公开回测 · 概率校准 · 实盘台账</div>
-<div class="pipeline">数据链路：赛程 API-Football 暂停（申诉中，兜底源运行）· 赔率 The Odds API 正常 · 真 xG StrikerAPI 正常 · 伤停 NBA 官方报告正常 / 足球受限 · 每日定时更新 07:00 篮球 / 18:49 专家共识 / 19:00 与 23:00 足球 / 20:00 竞彩</div>
+<div class="pipeline">数据链路：赛程 API-Football 暂停（申诉中，兜底源运行）· 赔率 The Odds API 正常 · 真 xG StrikerAPI 正常 · 伤停 NBA 官方报告正常 / 足球受限 · 每日 21:00 统一更新篮球、足球主版、专家共识与竞彩二串一；周六、周日五大联赛/美职联比赛日足球另有 19:00 早版</div>
 <a class="hero-btn" href="#today">查看今日场次 →</a>
 <div class="tabs">
 <button id="tab-f" class="on" onclick="showTab('f')">⚽ 足球</button>
@@ -161,7 +161,7 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <a class="tile t1" href="#today"><div class="ic">⚽</div><div class="tt">今日场次</div><div class="ds">全球开盘场次</div><div class="row"><span class="cap">比赛池</span><span class="big">202 场</span></div></a>
 <a class="tile t2" href="#consensus"><div class="ic">🧭</div><div class="tt">专家共识</div><div class="ds">13 家专业预测站的公开推荐</div><div class="row"><span class="cap">专业预测站</span><span class="big">13 家</span></div></a>
 <a class="tile t3" href="#backtest"><div class="ic">🏆</div><div class="tt">模型回测战绩</div><div class="ds">5,024 场历史比赛样本外验证</div><div class="row"><span class="cap">多联赛主选 Yield</span><span class="big">+7.96%</span></div></a>
-<a class="tile t4" href="#history"><div class="ic">📒</div><div class="tt">实盘台账</div><div class="ds">逐场红黑</div><div class="row"><span class="cap">已结算</span><span class="big">8 场</span></div></a>
+<a class="tile t4" href="#history"><div class="ic">📒</div><div class="tt">实盘台账</div><div class="ds">逐场红黑</div><div class="row"><span class="cap">已结算</span><span class="big">15 场</span></div></a>
 </div>
 
 
@@ -286,9 +286,9 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <tr><th>口径</th><th class="num">场次</th><th class="num">命中率</th><th class="num">Yield</th></tr>
 <tr><td>回测主选 · 英超（大小球+双进，ev_first）</td><td class="num">13</td><td class="num">61.5%</td><td class="num">+9.46%</td></tr>
 <tr><td>回测主选 · 多联赛</td><td class="num">76</td><td class="num">61.8%</td><td class="num">+7.96%</td></tr>
-<tr><td>实盘台账（已结算，与回测分开）</td><td class="num">8</td><td class="num">50.00%</td><td class="num">−4.11%</td></tr>
+<tr><td>实盘台账（已结算，与回测分开）</td><td class="num">15</td><td class="num">53.33%</td><td class="num">+9.75%</td></tr>
 </table>
-<p class="small">概率验证规模：5,024 场历史比赛样本外验证，1X2 Brier 0.6035。实盘台账净盈亏 −18.5，ROI −0.19%，CLV 暂不可测（缺可信收盘价快照）。</p>
+<p class="small">概率验证规模：5,024 场历史比赛样本外验证，1X2 Brier 0.6035。实盘台账净盈亏 +78，ROI +0.78%，CLV 暂不可测（缺可信收盘价快照）。</p>
 <p class="warn">注：回测主选样本量小（13 / 76 场），正收益脆弱，盈利未经证明。本站不保证胜率与盈利。</p>
 </section>
 
@@ -321,7 +321,7 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <section id="method">
 <h2>模型方法</h2>
-<p>进球期望 λ 由 Poisson + Dixon-Coles 模型按球队攻防与近期状态估计，由同一张比分概率矩阵推出大小球、双进、让球与比分概率。第二方法为 xG-λ：覆盖联赛用 StrikerAPI 真 xG，自算 xG 兜底。筛选采用 ev_first：主选须 EV ≥ +5%、模型概率 ≥ 60%、综合分 ≥ 75、第二方法同向且分歧 ≤ 10pp；再与 Opta 超级计算机、Oddspedia SmartBet 公开页交叉验证，分歧 &gt; 15pp 降级或排除。固定注码：主选 1% / 次选 0.5%。无主选的日子，重心位依次由外部 Opta 方向、保底重心（当日相对最佳，明确标注未过主选门槛）补位。所有推荐赛后复盘入盈利台账，按 CLV / ROI / Yield / 命中率分段统计，并驱动概率校准。</p>
+<p>进球期望 λ 由 Poisson + Dixon-Coles 模型按球队攻防与近期状态估计，由同一张比分概率矩阵推出大小球、双进、让球与比分概率。第二方法为 xG-λ：覆盖联赛用 StrikerAPI 真 xG，自算 xG 兜底。筛选采用 ev_first：主选须 EV ≥ +5%、模型概率 ≥ 60%、综合分 ≥ 75、第二方法同向且分歧 ≤ 10pp；再与 Opta 超级计算机、Oddspedia SmartBet 公开页交叉验证，分歧 &gt; 15pp 降级或排除。固定注码：主选 1% / 次选 0.5%。无主选的日子，重心位先由模型重心（当日模型最强方向，0.5% 注码，明确标注未过主选门槛）补位，模型无可验证候选时才由外部 Opta 方向补位。所有推荐赛后复盘入盈利台账，按 CLV / ROI / Yield / 命中率分段统计，并驱动概率校准。</p>
 </section>
 
 <section id="history">
@@ -336,15 +336,22 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <tr><td>希腊 vs 塞尔维亚</td><td>双进-是</td><td class="num">1.97</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">−50</td></tr>
 <tr><td>北马其顿 vs 斯洛文尼亚</td><td>小 2.5</td><td class="num">1.67</td><td><span class="lose">黑</span> 0-3</td><td class="num minus">−50</td></tr>
 <tr><td>阿尔巴塞特 vs 塞尔塔B队</td><td>双进-是</td><td class="num">1.67</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">−50</td></tr>
+<tr><td>贝西克塔斯 vs 皇家马德里（欧联）</td><td>大分 179.5</td><td class="num">1.85</td><td><span class="lose">黑</span> 贝西克塔斯83-79皇马</td><td class="num minus">−50</td></tr>
+<tr><td>尤文图斯女足 vs 鲁汶女足</td><td>双进-是（模型重心）</td><td class="num">1.83</td><td><span class="lose">黑</span> 尤文2-0鲁汶</td><td class="num minus">−50</td></tr>
+<tr><td>切尔西女足 vs 巴黎圣日耳曼女足</td><td>双进-否</td><td class="num">2.05</td><td><span class="win">红</span> 切尔西1-0巴黎</td><td class="num plus">+52.5</td></tr>
+<tr><td>克鲁塞罗 vs 帕尔梅拉斯</td><td>大 2.5</td><td class="num">1.72</td><td><span class="win">红</span> 克鲁塞罗2-1帕尔梅拉斯</td><td class="num plus">+36</td></tr>
+<tr><td>赫根女足 vs 曼城女足</td><td>小 2.5</td><td class="num">3.25</td><td><span class="win">红</span> 赫根0-2曼城</td><td class="num plus">+112.5</td></tr>
+<tr><td>丹佛掘金 vs 波士顿凯尔特人（NBA）</td><td>让分客队</td><td class="num">1.94</td><td><span class="lose">黑</span> 掘金105-101凯尔特人</td><td class="num minus">−50</td></tr>
+<tr><td>萨克拉门托国王 vs 菲尼克斯太阳（NBA）</td><td>大分 227</td><td class="num">1.91</td><td><span class="win">红</span> 国王107-128太阳</td><td class="num plus">+45.5</td></tr>
 </table>
-<p class="small">已结算 8 场：4 红 4 黑，命中率 50.00%，净 −18.5，Yield −4.11%，ROI −0.19%，CLV 不可测 0/8。其中外部重心（Opta）1 场：威尔士 vs 葡萄牙客胜，红 +44，单独分段统计。完整分段台账（分市场/分联赛/重心场次）见站长维护的电子表格。</p>
+<p class="small">已结算 15 场：8 红 7 黑，命中率 53.33%，净 +78，Yield +9.75%，ROI +0.78%，CLV 不可测 0/15。其中模型自选 14 场：7 红 7 黑，净 +34；外部重心（Opta）1 场：威尔士 vs 葡萄牙客胜，红 +44，单独分段统计。月盈利 KPI：+78 / ¥3,000（2.6%）。配色总览、盈亏曲线与分段战绩见<a href="ledger.html">台账可视化总览 →</a></p>
 </section>
 
 <section id="faq">
 <h2>常见问题</h2>
-<details><summary>每天什么时候更新？</summary><p>篮球 07:00、专家共识 18:49、足球 19:00（五大联赛/美职联比赛日）或 23:00、竞彩二串一 20:00，均为北京时间。</p></details>
-<details><summary>为什么有的日子没有模型重心？</summary><p>主选门槛不降：概率、EV、综合分、第二方法分歧四关全过才算主选。无主选时重心位由外部 Opta 方向或保底重心补位，并明确标注等级，绝不拿次选冒充主选。</p></details>
-<details><summary>推荐能保证盈利吗？</summary><p>不能。回测样本小、实盘台账目前为负，任何声称保证胜率或盈利的模型都不可信。本站公开全部红黑记录，请自行判断。</p></details>
+<details><summary>每天什么时候更新？</summary><p>篮球、足球主版、专家共识、竞彩二串一均为每日 21:00（北京时间）；周六、周日五大联赛/美职联比赛日足球另有 19:00 早版，那天 21:00 足球主版跳过不重复。</p></details>
+<details><summary>为什么有的日子没有模型重心？</summary><p>主选门槛不降：概率、EV、综合分、第二方法分歧四关全过才算主选。无主选时重心位先由模型重心补位，模型无可验证候选时才由外部 Opta 方向补位，并明确标注等级，绝不拿次选冒充主选。</p></details>
+<details><summary>推荐能保证盈利吗？</summary><p>不能。回测样本小、实盘目前只有 15 场（净 +78），样本太小不能证明盈利，任何声称保证胜率或盈利的模型都不可信。本站公开全部红黑记录，请自行判断。</p></details>
 <details><summary>数据来源有哪些？</summary><p>The Odds API（赔率）、StrikerAPI（真 xG 与收盘价）、Football-Data.org（赛果）、NBA 官方伤病报告、EuroLeague 官方 API，以及 Opta 超级计算机与 Oddspedia SmartBet 公开页交叉验证。API-Football 目前暂停（申诉中），期间足球伤停与首发覆盖受限，页面会如实标注。</p></details>
 </section>
 
