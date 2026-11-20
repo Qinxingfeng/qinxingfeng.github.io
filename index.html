@@ -176,6 +176,17 @@ table.fodds tr.fprow td{background:rgba(245,158,11,.13);font-weight:700;color:#f
 .candzone .jccell.cand{border-color:rgba(192,132,252,.7);background:rgba(168,85,247,.14);box-shadow:0 0 0 1px rgba(192,132,252,.3) inset}
 .candzone .jccell.cand .k{color:#e9d5ff}
 .candzone .jcfoot b{color:#e9d5ff}
+/* ===== 预告折叠区（pvzone，作用域隔离） ===== */
+.pvzone{margin:14px 0 4px}
+.pvzone details{margin:0;border:1px dashed rgba(148,180,255,.35);border-radius:12px;background:rgba(15,23,42,.55);overflow:hidden}
+.pvzone summary.pvbar{cursor:pointer;list-style:none;font-size:14.5px;font-weight:700;color:#dbeafe;padding:10px 14px;background:linear-gradient(90deg,rgba(37,99,235,.28),rgba(14,116,233,.12))}
+.pvzone summary.pvbar::-webkit-details-marker{display:none}
+.pvzone .pvbody{padding:8px 14px 10px}
+.pvzone .pvempty{margin:4px 0}
+.pvzone .pvitem{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:13.5px;padding:7px 0;border-top:1px solid rgba(120,160,255,.12)}
+.pvzone .pvitem:first-child{border-top:none;padding-top:2px}
+.pvzone .pvteams{font-weight:700;color:#fff}
+.pvzone .pvmeta{color:var(--muted)}
 /* ===== passing picks mini cards (one card per pick, replaces text-wall list) ===== */
 .pkcards{display:flex;flex-direction:column;gap:9px;margin-top:10px}
 .pkcard{border:1px solid rgba(160,190,255,.18);background:linear-gradient(180deg,rgba(22,34,62,.8),rgba(10,17,36,.9));border-radius:12px;padding:10px 13px}
@@ -350,6 +361,14 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 周四004 西雅图 vs 盐湖城：胜平负 1.62/3.76/3.90，让球胜平负（主让1球）3.35/3.05/1.95</p>
 <p class="small">小结：四场 1X2 主胜概率均为 44.6%（平 25.7%/客 29.7%），均未达胜平负腿 60% 门槛。当日最佳一场：维多利亚 vs 布拉干蒂诺RB——双进是 55.0%，综合分 74.1（当日最高），但未达 60% 腿门槛，仅为候选，不构成推荐。交叉验证：无入围场次（无腿通过模型门槛），Opta 超级计算机与 Oddspedia SmartBet 未执行核对，亦未编造。</p>
 <p class="small">数据缺口：API-Football 账户仍被停用，球队近 5 场状态全部取不到，λ 全为联赛均值 1.55-1.22，四场模型概率完全相同（双进是均为 55.0%），模型无法区分场次；美职足两场第二方法（StrikerAPI 真实 xG）明显高于模型（双进是 64.6%/64.3%），提示真实进攻水平高于联赛均值假设，但模型概率仍未达门槛。竞彩官网 sporttery.cn 当日 21:04–21:05 三次访问均被腾讯云 EdgeOne 拦截（567 Restricted Access），官方赔率未取到，不编造；上表赔率为 500.com（trade.500.com/jczq/，21:08 核实）页面显示的官方参考赔率（仅胜平负/让球胜平负，总进球数/双进赔率该页未展示），投注前请自行在竞彩官网核对当日开售场次与官方赔率。模型池唯一未开赛场次瓦斯科达伽马 vs 巴西国际（巴甲，11月20日 06:30；双进是 55.0%，第二方法 55.2%，分歧 0.1pp）不在今日竞彩周四在售组（4 场）中，故不作竞彩腿候选。只做分析推荐，不代购、不碰钱。</p>
+<div class="pvzone">
+<details class="pvfold">
+<summary class="pvbar">📅 预告（点击展开）</summary>
+<div class="pvbody">
+<p class="small pvempty">暂无预告场次。不在当天预选之列的热门比赛（如热门球队稍晚日期的赛程）会从简登记在这里，不占正文篇幅。</p>
+</div>
+</details>
+</div>
 </section>
 </div>
 
@@ -458,6 +477,14 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 </div>
 </div>
 <p class="small">主选注码 1%，次选 0.5%。伤病以 NBA 官方伤病报告为准，查不到写未查到。</p>
+<div class="pvzone">
+<details class="pvfold">
+<summary class="pvbar">📅 预告（点击展开）</summary>
+<div class="pvbody">
+<p class="small pvempty">暂无预告场次。不在当天预选之列的热门比赛（如热门球队稍晚日期的赛程）会从简登记在这里，不占正文篇幅。</p>
+</div>
+</details>
+</div>
 </section>
 </div>
 
