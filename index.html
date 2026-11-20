@@ -160,6 +160,22 @@ table.fodds tr.fprow td{background:rgba(245,158,11,.13);font-weight:700;color:#f
 .jccell.cand .k{color:#ffd9a8;font-weight:700}
 .jccell .v.na{font-size:12.5px;font-weight:600;color:var(--muted)}
 .jccell.note{font-size:12.5px;color:var(--muted);padding:7px 4px;text-align:center}
+/* ===== candidate hero cards (purple, vs red focus) ===== */
+.candbar{background:linear-gradient(90deg,#7c3aed,#c026d3);color:#fff;font-weight:800;font-size:15.5px;border-radius:10px;padding:9px 14px;margin:14px 0 4px;text-align:center;box-shadow:0 8px 22px rgba(147,51,234,.35)}
+.candzone .jccard{border:1px solid rgba(192,132,252,.45);background:linear-gradient(180deg,rgba(46,16,101,.5),rgba(10,17,36,.92));padding:0 14px 12px;overflow:hidden}
+.candzone .chero{background:linear-gradient(125deg,#2e1065,#7c3aed 55%,#4c1d95);border-radius:0 0 12px 12px;margin:0 -14px 4px;padding:12px 12px 10px}
+.candzone .chero .jchead{color:#e9d5ff}
+.candzone .chero .jcno{background:linear-gradient(90deg,#7c3aed,#d946ef)}
+.candzone .chero .jcleague{color:#f5d0fe}
+.candzone .chero .jcteams{font-size:19px;margin:7px 0 3px}
+.candzone .chero .jcteams .vs{background:linear-gradient(90deg,#7c3aed,#d946ef)}
+.candzone .chtime{text-align:center;font-size:13px;font-weight:700;color:#fff}
+.candzone .cpick{background:linear-gradient(90deg,#7c3aed,#d946ef);color:#fff;font-weight:800;font-size:15px;border-radius:10px;padding:8px 12px;margin:8px 0 2px;text-align:center}
+.candzone .jcplay.pick{background:rgba(168,85,247,.12);border-color:rgba(192,132,252,.4)}
+.candzone .jcplay.pick .candtag{color:#e9d5ff}
+.candzone .jccell.cand{border-color:rgba(192,132,252,.7);background:rgba(168,85,247,.14);box-shadow:0 0 0 1px rgba(192,132,252,.3) inset}
+.candzone .jccell.cand .k{color:#e9d5ff}
+.candzone .jcfoot b{color:#e9d5ff}
 .bar{height:10px;background:rgba(160,190,255,.15);border-radius:99px;margin:7px 0 3px;overflow:hidden}
 .bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#22d3ee);box-shadow:0 0 12px rgba(56,160,255,.55)}
 #pane-b .bar>i{background:linear-gradient(90deg,#ea580c,#facc15);box-shadow:0 0 12px rgba(250,160,60,.55)}
@@ -262,11 +278,12 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <h3>竞彩二串一（2026-11-19 21:00 运行）</h3>
 <p>今日无可验证的二串一组合（未凑出两条合格腿，不硬凑）。筛查漏斗：竞彩在售 4 场（周四组）→ 模型逐场算概率 4 场 → 第二方法（xG-λ）可验证 4 场 → 按竞彩腿门槛过关 0 条。入选门槛：每条腿模型概率 ≥60% 且第二方法（xG-λ）同向、分歧 ≤10pp；优先总进球数和让球胜平负，胜平负腿只在 1X2 模型概率 ≥60% 且第二方法同向时可用；不设组合 EV 门槛；两腿须为不同比赛。</p>
-<p>候选（均未达标，仅供参考，不构成推荐）：</p>
+<div class="candzone">
+<div class="candbar">💜 候选（均未达标，仅供参考，不构成推荐）</div>
 <div class="jccards">
 <div class="jccard">
-<div class="jchead"><span class="jcno">周四001</span><span class="jcleague">巴甲</span><span class="jctime">北京时间 11月20日 06:30</span></div>
-<div class="jcteams">维多利亚<span class="vs">VS</span>布拉干蒂诺RB</div>
+<div class="chero"><div class="jchead"><span class="jcno">周四001</span><span class="jcleague">巴甲</span></div><div class="jcteams">维多利亚<span class="vs">VS</span>布拉干蒂诺RB</div><div class="chtime">北京时间 11月20日 06:30</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 74.1</div>
 <div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 49.5%</span><span>分歧 1.6pp</span></div>
 <div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
 <div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
@@ -275,8 +292,8 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；当日最佳一场（综合分 74.1，当日最高）。</div>
 </div>
 <div class="jccard">
-<div class="jchead"><span class="jcno">周四002</span><span class="jcleague">巴甲</span><span class="jctime">北京时间 11月20日 08:30</span></div>
-<div class="jcteams">圣保罗<span class="vs">VS</span>弗鲁米嫩塞</div>
+<div class="chero"><div class="jchead"><span class="jcno">周四002</span><span class="jcleague">巴甲</span></div><div class="jcteams">圣保罗<span class="vs">VS</span>弗鲁米嫩塞</div><div class="chtime">北京时间 11月20日 08:30</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 74.0</div>
 <div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 50.3%</span><span>分歧 0.7pp</span></div>
 <div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
 <div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
@@ -285,8 +302,8 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>。</div>
 </div>
 <div class="jccard">
-<div class="jchead"><span class="jcno">周四003</span><span class="jcleague">美职足</span><span class="jctime">北京时间 11月20日 08:30</span></div>
-<div class="jcteams">奥兰多<span class="vs">VS</span>辛辛那提</div>
+<div class="chero"><div class="jchead"><span class="jcno">周四003</span><span class="jcleague">美职足</span></div><div class="jcteams">奥兰多<span class="vs">VS</span>辛辛那提</div><div class="chtime">北京时间 11月20日 08:30</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 65.2</div>
 <div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 62.7%</span><span>分歧 11.7pp</span><span class="warn2">分歧超 10pp</span></div>
 <div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
 <div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
@@ -295,14 +312,15 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；大 2.5 两方法分歧 11.7pp，超 10pp 上限。</div>
 </div>
 <div class="jccard">
-<div class="jchead"><span class="jcno">周四004</span><span class="jcleague">美职足</span><span class="jctime">北京时间 11月20日 11:00</span></div>
-<div class="jcteams">西雅图<span class="vs">VS</span>盐湖城</div>
+<div class="chero"><div class="jchead"><span class="jcno">周四004</span><span class="jcleague">美职足</span></div><div class="jcteams">西雅图<span class="vs">VS</span>盐湖城</div><div class="chtime">北京时间 11月20日 11:00</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 65.5</div>
 <div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 62.7%</span><span>分歧 11.7pp</span><span class="warn2">分歧超 10pp</span></div>
 <div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
 <div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
 <div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 64.3%</span><span>分歧 9.3pp</span><span>综合分 65.5</span></div>
 <div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">否</span><span class="v na">未取价</span></div></div></div>
 <div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；大 2.5 两方法分歧 11.7pp，超 10pp 上限。</div>
+</div>
 </div>
 </div>
 <p class="small">本日卡片为新版式首日，博彩大小球/让球/双进赔率自今晚（2026-11-20）运行起逐场取价展示；竞彩官方赔率见小结。</p>
@@ -348,7 +366,31 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <p><strong>伤病更新撤销（11-20 06:00）：NBA 主选 勇士 vs 灰熊 大 226.5 已撤销——新版官方伤病报告显示 Curry、Draymond Green 双双缺阵，模型重跑后今日 NBA 无过关推荐（3 场定价全部被核心缺阵闸门封顶 59 分）。该注昨晚已发布，仍保留在台账中照常结算，但模型当前观点已撤销。</strong><br>勇士 vs 灰熊：大分 226.5，主选（已撤销），模型 61.6% @1.91，综合分 77，EV +17.6%，注码 1%（11-20 09:10）<br>迪拜 vs 特拉维夫马卡比：大分 175.5，次选，模型 56.5% @1.94，综合分 75，注码 0.5%（11-20 01:15）<br>帕纳辛奈科斯 vs 扎尔吉里斯：小分 166.5，次选，模型 57.0% @1.96，综合分 76，注码 0.5%（11-20 02:00）<br>费内巴切 vs 米兰奥林匹亚：让分客队（+4），次选，模型 64.5% @1.95，综合分 70，注码 0.5%（11-20 03:30）<br>特拉维夫哈波尔 vs 巴黎：让分客队（-1），次选，模型 64.3% @1.98，综合分 65，注码 0.5%（11-20 03:45）<br>博洛尼亚维图斯 vs 瓦伦西亚：小分 185.5，次选，模型 57.8% @2.00，综合分 75，注码 0.5%（11-20 04:00）<br>里昂阿斯维尔 vs 安纳多卢艾菲斯：大分 173.5，次选，模型 64.0% @1.96，综合分 74，注码 0.5%（11-21 01:30）<br>贝尔格莱德红星 vs 巴塞罗那：小分 172.5，次选，模型 63.0% @1.91，综合分 68，注码 0.5%（11-21 03:30）<br>贝西克塔斯 vs 贝尔格莱德游击：小分 167.5，次选，模型 71.8% @1.91，综合分 71，注码 0.5%（11-21 03:45）</p>
 </div>
 <p class="small">今日串子：无串子——NBA 仅 1 条合格腿，组串子至少需 2 条腿，不硬凑。</p>
-<p class="small">未过关：NBA 开拓者 vs 雄鹿、尼克斯 vs 森林狼最高候选综合分 59 分，核心球员确认缺阵触发出战成疑封顶（开拓者 Ja Morant 左腿筋拉伤、森林狼 Anthony Edwards 右膝关节镜术后）；快船 vs 马刺无让分/大小分盘口，未定价。EuroLeague 1 场未过关：萨斯基巴斯科尼亚 vs 拜仁慕尼黑，无候选通过筛选。</p>
+<div class="candzone">
+<div class="candbar">💜 候选（均未达标，仅供参考，不构成推荐）</div>
+<div class="jccards">
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">开拓者<span class="vs">VS</span>雄鹿</div></div>
+<div class="cpick">💜 最高候选综合分 59 分</div>
+<p class="jcfoot">未过关：最高候选综合分 59 分，核心球员确认缺阵触发出战成疑封顶（开拓者 Ja Morant 左腿筋拉伤）。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">尼克斯<span class="vs">VS</span>森林狼</div></div>
+<div class="cpick">💜 最高候选综合分 59 分</div>
+<p class="jcfoot">未过关：最高候选综合分 59 分，核心球员确认缺阵触发出战成疑封顶（森林狼 Anthony Edwards 右膝关节镜术后）。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">快船<span class="vs">VS</span>马刺</div></div>
+<div class="cpick">💜 无让分/大小分盘口 · 未定价</div>
+<p class="jcfoot">未过关：无让分/大小分盘口，未定价。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">EuroLeague</span></div><div class="jcteams">萨斯基巴斯科尼亚<span class="vs">VS</span>拜仁慕尼黑</div></div>
+<div class="cpick">💜 无候选通过筛选</div>
+<p class="jcfoot">未过关：无候选通过筛选。</p>
+</div>
+</div>
+</div>
 <p class="small">主选注码 1%，次选 0.5%。伤病以 NBA 官方伤病报告为准，查不到写未查到。</p>
 </section>
 </div>
