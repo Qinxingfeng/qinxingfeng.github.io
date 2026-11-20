@@ -115,6 +115,21 @@ td.minus{color:var(--loss);font-weight:700}
 .badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid rgba(170,200,255,.3);color:var(--muted);margin-left:6px;vertical-align:2px}
 .badge.focus{color:#fff;background:linear-gradient(90deg,#e11d48,#f59e0b);border-color:transparent;font-weight:700}
 .badge.floor{color:#fff;background:linear-gradient(90deg,#b45309,#d97706);border-color:transparent;font-weight:700}
+/* ===== daily focus hero card (Polymarket-style banner) ===== */
+.fhero{background:linear-gradient(125deg,#0a1128,#1b2a5e 55%,#0a1128);border-radius:14px;padding:16px 12px 13px;margin-bottom:10px}
+.fhero .frow{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}
+.fhero .fteam{flex:1 1 0;text-align:center;min-width:0}
+.fhero .fteam img{width:62px;height:62px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.55))}
+.fhero .finit{width:62px;height:62px;margin:0 auto;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:27px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.fhero .fname{font-size:18px;font-weight:800;color:#fff;margin-top:7px;line-height:1.3}
+.fhero .frank{font-size:12px;color:#ffd9a8;margin-top:2px}
+.fhero .fmid{flex:0 0 auto;text-align:center;padding-top:20px}
+.fhero .ftime{font-size:19px;font-weight:800;color:#fff}
+.fhero .fdate{font-size:12.5px;color:var(--muted);margin-top:3px}
+.fmeta{font-size:13px;color:var(--acc);font-weight:700;margin:2px 0 8px}
+.fpick{background:linear-gradient(90deg,#e11d48,#f59e0b);color:#fff;font-weight:800;font-size:16.5px;border-radius:10px;padding:9px 14px;margin:0 0 6px;text-align:center}
+table.fodds{font-size:13.5px;margin:6px 0 8px}
+table.fodds tr.fprow td{background:rgba(245,158,11,.13);font-weight:700;color:#fff}
 /* ===== jingcai candidate cards (cai8-style, one card per match) ===== */
 .jccards{display:flex;flex-direction:column;gap:12px;margin:10px 0}
 .jccard{border:1px solid rgba(160,190,255,.18);background:linear-gradient(180deg,rgba(22,34,62,.85),rgba(10,17,36,.92));border-radius:14px;padding:12px 14px}
@@ -216,7 +231,26 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <p class="small">筛查漏斗：比赛池 3 场 → 未开赛 1 场（已完赛/进行中 2 场）→ 模型筛查 1 场（状态实测 0 队，1 场状态未取/不足、用联赛均值 λ）→ 取到赔率 1 场 → 第二方法可验证 1 场 → 过关主选 0 / 次选 0。落选原因：无赔率覆盖 0 场；第二方法不可验证 0 场；EV 初筛未过 1 场；概率/综合分/分歧未达标 0 场（互斥归类计入 EV 未过）；交叉验证分歧过大 0 场。今日无五大联赛、无美职联比赛（国际比赛日休赛期），比赛池为巴甲 3 场，覆盖当晚至次日上午窗口内全部有开盘的比赛。今日无过关推荐（主选 0、次选 0），重心位由模型重心补位。</p>
 
 <div class="match hero-match">
-<div class="ttl">瓦斯科达伽马 vs 巴西国际（巴甲，11月20日 06:30）<span class="badge focus">模型重心（当日模型最强方向）</span></div>
+<div class="fhero">
+<div class="frow">
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/ynqlxo1630521109.png" alt="瓦斯科达伽马队徽"><div class="fname">瓦斯科达伽马</div><div class="frank">巴甲第10名</div></div>
+<div class="fmid"><div class="ftime">06:30</div><div class="fdate">11月20日</div></div>
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/yprvxx1473538097.png" alt="巴西国际队徽"><div class="fname">巴西国际</div><div class="frank">巴甲第17名</div></div>
+</div>
+</div>
+<div class="fmeta">巴甲 · 11月20日 · 北京时间 06:30<span class="badge focus">模型重心（当日模型最强方向）</span></div>
+<div class="fpick">重心：大 2.5 @1.83</div>
+<table class="fodds">
+<tr><th>市场</th><th>选项</th><th class="num">赔率</th><th>模型概率</th></tr>
+<tr><td>胜平负</td><td>瓦斯科达伽马 胜</td><td class="num">—</td><td>44.6%</td></tr>
+<tr><td></td><td>平</td><td class="num">—</td><td>25.7%</td></tr>
+<tr><td></td><td>巴西国际 胜</td><td class="num">—</td><td>29.7%</td></tr>
+<tr class="fprow"><td>大小球 2.5</td><td>大</td><td class="num">1.83</td><td>51.0%（重心）</td></tr>
+<tr><td></td><td>小</td><td class="num">未取价</td><td>49.0%</td></tr>
+<tr><td>让球</td><td>瓦斯科达伽马 −1.0</td><td class="num">未取价</td><td>—</td></tr>
+<tr><td>双进</td><td>是</td><td class="num">无此盘口</td><td>55.0%</td></tr>
+<tr><td></td><td>否</td><td class="num">无此盘口</td><td>—</td></tr>
+</table>
 <p>方向：大 2.5 @1.83 ｜ 模型概率 51.0% ｜ 第二方法 52.8% ｜ 分歧 1.8pp ｜ 综合分 69 ｜ EV −6.6% ｜ 注码 0.5%（次选）</p>
 <div class="bar"><i style="width:51.0%"></i></div>
 <p class="small">本场最佳玩法：大 2.5（模型概率 51.0%，已取价候选中最高）。比分佐证：最可能比分 1-1（12.3%）、1-0（10.1%），均不支持大球；支持本选的比分 2-1（9.1%）、1-2（7.1%）。未过主选门槛的原因：① 模型概率 51.0% 未达次选 55%（主选 60%）；② EV −6.6% 未达次选 +2%（主选 +5%）；③ 样本不足：两队均无近 5 场实测数据，λ 用联赛均值 1.55-1.22，最高次选封顶。标题如实标注模型重心，绝不冒充主选。本场最强方向本为双进是 55.0%（74.6 分），但巴甲 The Odds API 不支持 btts 市场、无 BTTS 赔率，无法计算 EV，ev_first 下不能入选、不能充重心。交叉验证：Opta 超级计算机未查到（theanalyst.com 不覆盖巴甲，无该场预测页）；Oddspedia SmartBet 1X2 主胜 54%/平 25%/客胜 21%（模型主胜 44.6%，分歧 9.4pp，通过），SmartBet 总进球小 3.5 五星 73.25%（模型隐含小 3.5 约 70%，分歧约 3pp，无直接冲突），角球小 10.5 五星 64.18%（模型无角球候选，仅作参考），SmartBet 前三无 BTTS 项目；市场隐含主胜 62.3% vs 模型 44.6%，分歧 17.6pp，已披露。1X2 参考：模型主/平/客 44.6%/25.7%/29.7%，第二方法 49.8%/24.6%/25.6%；StrikerAPI Elo 瓦斯科达伽马 1504 vs 巴西国际 1479（与模型同向）。Opta 推导：未查到 Opta 1X2 概率，不推导、不编造。</p>
@@ -288,7 +322,22 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <p class="small">NBA 当日 4 场，定价 3 场，1 主选、0 次选；EuroLeague 未来轮次（11月20–21日）10 场定价，1 主选、8 次选。伤病以 NBA 官方伤病报告为准（2026-11-19 04:45 ET 版，23 条记录）。</p>
 
 <div class="match hero-match">
-<div class="ttl">奥林匹亚科斯 vs 皇家马德里（EuroLeague）<span class="badge focus">重心比赛</span></div>
+<div class="fhero">
+<div class="frow">
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/4s5lug1676581220.png" alt="奥林匹亚科斯队徽"><div class="fname">奥林匹亚科斯</div><div class="frank">EuroLeague 第2名</div></div>
+<div class="fmid"><div class="ftime">03:15</div><div class="fdate">11月21日</div></div>
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/g4ev2c1522175902.png" alt="皇家马德里队徽"><div class="fname">皇家马德里</div><div class="frank">EuroLeague 第9名</div></div>
+</div>
+</div>
+<div class="fmeta">EuroLeague · 11月21日 · 北京时间 03:15<span class="badge focus">重心比赛</span></div>
+<div class="fpick">重心：大 170.5 分 @1.93</div>
+<table class="fodds">
+<tr><th>市场</th><th>选项</th><th class="num">赔率</th><th>模型概率</th></tr>
+<tr class="fprow"><td>大小分 170.5</td><td>大</td><td class="num">1.93</td><td>69.7%（重心）</td></tr>
+<tr><td></td><td>小</td><td class="num">未取价</td><td>—</td></tr>
+<tr><td>让分</td><td>奥林匹亚科斯</td><td class="num">未取价</td><td>—</td></tr>
+<tr><td>胜负</td><td>奥林匹亚科斯 胜</td><td class="num">未取价</td><td>—</td></tr>
+</table>
 <p>方向：大 170.5 分 @1.93 ｜ 模型概率 69.7% ｜ 第二方法 69.1% ｜ 分歧 0.6pp ｜ 把握 高 ｜ 综合分 81 ｜ EV +34.5% ｜ 注码 1%</p>
 <p class="small">北京时间 11-21 03:15 开赛；预计分差 主队 +2.3，预计总分 180.9；自算 Elo：奥林匹亚科斯 1556 vs 皇家马德里 1524。两联赛主选中综合分最高者（81 分，高于 NBA 主选 77 分）。</p>
 <div class="bar"><i style="width:69.7%"></i></div>
