@@ -306,61 +306,75 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <p class="small">落选 1 场：瓦斯科达伽马 vs 巴西国际——大 2.5 EV −6.6%（@1.83）、小 2.5 模型 49.0% &lt; 55%、双进是 55.0% 无 BTTS 赔率、让球 瓦斯科达伽马（主）−1.0 EV −29.8%。数据说明：API-Football 账户仍被停用（申诉中），赛程改走兜底源 TheSportsDB，当日仅返回 3 场巴甲比赛，Football-Data.org 当日无赛程、ESPN 当日无比赛；球队近 5 场状态、伤停、首发全部未查到，λ 用联赛均值代替；StrikerAPI 真 xG 覆盖巴甲，第二方法可验证；The Odds API 本轮足球取价 3 credits（巴甲 h2h,totals,spreads；btts 市场该联赛不支持，首次调用 422 后去掉 btts 重试成功，失败调用不计 credits）。只做分析推荐，不下注、不碰钱。</p>
 
-<h3>竞彩二串一（2026-11-19 21:00 运行）</h3>
-<p>今日无可验证的二串一组合（未凑出两条合格腿，不硬凑）。筛查漏斗：竞彩在售 4 场（周四组）→ 模型逐场算概率 4 场 → 第二方法（xG-λ）可验证 4 场 → 按竞彩腿门槛过关 0 条。入选门槛：每条腿模型概率 ≥60% 且第二方法（xG-λ）同向、分歧 ≤10pp；优先总进球数和让球胜平负，胜平负腿只在 1X2 模型概率 ≥60% 且第二方法同向时可用；不设组合 EV 门槛；两腿须为不同比赛。</p>
+<h3>竞彩二串一（2026-11-20 21:00 运行）</h3>
+<p>今日竞彩二串一（放宽口径参考串 · 不记账）：两条腿均为补足腿，模型概率 44.6%，均未过原腿门槛 60%。筛查漏斗：竞彩在售 5 场（周五组 8 场中 3 场已截止）→ 模型逐场算概率 5 场 → 第二方法（xG-λ）可验证 3 场 → 按竞彩腿门槛过关 0 条 → 第二档补足：五场模型概率并列主胜 44.6%，以第二方法主胜概率较高者优先取两场组串。组合概率 19.9%（44.6% × 44.6%，按独立性假设）；组合赔率未取价（拜仁胜平负未开售）。</p>
+<p><strong>腿 1：周五008 毕尔巴鄂竞技 vs 西班牙人 — 胜平负 主胜</strong>，模型概率 44.6%，第二方法主胜 56.0%（同向）；官方胜赔 1.28。交叉验证：Opta 主胜 61.2%（分歧 16.6pp，超 15pp，已降级为纯参考），SmartBet 主胜 54%（分歧 9.4pp）。<br>
+<strong>腿 2：周五006 拜仁慕尼黑 vs 科隆 — 胜平负 主胜</strong>，模型概率 44.6%，第二方法主胜 54.4%（同向）；官方胜赔未开售。交叉验证：Opta 主胜 82.8%（分歧 38.2pp，超 15pp，已降级为纯参考），SmartBet 主胜 76%（分歧 31.4pp）。<br>
+两条腿方向均与外部来源一致（主胜为最可能结果），分歧在幅度不在方向：模型无球队状态数据、λ 全用联赛均值，主胜概率被系统性压低，外部来源给出的主胜概率更高。本串仅为放宽口径的参考串，不伪装成过关主选，不记账。</p>
 <div class="candzone">
-<div class="candbar">💜 候选（均未达标，仅供参考，不构成推荐）</div>
+<div class="candbar">💜 候选（串子为放宽口径参考串，两条腿均未过 60% 门槛，仅供参考，不构成推荐）</div>
 <div class="jccards">
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcno">周四001</span><span class="jcleague">巴甲</span></div><div class="jcteams">维多利亚<span class="vs">VS</span>布拉干蒂诺RB</div><div class="chtime">北京时间 11月20日 06:30</div></div>
-<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 74.1</div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 49.5%</span><span>分歧 1.6pp</span></div>
-<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
-<div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 54.4%</span><span>分歧 0.7pp</span><span>综合分 74.1</span></div>
-<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">否</span><span class="v na">未取价</span></div></div></div>
-<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；当日最佳一场（综合分 74.1，当日最高）。</div>
+<div class="chero"><div class="jchead"><span class="jcno">周五004</span><span class="jcleague">德乙</span></div><div class="jcteams">比勒费尔德<span class="vs">VS</span>马格德堡</div><div class="chtime">北京时间 11月21日 01:30</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 64.8</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法未验证</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.75</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">1.85</span></div><div class="jccell"><span class="k">小</span><span class="v">1.83</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 0.25</span></div><div class="jccells two"><div class="jccell"><span class="k">主</span><span class="v">1.92</span></div><div class="jccell"><span class="k">客</span><span class="v">2.00</span></div></div></div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法未验证</span><span>综合分 64.8</span></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v">1.67</span></div><div class="jccell"><span class="k">否</span><span class="v">2.42</span></div></div></div>
+<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；第二方法未验证（德乙不在 StrikerAPI 覆盖内）。</div>
 </div>
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcno">周四002</span><span class="jcleague">巴甲</span></div><div class="jcteams">圣保罗<span class="vs">VS</span>弗鲁米嫩塞</div><div class="chtime">北京时间 11月20日 08:30</div></div>
-<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 74.0</div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 50.3%</span><span>分歧 0.7pp</span></div>
-<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
-<div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 54.3%</span><span>分歧 0.8pp</span><span>综合分 74.0</span></div>
-<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">否</span><span class="v na">未取价</span></div></div></div>
-<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>。</div>
+<div class="chero"><div class="jchead"><span class="jcno">周五005</span><span class="jcleague">荷乙</span></div><div class="jcteams">登博思<span class="vs">VS</span>芬洛</div><div class="chtime">北京时间 11月21日 03:00</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 64.8</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法未验证</span></div>
+<div class="jcgrid"><div class="jclab">大小球</div><div class="jccells one"><div class="jccell note">未取价 · The Odds API 无荷乙目录</div></div></div>
+<div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · The Odds API 无荷乙目录</div></div></div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法未验证</span><span>综合分 64.8</span></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · The Odds API 无荷乙目录</div></div></div>
+<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；第二方法未验证（荷乙不在 StrikerAPI 覆盖内）；博彩三盘均未取价。</div>
 </div>
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcno">周四003</span><span class="jcleague">美职足</span></div><div class="jcteams">奥兰多<span class="vs">VS</span>辛辛那提</div><div class="chtime">北京时间 11月20日 08:30</div></div>
-<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 65.2</div>
+<div class="chero"><div class="jchead"><span class="jcno">周五006</span><span class="jcleague">德甲</span></div><div class="jcteams">拜仁慕尼黑<span class="vs">VS</span>科隆</div><div class="chtime">北京时间 11月21日 03:30</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 68.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 62.5%</span><span>分歧 11.5pp</span><span class="warn2">分歧超 10pp</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 4.5</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">2.02</span></div><div class="jccell"><span class="k">小</span><span class="v">1.97</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 2.75</span></div><div class="jccells two"><div class="jccell"><span class="k">主</span><span class="v">1.85</span></div><div class="jccell"><span class="k">客</span><span class="v">2.04</span></div></div></div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 61.8%</span><span>分歧 6.7pp</span><span>综合分 68.0</span></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v">1.81</span></div><div class="jccell"><span class="k">否</span><span class="v">2.18</span></div></div></div>
+<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；串子腿 2（补足腿 · 放宽口径）；交叉验证分歧超 15pp，已降级为纯参考。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">周五007</span><span class="jcleague">法甲</span></div><div class="jcteams">特鲁瓦<span class="vs">VS</span>勒阿弗尔</div><div class="chtime">北京时间 11月21日 03:45</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 65.4</div>
 <div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 62.7%</span><span>分歧 11.7pp</span><span class="warn2">分歧超 10pp</span></div>
-<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
-<div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 64.6%</span><span>分歧 9.5pp</span><span>综合分 65.2</span></div>
-<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">否</span><span class="v na">未取价</span></div></div></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v">1.91</span></div><div class="jccell"><span class="k">小</span><span class="v">1.94</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">无此盘口 · uk 区暂无让球盘</div></div></div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 64.4%</span><span>分歧 9.3pp</span><span>综合分 65.4</span></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v">1.77</span></div><div class="jccell"><span class="k">否</span><span class="v">2.25</span></div></div></div>
 <div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；大 2.5 两方法分歧 11.7pp，超 10pp 上限。</div>
 </div>
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcno">周四004</span><span class="jcleague">美职足</span></div><div class="jcteams">西雅图<span class="vs">VS</span>盐湖城</div><div class="chtime">北京时间 11月20日 11:00</div></div>
-<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 65.5</div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 62.7%</span><span>分歧 11.7pp</span><span class="warn2">分歧超 10pp</span></div>
-<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">大</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">小</span><span class="v na">未取价</span></div></div></div>
-<div class="jcgrid"><div class="jclab">让球</div><div class="jccells one"><div class="jccell note">未取价 · 本场无让球候选</div></div></div>
-<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 64.3%</span><span>分歧 9.3pp</span><span>综合分 65.5</span></div>
-<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v na">未取价</span></div><div class="jccell"><span class="k">否</span><span class="v na">未取价</span></div></div></div>
-<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；大 2.5 两方法分歧 11.7pp，超 10pp 上限。</div>
+<div class="chero"><div class="jchead"><span class="jcno">周五008</span><span class="jcleague">西甲</span></div><div class="jcteams">毕尔巴鄂竞技<span class="vs">VS</span>西班牙人</div><div class="chtime">北京时间 11月21日 04:00</div></div>
+<div class="cpick">💜 本场最强方向：双进是 · 模型 55.0% · 综合分 72.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>大 2.5</b> 模型 51.0%</span><span>第二方法 58.5%</span><span>分歧 7.5pp</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.75</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">1.85</span></div><div class="jccell"><span class="k">小</span><span class="v">1.91</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 1.25</span></div><div class="jccells two"><div class="jccell"><span class="k">主</span><span class="v">2.16</span></div><div class="jccell"><span class="k">客</span><span class="v">1.84</span></div></div></div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>双进是</b> 模型 55.0%</span><span>第二方法 57.8%</span><span>分歧 2.8pp</span><span>综合分 72.0</span></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells two"><div class="jccell cand"><span class="k">是</span><span class="v">1.91</span></div><div class="jccell"><span class="k">否</span><span class="v">2.06</span></div></div></div>
+<div class="jcfoot">双进是 55.0%，<b>未达腿门槛 60%</b>；串子腿 1（补足腿 · 放宽口径）；当日最佳一场（综合分 72.0，当日最高）；交叉验证分歧超 15pp，已降级为纯参考。</div>
 </div>
 </div>
 </div>
-<p class="small">本日卡片为新版式首日，博彩大小球/让球/双进赔率自今晚（2026-11-20）运行起逐场取价展示；竞彩官方赔率见小结。</p>
+<p class="small">博彩赔率：The Odds API（uk 区各家最优价，21:00 左右取价）；大小球/让球盘口线为主线（大/主队赔率最接近 1.90 的线），候选大 2.5 仍按 2.5 线计概率，盘口线不同时格子不作候选高亮。</p>
 <p class="small">竞彩赔率（500.com 参考）：<br>
-周四001 维多利亚 vs 布拉干蒂诺RB：胜平负 2.78/3.20/2.14，让球胜平负（客让1球）1.50/3.88/4.65<br>
-周四002 圣保罗 vs 弗鲁米嫩塞：胜平负 2.50/2.80/2.62，让球胜平负（主让1球）5.95/4.15/1.37<br>
-周四003 奥兰多 vs 辛辛那提：胜平负 2.25/3.25/2.58，让球胜平负（主让1球）4.57/4.16/1.47<br>
-周四004 西雅图 vs 盐湖城：胜平负 1.62/3.76/3.90，让球胜平负（主让1球）3.35/3.05/1.95</p>
-<p class="small">小结：四场 1X2 主胜概率均为 44.6%（平 25.7%/客 29.7%），均未达胜平负腿 60% 门槛。当日最佳一场：维多利亚 vs 布拉干蒂诺RB——双进是 55.0%，综合分 74.1（当日最高），但未达 60% 腿门槛，仅为候选，不构成推荐。交叉验证：无入围场次（无腿通过模型门槛），Opta 超级计算机与 Oddspedia SmartBet 未执行核对，亦未编造。</p>
-<p class="small">数据缺口：API-Football 账户仍被停用，球队近 5 场状态全部取不到，λ 全为联赛均值 1.55-1.22，四场模型概率完全相同（双进是均为 55.0%），模型无法区分场次；美职足两场第二方法（StrikerAPI 真实 xG）明显高于模型（双进是 64.6%/64.3%），提示真实进攻水平高于联赛均值假设，但模型概率仍未达门槛。竞彩官网 sporttery.cn 当日 21:04–21:05 三次访问均被腾讯云 EdgeOne 拦截（567 Restricted Access），官方赔率未取到，不编造；上表赔率为 500.com（trade.500.com/jczq/，21:08 核实）页面显示的官方参考赔率（仅胜平负/让球胜平负，总进球数/双进赔率该页未展示），投注前请自行在竞彩官网核对当日开售场次与官方赔率。模型池唯一未开赛场次瓦斯科达伽马 vs 巴西国际（巴甲，11月20日 06:30；双进是 55.0%，第二方法 55.2%，分歧 0.1pp）不在今日竞彩周四在售组（4 场）中，故不作竞彩腿候选。只做分析推荐，不代购、不碰钱。</p>
+周五004 比勒费尔德 vs 马格德堡：胜平负 1.90/3.45/3.10，让球胜平负（主让1球）3.85/3.65/1.65<br>
+周五005 登博思 vs 芬洛：胜平负 2.12/3.19/2.82，让球胜平负（主让1球）3.92/4.50/1.51<br>
+周五006 拜仁慕尼黑 vs 科隆：胜平负未开售，让球胜平负（主让3球）2.00/4.71/2.34<br>
+周五007 特鲁瓦 vs 勒阿弗尔：胜平负 1.79/3.25/3.66，让球胜平负（主让1球）3.75/3.35/1.74<br>
+周五008 毕尔巴鄂竞技 vs 西班牙人：胜平负 1.28/4.60/7.10，让球胜平负（主让1球）2.37/2.75/2.83</p>
+<p class="small">小结：五场 1X2 主胜概率均为 44.6%（平 25.7%/客 29.7%），均未达胜平负腿 60% 门槛；总进球数最高档为 2 球 24.4%，亦未达门槛。当日最佳一场：毕尔巴鄂竞技 vs 西班牙人——双进是 55.0%，综合分 72.0（当日最高），但未达 60% 腿门槛，仅为候选，不构成推荐。交叉验证：两条串子腿的外部主胜概率均高于模型（拜仁 Opta 82.8%/SmartBet 76%，毕尔巴鄂 Opta 61.2%/SmartBet 54%），分歧超 15pp 的腿已降级为纯参考；SmartBet 另推拜仁双进否 4 星、毕尔巴鄂双重机会平或西班牙人 5 星，与部分候选方向相反，已披露。</p>
+<p class="small">数据缺口：API-Football 账户仍被停用，球队近 5 场状态全部取不到，λ 全为联赛均值 1.55-1.22，五场模型概率完全相同，模型无法区分场次（五场并列时以第二方法主胜概率定先后：毕尔巴鄂 56.0% ＞ 拜仁 54.4% ＞ 特鲁瓦 43.6%，德乙/荷乙无第二方法排后）；第二方法（StrikerAPI 真实 xG，本轮 15 credits，月预算已用 290/400）覆盖德甲/法甲/西甲 3 场，德乙/荷乙不在覆盖内。博彩三盘取价：The Odds API 本轮竞彩取价 22 credits；荷乙无运动目录未取价，特鲁瓦 uk 区暂无让球盘。竞彩官网 sporttery.cn 打开显示 Access Restricted，官方赔率未取到，不编造；上表赔率为 500.com（trade.500.com/jczq/，21:04–21:05 核实）页面显示的官方参考赔率（仅胜平负/让球胜平负，总进球数/双进赔率该页未展示），投注前请自行在竞彩官网核对当日开售场次与官方赔率。Opta 数字取自 theanalyst.com 首页 Match Ticker，比赛中心页被 Cloudflare 验证拦截未能打开；Oddspedia 两页完整打开。只做分析推荐，不代购、不碰钱。</p>
 <div class="pvzone">
 <details class="pvfold">
 <summary class="pvbar">📅 预告（点击展开）</summary>
@@ -374,114 +388,168 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <div id="pane-b" style="display:none">
 <section>
-<h2>今日场次 · 篮球（2026-11-20 比赛日 · 21:00 运行）</h2>
-<p class="small">NBA 当日 4 场，定价 3 场，1 主选、0 次选；EuroLeague 未来轮次（11月20–21日）10 场定价，1 主选、8 次选。伤病以 NBA 官方伤病报告为准（2026-11-19 04:45 ET 版，23 条记录）。</p>
+<h2>今日场次 · 篮球（2026-11-21 比赛日 · 21:00 运行）</h2>
+<p class="small">NBA 当日 9 场，定价 9 场，0 主选、1 次选；EuroLeague 24 小时窗内 4 场定价，1 主选、3 次选；另有 6 场 EuroLeague 超 24 小时窗未进池（见预告区）。伤病以 NBA 官方伤病报告为准（2026-11-20 08:00 ET 版，95 条记录）。</p>
 
 <div class="match hero-match">
 <div class="fhero">
 <div class="frow">
 <div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/4s5lug1676581220.png" alt="奥林匹亚科斯队徽"><div class="fname">奥林匹亚科斯</div><div class="frank">EuroLeague 第2名</div></div>
 <div class="fmid"><div class="ftime">03:15</div><div class="fdate">11月21日</div></div>
-<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/g4ev2c1522175902.png" alt="皇家马德里队徽"><div class="fname">皇家马德里</div><div class="frank">EuroLeague 第9名</div></div>
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/g4ev2c1522175902.png" alt="皇家马德里队徽"><div class="fname">皇家马德里</div><div class="frank">EuroLeague 第8名</div></div>
 </div>
 </div>
 <div class="fmeta">EuroLeague · 11月21日 · 北京时间 03:15<span class="badge focus">重心比赛</span></div>
-<div class="fpick">重心：大 170.5 分 @1.93</div>
+<div class="fpick">重心：大 175.5 分 @1.91</div>
 <table class="fodds">
 <tr><th>市场</th><th>选项</th><th class="num">赔率</th><th>模型概率</th></tr>
-<tr class="fprow"><td>大小分 170.5</td><td>大</td><td class="num">1.93</td><td>69.7%（重心）</td></tr>
-<tr><td></td><td>小</td><td class="num">未取价</td><td>—</td></tr>
-<tr><td>让分</td><td>奥林匹亚科斯</td><td class="num">未取价</td><td>—</td></tr>
-<tr><td>胜负</td><td>奥林匹亚科斯 胜</td><td class="num">未取价</td><td>—</td></tr>
+<tr class="fprow"><td>大小分 175.5</td><td>大</td><td class="num">1.91</td><td>60.8%（重心）</td></tr>
+<tr><td>大小分 175.5</td><td>小</td><td class="num">1.96</td><td>—</td></tr>
+<tr><td>大小分 176.0</td><td>大</td><td class="num">1.93</td><td>—</td></tr>
+<tr><td>大小分 176.0</td><td>小</td><td class="num">1.92</td><td>—</td></tr>
+<tr><td>让分</td><td>奥林匹亚科斯（主）-2.0</td><td class="num">1.96</td><td>—</td></tr>
+<tr><td>让分</td><td>皇家马德里（客）+2.0</td><td class="num">1.90</td><td>—</td></tr>
+<tr><td>胜负</td><td>奥林匹亚科斯 胜</td><td class="num">1.84</td><td>—</td></tr>
+<tr><td>胜负</td><td>皇家马德里 胜</td><td class="num">2.16</td><td>—</td></tr>
 </table>
-<p>方向：大 170.5 分 @1.93 ｜ 模型概率 69.7% ｜ 第二方法 69.1% ｜ 分歧 0.6pp ｜ 把握 高 ｜ 综合分 81 ｜ EV +34.5% ｜ 注码 1%</p>
-<p class="small">北京时间 11-21 03:15 开赛；预计分差 主队 +2.3，预计总分 180.9；自算 Elo：奥林匹亚科斯 1556 vs 皇家马德里 1524。两联赛主选中综合分最高者（81 分，高于 NBA 主选 77 分）。</p>
-<div class="bar"><i style="width:69.7%"></i></div>
+<p>方向：大 175.5 分 @1.91 ｜ 模型概率 60.8% ｜ 第二方法 60.1% ｜ 分歧 0.7pp ｜ 把握 高 ｜ 综合分 77 ｜ 注码 1%</p>
+<p class="small">北京时间 11-21 03:15 开赛；预计分差 主队 +2.3，预计总分 181.0；自算 Elo：奥林匹亚科斯 1556 vs 皇家马德里 1524。主队 EuroLeague 第 2 名（9 胜 3 负）、客队第 8 名（7 胜 5 负），排名取自 EuroLeague 官网 2026-27 积分榜（2026-11-20 核实）。说明：本场昨日 21:00 运行已按 170.5 线发布过一次（11-20 比赛日文件），今日按 175.5 线重新定价再次落盘；结算复核时请注意去重，勿重复记账。</p>
+<div class="bar"><i style="width:60.8%"></i></div>
 </div>
 
 <div class="match">
 <div class="ttl">其余过关推荐</div>
-<p><strong>伤病更新撤销（11-20 06:00）：NBA 主选 勇士 vs 灰熊 大 226.5 已撤销——新版官方伤病报告显示 Curry、Draymond Green 双双缺阵，模型重跑后今日 NBA 无过关推荐（3 场定价全部被核心缺阵闸门封顶 59 分）。该注昨晚已发布，仍保留在台账中照常结算，但模型当前观点已撤销。</strong></p>
 <div class="pkcards">
-<div class="pkcard revoked">
-<div class="pkhead"><span class="pkteams">勇士 vs 灰熊</span><span class="pktime">11-20 09:10</span></div>
-<div class="pkrow2"><span class="pkchip">大分 226.5</span><span class="pkbadge main">主选</span><span class="pkbadge rev">已撤销</span></div>
-<div class="pkstats"><span>模型 <b>61.6%</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>77</b></span><span>注码 <b>1%</b></span></div>
-</div>
 <div class="pkcard">
-<div class="pkhead"><span class="pkteams">迪拜 vs 特拉维夫马卡比</span><span class="pktime">11-20 01:15</span></div>
-<div class="pkrow2"><span class="pkchip">大分 175.5</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>56.5%</b></span><span>赔率 <b>1.94</b></span><span>综合分 <b>75</b></span><span>注码 <b>0.5%</b></span></div>
-</div>
-<div class="pkcard">
-<div class="pkhead"><span class="pkteams">帕纳辛奈科斯 vs 扎尔吉里斯</span><span class="pktime">11-20 02:00</span></div>
-<div class="pkrow2"><span class="pkchip">小分 166.5</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>57.0%</b></span><span>赔率 <b>1.96</b></span><span>综合分 <b>76</b></span><span>注码 <b>0.5%</b></span></div>
-</div>
-<div class="pkcard">
-<div class="pkhead"><span class="pkteams">费内巴切 vs 米兰奥林匹亚</span><span class="pktime">11-20 03:30</span></div>
-<div class="pkrow2"><span class="pkchip">让分 米兰奥林匹亚（客）+4</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>64.5%</b></span><span>赔率 <b>1.95</b></span><span>综合分 <b>70</b></span><span>注码 <b>0.5%</b></span></div>
-</div>
-<div class="pkcard">
-<div class="pkhead"><span class="pkteams">特拉维夫哈波尔 vs 巴黎</span><span class="pktime">11-20 03:45</span></div>
-<div class="pkrow2"><span class="pkchip">让分 巴黎（客）-1</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>64.3%</b></span><span>赔率 <b>1.98</b></span><span>综合分 <b>65</b></span><span>注码 <b>0.5%</b></span></div>
-</div>
-<div class="pkcard">
-<div class="pkhead"><span class="pkteams">博洛尼亚维图斯 vs 瓦伦西亚</span><span class="pktime">11-20 04:00</span></div>
-<div class="pkrow2"><span class="pkchip">小分 185.5</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>57.8%</b></span><span>赔率 <b>2.00</b></span><span>综合分 <b>75</b></span><span>注码 <b>0.5%</b></span></div>
+<div class="pkhead"><span class="pkteams">火箭 vs 掘金</span><span class="pktime">11-21 11:10</span></div>
+<div class="pkrow2"><span class="pkchip">大分 225.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>56.2%</b></span><span>第二方法 <b>58.5%</b></span><span>分歧 <b>2.3pp</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>65</b></span><span>注码 <b>0.5%</b></span></div>
 </div>
 <div class="pkcard">
 <div class="pkhead"><span class="pkteams">里昂阿斯维尔 vs 安纳多卢艾菲斯</span><span class="pktime">11-21 01:30</span></div>
-<div class="pkrow2"><span class="pkchip">大分 173.5</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>64.0%</b></span><span>赔率 <b>1.96</b></span><span>综合分 <b>74</b></span><span>注码 <b>0.5%</b></span></div>
+<div class="pkrow2"><span class="pkchip">大分 176.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>58.6%</b></span><span>第二方法 <b>54.9%</b></span><span>分歧 <b>3.7pp</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>73</b></span><span>注码 <b>0.5%</b></span></div>
 </div>
 <div class="pkcard">
 <div class="pkhead"><span class="pkteams">贝尔格莱德红星 vs 巴塞罗那</span><span class="pktime">11-21 03:30</span></div>
 <div class="pkrow2"><span class="pkchip">小分 172.5</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>63.0%</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>68</b></span><span>注码 <b>0.5%</b></span></div>
+<div class="pkstats"><span>模型 <b>62.9%</b></span><span>第二方法 <b>64.0%</b></span><span>分歧 <b>1.1pp</b></span><span>赔率 <b>1.96</b></span><span>综合分 <b>68</b></span><span>注码 <b>0.5%</b></span></div>
 </div>
 <div class="pkcard">
 <div class="pkhead"><span class="pkteams">贝西克塔斯 vs 贝尔格莱德游击</span><span class="pktime">11-21 03:45</span></div>
-<div class="pkrow2"><span class="pkchip">小分 167.5</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>71.8%</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>71</b></span><span>注码 <b>0.5%</b></span></div>
+<div class="pkrow2"><span class="pkchip">小分 166.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>70.1%</b></span><span>第二方法 <b>59.1%</b></span><span>分歧 <b>10.9pp</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>71</b></span><span>注码 <b>0.5%</b></span></div>
 </div>
 </div>
 </div>
-<p class="small">今日串子：无串子——NBA 仅 1 条合格腿，组串子至少需 2 条腿，不硬凑。</p>
 <div class="candzone">
 <div class="candbar">💜 候选（均未达标，仅供参考，不构成推荐）</div>
 <div class="jccards">
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">开拓者<span class="vs">VS</span>雄鹿</div></div>
-<div class="cpick">💜 最高候选综合分 59 分</div>
-<p class="jcfoot">未过关：最高候选综合分 59 分，核心球员确认缺阵触发出战成疑封顶（开拓者 Ja Morant 左腿筋拉伤）。</p>
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">黄蜂<span class="vs">VS</span>老鹰</div><div class="chtime">11-21 08:10</div></div>
+<div class="cpick">💜 本场最强方向：让分 老鹰（主） · 模型 78.2% · 综合分 59</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、综合分 59 < 次选门槛 60（差 1 分）；出战成疑封顶：黄蜂 Grayson Allen（Out，脑震荡协议；赛季场均 27.1 分钟）、老鹰 CJ McCollum（Out，左小腿拉伤；赛季场均 26.4 分钟）。</p>
 </div>
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">尼克斯<span class="vs">VS</span>森林狼</div></div>
-<div class="cpick">💜 最高候选综合分 59 分</div>
-<p class="jcfoot">未过关：最高候选综合分 59 分，核心球员确认缺阵触发出战成疑封顶（森林狼 Anthony Edwards 右膝关节镜术后）。</p>
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">魔术<span class="vs">VS</span>篮网</div><div class="chtime">11-21 08:40</div></div>
+<div class="cpick">💜 本场最强方向：大分 222 · 模型 57.9% · 综合分 59</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、综合分 59 < 次选门槛 60（差 1 分）；出战成疑封顶：魔术 Paolo Banchero（Out，右高位踝关节扭伤；赛季场均 33.8 分钟）。</p>
 </div>
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">快船<span class="vs">VS</span>马刺</div></div>
-<div class="cpick">💜 无让分/大小分盘口 · 未定价</div>
-<p class="jcfoot">未过关：无让分/大小分盘口，未定价。</p>
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">步行者<span class="vs">VS</span>骑士</div><div class="chtime">11-21 08:40</div></div>
+<div class="cpick">💜 本场最强方向：让分 骑士（主） · 模型 56.1% · 综合分 59</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、综合分 59 < 次选门槛 60（差 1 分）；出战成疑封顶：步行者 Tyrese Haliburton（Out，左腿筋拉伤；赛季场均 33.0 分钟）、骑士 Evan Mobley（Out，左大脚趾扭伤；赛季场均 32.0 分钟）。</p>
 </div>
 <div class="jccard">
-<div class="chero"><div class="jchead"><span class="jcleague">EuroLeague</span></div><div class="jcteams">萨斯基巴斯科尼亚<span class="vs">VS</span>拜仁慕尼黑</div></div>
-<div class="cpick">💜 无候选通过筛选</div>
-<p class="jcfoot">未过关：无候选通过筛选。</p>
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">猛龙<span class="vs">VS</span>活塞</div><div class="chtime">11-21 08:40</div></div>
+<div class="cpick">💜 本场最强方向：大分 217.5 · 模型 61.6% · 综合分 59</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、综合分 59 < 次选门槛 60（差 1 分）；出战成疑封顶：猛龙 RJ Barrett（Out，右腿筋拉伤；赛季场均 33.7 分钟）、猛龙 Kawhi Leonard（Out，左膝伤病管理；赛季场均 25.8 分钟）、猛龙 Collin Murray-Boyles（Out，脑震荡协议；赛季场均 24.3 分钟）、活塞 Duncan Robinson（Out，左股四头肌拉伤；赛季场均 30.5 分钟）。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">奇才<span class="vs">VS</span>公牛</div><div class="chtime">11-21 09:10</div></div>
+<div class="cpick">💜 本场最强方向：让分 公牛（主） · 模型 76.9% · 综合分 57</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、两方法反向、分歧 29.2pp > 次选上限 15pp、综合分 57 < 次选门槛 60、超高把握待核查（模型概率 ≥75% 且分歧 >5pp）；出战成疑封顶：公牛 Caleb Wilson（Out，右掌骨骨折；赛季场均 30.8 分钟）。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">鹈鹕<span class="vs">VS</span>雷霆</div><div class="chtime">11-21 09:10</div></div>
+<div class="cpick">💜 本场最强方向：让分 雷霆（主） · 模型 78.6% · 综合分 59</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、分歧 17.3pp > 次选上限 15pp、综合分 59 < 次选门槛 60、超高把握待核查；出战成疑封顶：鹈鹕 Dejounte Murray（Out，左踝扭伤；赛季场均 31.4 分钟）、雷霆 Chet Holmgren（Out，右膝伤病恢复；赛季场均 29.9 分钟）、雷霆 Jalen Williams（Out，左踝手术；赛季场均 31.6 分钟）。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">太阳<span class="vs">VS</span>爵士</div><div class="chtime">11-21 10:40</div></div>
+<div class="cpick">💜 本场最强方向：小分 225.5 · 模型 55.3% · 综合分 44</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、两方法反向、综合分 44 < 次选门槛 60；出战成疑封顶：爵士 Jaren Jackson Jr.（Out，右内侧副韧带撕裂；赛季场均 26.1 分钟）、爵士 Lauri Markkanen（Out，右手骨折；赛季场均 30.9 分钟）。</p>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcleague">NBA</span></div><div class="jcteams">国王<span class="vs">VS</span>湖人</div><div class="chtime">11-21 11:10</div></div>
+<div class="cpick">💜 本场最强方向：让分 湖人（主） · 模型 74.9% · 综合分 59</div>
+<p class="jcfoot">未过关：档位 C（硬降权后未达 B）、综合分 59 < 次选门槛 60（差 1 分）；出战成疑封顶：国王 Precious Achiuwa（Doubtful，左小腿挫伤；赛季场均 26.2 分钟）、湖人 Austin Reaves（Out，左脚跟挫伤/骨挫伤；赛季场均 35.3 分钟）。本场另见下方热门前瞻第 1 场。</p>
 </div>
 </div>
 </div>
 <p class="small">主选注码 1%，次选 0.5%。伤病以 NBA 官方伤病报告为准，查不到写未查到。</p>
+<div class="match"><div class="ttl">热门前瞻（5 场 · 门槛只决定等级与注码，不作沉默封杀）</div>
+<p class="small">数据时点：赔率 The Odds API 2026-11-20 21:10（北京时间）即时盘；初盘未取到（The Odds API 仅提供即时盘），盘口变化时序关系标注数据缺口；NBA 伤病以官方伤病报告 2026-11-20 08:00 ET 版（95 条）为准；NBA 确认首发无合法数据源，固定标注数据缺口；EuroLeague 伤停无系统数据源，标注数据缺口。Polymarket 为只读交叉验证，不改模型概率与等级。</p></div>
+<div class="match"><div class="ttl">1. 国王 vs 湖人（NBA，11-21 11:10 北京时间，湖人主场）</div>
+<p><b>近期状态：</b>湖人 13 胜 3 负（ESPN 战绩），国王 1 胜 13 负。湖人近 5 场 4 胜 1 负：胜黄蜂 118-114、胜太阳 131-123、胜雄鹿 123-112、胜老鹰 124-114、负爵士 97-109；国王近 5 场 0 胜 5 负：负太阳 107-128、负雷霆 103-125、负开拓者 107-120、负魔术 100-107、负热火 108-114。</p>
+<p><b>伤停：</b>官方 NBA 伤病报告 2026-11-20 08:00 ET 版（95 条记录）：湖人 Austin Reaves Out（左脚跟挫伤/骨挫伤，赛季场均 35.3 分钟，核心球员）；国王 Precious Achiuwa Doubtful（左小腿挫伤，场均 26.2 分钟）。NBA 确认首发目前无合法数据源，固定标注数据缺口，不给名单。</p>
+<p><b>交锋要点：</b>本赛季第 2 次交手，11 月 5 日湖人客场 116-103 胜国王。</p>
+<p><b>盘口解剖：</b>让分湖人 -14.5 @1.94（LowVig.ag）、-13.5 @1.87（BetRivers），国王 +13.5 @1.93、+14.5 @1.94；胜负湖人 1.11（FanDuel）、国王 7.31（LowVig.ag），去水后湖人胜率约 89%；总分 228.5（Bovada/DraftKings）、229.0、229.5、230.5（BetRivers）多线。初盘未取到（The Odds API 仅提供即时盘），盘口变化与伤病消息的时序关系无法建立，标注数据缺口。</p>
+<p><b>Polymarket 交叉验证：</b>湖人胜 87.5% / 国王胜 12.5%，成交量 $13,422（24 小时 $12,402），流动性 $101,663；与博彩去水胜率（约 89%）分歧约 2pp，未达 8pp 资金异动阈值，无异动信号。</p>
+<p><b>模型判定：</b>预计分差湖人 +22.6，预计总分 235.6；最高候选让分湖人（主）74.9%，综合分 59；自算 Elo 湖人 1571 vs 国王 1359。<b>未过关</b>：出战成疑封顶 59 分（Reaves Out + Achiuwa Doubtful），综合分 59 < 次选门槛 60，仅差 1 分；档位 C（硬降权后未达 B）。盘口在表达什么：市场用 -14.5 的深盘已为 Reaves 缺阵打了折，但仍认为湖人赢 14 分以上是大概率事件；模型认同方向，但封顶后不予推荐。</p>
+<p><b>盘口方向一致性：</b>胜负盘（湖人 1.11）与让分盘（-13.5/-14.5）方向一致，均指向湖人深盘；总分盘 228.5-230.5 与模型预计 235.6 相比，模型倾向大分方向（无具体概率，不作推荐）。模型预计分差 +22.6 远深于市场让分，但模型概率 74.9% 已计入 Reaves 缺阵影响后的封顶（80.2→59 分）；市场让分 13.5-14.5 同样已包含 Reaves 缺阵信息，双方定价的是同一条伤病信息，分歧在幅度而非方向。</p>
+<p><b>四种比赛剧本：</b>（1）湖人胜剧本：湖人主场赢 15-25 分，总分 230-240；触发：湖人角色球员补上 Reaves 的得分，国王防线崩盘。（2）国王胜剧本：国王客场爆冷赢 1-8 分；触发：湖人外线失准、国王替补爆发。（3）胶着拉锯剧本：湖人领先但拉不开，分差 8-14 分；触发：Reaves 缺阵影响末节攻坚，国王咬住比分。（4）节奏爆发或闷战剧本：总分 240+ 对攻大分，或总分 <220 闷战；触发：大分—两队提速对攻；闷战—湖人控节奏、国王进攻断电。</p>
+<p><b>收尾三件套：</b>推荐排序：让分湖人（主）74.9% ＞ 大分方向（预计 235.6 vs 盘口约 229，无概率）＞ 胜负湖人（1.11，无价值）。信心等级：中。风险评估：Reaves 缺阵对湖人进攻的真实影响未知；深盘 -14.5 的回补风险（湖人赢球输盘是深盘常见结局）。</p></div>
+<div class="match"><div class="ttl">2. 奥林匹亚科斯 vs 皇家马德里（EuroLeague，11-21 03:15 北京时间，奥林匹亚科斯主场）——本日重心</div>
+<p><b>近期状态：</b>奥林匹亚科斯 EuroLeague 第 2 名（9 胜 3 负），皇马第 8 名（7 胜 5 负），EuroLeague 官网 2026-27 积分榜（2026-11-20 核实）。奥林匹亚科斯近 5 场 4 胜 1 负：胜马卡比 97-95、胜迪拜 101-72、负红星 57-62、胜米兰 84-78、胜贝西克塔斯 81-73；皇马近 5 场 3 胜 2 负：负贝西克塔斯 79-83、胜红星 105-84、负帕纳辛奈科斯 112-115、胜费内巴切 95-76、胜巴斯科尼亚 104-86。</p>
+<p><b>交锋要点：</b>本赛季首次交锋（官方赛果中无本赛季交手记录）。</p>
+<p><b>伤停：</b>EuroLeague 无官方伤病报告口径，伤停未查到，标注数据缺口。</p>
+<p><b>盘口解剖：</b>胜负奥林匹亚科斯 1.84 / 皇马 2.16（Betfair），去水主胜约 53%；让分奥林匹亚科斯 -2.5 @2.00（William Hill）、-2.0 @1.96（Pinnacle）、-1.5 @1.89（1xBet）；总分 174.5-176.0 多线（BetOnline.ag、MyBookie.ag、William Hill、1xBet、Pinnacle）。初盘未取到，盘口变化与伤病消息的时序关系无法建立，标注数据缺口。另：总分线较昨日定价 170.5 升至 175.5（昨日 21:00 运行取价 vs 今日 21:00 运行取价），市场已上调 5 分。</p>
+<p><b>Polymarket 交叉验证：</b>Polymarket 无该场市场。</p>
+<p><b>模型判定：</b>重心：大 175.5 @1.91，模型 60.8%，第二方法 60.1%，分歧 0.7pp，把握高，综合分 77，注码本金 1%；预计分差主队 +2.3，预计总分 181.0；自算 Elo 奥林匹亚科斯 1556 vs 皇马 1524。<b>主选过关</b>：两方法同向、分歧 0.7pp，综合分 77。</p>
+<p><b>盘口方向一致性：</b>胜负盘（主胜 1.84）与让分盘（主让 1.5-2.5）方向一致，均略看好主队；总分盘 175.5 与两队节奏大体一致（皇马近 5 场 4 场总分 ≥162 且 2 场 190+，奥林匹亚科斯主场进攻稳定）。市场总分线 175.5 vs 模型预计 181.0，模型大分 60.8% vs 市场大 175.5 隐含约 52%，分歧约 9pp，模型更看好大分。</p>
+<p><b>四种比赛剧本：</b>（1）主队胜剧本：奥林匹亚科斯赢 3-8 分，总分 175-185；触发：主场防守限制皇马外线。（2）客队胜剧本：皇马赢 1-6 分；触发：皇马三分爆发、奥林匹亚科斯失误增多。（3）胶着拉锯剧本：分差 ≤3 分至最后时刻，总分 170-180；触发：双方防守强度拉满。（4）节奏爆发或闷战剧本：总分 185+，或总分 <165；触发：大分—两队提速、三分雨；闷战—奥林匹亚科斯 57-62 负红星式防守战重演。</p>
+<p><b>收尾三件套：</b>推荐排序：大 175.5（60.8%，主选）＞ 让分主队（预计 +2.3 与 -1.5/-2.5 线接近，无单独概率）＞ 胜负主胜（1.84）。信心等级：高。风险评估：总分线已从昨日 170.5 升至 175.5，空间收窄 5 分；皇马客场爆分能力（近 5 场 2 场总分 190+）是与本场重心方向相反的主要威胁。</p></div>
+<div class="match"><div class="ttl">3. 巴塞罗那 vs 贝尔格莱德红星（EuroLeague，11-21 03:30 北京时间，巴塞罗那主场）</div>
+<p><b>近期状态：</b>巴萨 EuroLeague 第 5 名（8 胜 4 负），红星第 9 名（7 胜 5 负）。巴萨近 5 场 4 胜 1 负：负巴黎 86-89、胜帕纳辛奈科斯 76-74、胜哈波尔 93-90、胜瓦伦西亚 98-94、胜拜仁 88-84；红星近 5 场 3 胜 2 负：负米兰 77-91、负皇马 84-105、胜奥林匹亚科斯 62-57、胜拜仁 103-73、胜马卡比 100-78。</p>
+<p><b>交锋要点：</b>本赛季首次交锋。<b>伤停：</b>EuroLeague 伤停未查到，标注数据缺口。</p>
+<p><b>盘口解剖：</b>胜负巴萨 1.72 / 红星 2.30（Betfair），去水主胜约 57%；让分巴萨 -3.5 @2.00（888sport）、-3.0 @1.94（Pinnacle）、-2.5 @1.93（1xBet）；总分 172.5（1xBet 大小均 1.93）、173.0（Pinnacle 均 1.93）。初盘未取到，时序关系数据缺口。</p>
+<p><b>Polymarket 交叉验证：</b>Polymarket 无该场市场。</p>
+<p><b>模型判定：</b>次选：小 172.5 @1.96，模型 62.9%，第二方法 64.0%，分歧 1.1pp，综合分 68；预计分差主队 -0.9，预计总分 165.9；自算 Elo 巴萨 1537 vs 红星 1515。<b>次选过关</b>：小分方向两方法一致（62.9%/64.0%）。</p>
+<p><b>盘口方向一致性：</b>胜负盘与让分盘方向一致（均看好巴萨）；但模型预计分差 -0.9（主队输 0.9 分）与市场方向背离——市场看好主队让 3 分，模型略看好客队。分歧点在胜负，不在总分：总分盘 172.5 vs 模型预计 165.9，模型认为盘口总分开高约 7 分，小分有空间；巴萨近 5 场总分均 ≥160 且 3 场 ≥180，红星近 5 场 2 场总分 ≤140（防守型），两队节奏指向相反，模型取了偏小的一端。</p>
+<p><b>四种比赛剧本：</b>（1）主队胜剧本：巴萨赢 3-8 分，总分 165-175；触发：巴萨主场进攻正常、红星客场哑火。（2）客队胜剧本：红星赢 1-5 分，总分 155-170；触发：红星防守绞杀重演（62-57 胜奥林匹亚科斯）。（3）胶着拉锯剧本：分差 ≤3 分；触发：双方交替领先。（4）节奏爆发或闷战剧本：总分 180+，或总分 <160；触发：大分—巴萨提速对攻；闷战—红星拖节奏。</p>
+<p><b>收尾三件套：</b>推荐排序：小 172.5（62.9%，次选）＞ 让分红星 +3（市场与模型分歧点，谨慎）＞ 胜负红星（模型分差指向客队但无胜负概率，不作推荐）。信心等级：中。风险评估：市场与模型胜负方向背离是最大风险——若市场是对的（巴萨赢 3 分以上），小分仍可能成立（赢球也可以是低比分），但模型分差的参考价值会被削弱；巴萨主场进攻上限高（近 5 场 3 场 90+）。</p></div>
+<div class="match"><div class="ttl">4. 安纳多卢艾菲斯 vs 里昂阿斯维尔（EuroLeague，11-21 01:30 北京时间，艾菲斯主场）</div>
+<p><b>近期状态：</b>艾菲斯 EuroLeague 第 14 名（5 胜 7 负），阿斯维尔第 16 名（4 胜 8 负）。艾菲斯近 5 场 2 胜 3 负：负迪拜 75-80、胜博洛尼亚 103-91、负巴黎 90-95、胜帕纳辛奈科斯 83-68、负哈波尔 88-118；阿斯维尔近 5 场 2 胜 3 负：负费内巴切 81-115、负贝西克塔斯 91-95、负拜仁 95-99、胜巴斯科尼亚 94-79、胜游击 82-75。</p>
+<p><b>交锋要点：</b>本赛季首次交锋。<b>伤停：</b>EuroLeague 伤停未查到，标注数据缺口。</p>
+<p><b>盘口解剖：</b>胜负艾菲斯 1.36 / 阿斯维尔 3.70（Betfair、Winamax），去水主胜约 72%；让分艾菲斯 -8.5 @1.98（1xBet）、-8.0 @1.93（Matchbook）、-7.5 @1.85（Coolbet）；总分 175.5-177.5 多线。初盘未取到，时序关系数据缺口。</p>
+<p><b>Polymarket 交叉验证：</b>艾菲斯胜 72.5% / 阿斯维尔胜 27.5%，成交量 $1,899（24 小时 $1,598），流动性 $32,871；与博彩去水主胜（约 72%）分歧 <1pp，无异动信号；成交量很小，信号权重低。</p>
+<p><b>模型判定：</b>次选：大 176.5 @1.91，模型 58.6%，第二方法 54.9%，分歧 3.7pp，综合分 73；预计分差主队 +8.4，预计总分 180.8；自算 Elo 艾菲斯 1483 vs 阿斯维尔 1456。<b>次选过关</b>：大分方向两方法同向、分歧 3.7pp。</p>
+<p><b>盘口方向一致性：</b>胜负、让分、总分三盘方向一致（主队强势 + 总分中高）。模型预计分差 +8.4 与市场让分 -7.5/-8.5 基本一致；模型预计总分 180.8 高于盘口 176.5 约 4 分，大分 58.6% vs 市场隐含约 52%，分歧约 6-7pp。</p>
+<p><b>四种比赛剧本：</b>（1）主队胜剧本：艾菲斯赢 8-15 分，总分 175-190；触发：艾菲斯主场进攻正常、阿斯维尔客场防守崩盘。（2）客队胜剧本：阿斯维尔赢 1-6 分；触发：艾菲斯状态起伏（88-118 惨败前科）、阿斯维尔外线爆发。（3）胶着拉锯剧本：分差 ≤5 分至末节；触发：艾菲斯迟迟拉不开。（4）节奏爆发或闷战剧本：总分 190+，或总分 <165；触发：大分—两队对攻；闷战—阿斯维尔拖节奏。</p>
+<p><b>收尾三件套：</b>推荐排序：大 176.5（58.6%，次选）＞ 让分艾菲斯（预计 +8.4 贴合盘口，无单独概率）＞ 胜负主胜（1.36，无价值）。信心等级：中。风险评估：艾菲斯状态起伏大（近 5 场 2-3 且有 88-118 惨败）；阿斯维尔客场韧性（近 5 场 2 场赢球）。</p></div>
+<div class="match"><div class="ttl">5. 贝西克塔斯 vs 贝尔格莱德游击（EuroLeague，11-21 03:45 北京时间，贝西克塔斯主场）</div>
+<p><b>近期状态：</b>贝西克塔斯 EuroLeague 第 13 名（6 胜 6 负），游击队第 12 名（6 胜 6 负）。贝西克塔斯近 5 场 3 胜 2 负：胜皇马 83-79、胜阿斯维尔 95-91、负扎尔吉里斯 67-83、胜博洛尼亚 103-101、负奥林匹亚科斯 73-81；游击队近 5 场 2 胜 3 负：负瓦伦西亚 64-76、胜巴斯科尼亚 80-66、胜马卡比 88-67、负扎尔吉里斯 80-87、负阿斯维尔 75-82。</p>
+<p><b>交锋要点：</b>本赛季首次交锋。<b>伤停：</b>EuroLeague 伤停未查到，标注数据缺口。</p>
+<p><b>盘口解剖：</b>胜负贝西克塔斯 1.51 / 游击队 2.88，去水主胜约 64%；让分贝西克塔斯 -5.5 @1.93（1xBet）、-5.0 @2.04（Pinnacle）、-4.5 @1.91（BetOnline.ag）；总分 165.0-166.5 多线。初盘未取到，时序关系数据缺口。</p>
+<p><b>Polymarket 交叉验证：</b>Polymarket 无该场市场。</p>
+<p><b>模型判定：</b>次选：小 166.5 @1.91，模型 70.1%，第二方法 59.1%，分歧 10.9pp，综合分 71；预计分差主队 +4.6，预计总分 156.0；自算 Elo 游击队 1496 vs 贝西克塔斯 1503。<b>次选过关</b>：小分方向两方法同向（70.1%/59.1%），分歧 10.9pp 在次选上限内。</p>
+<p><b>盘口方向一致性：</b>胜负与让分一致看好主队；总分盘 166.5 与两队近况存在张力——贝西克塔斯近 5 场 3 场总分 ≥170、游击队 2 场总分 ≤150，模型押注本场回到低比分。模型预计总分 156.0 比盘口低约 10 分，小分 70.1% 为当日 EuroLeague 次选中最高概率；但第二方法仅 59.1%，分歧 10.9pp 接近次选上限 15pp，模型内部对小分幅度有分歧。</p>
+<p><b>四种比赛剧本：</b>（1）主队胜剧本：贝西克塔斯赢 4-9 分，总分 150-165；触发：主场防守奏效、游击队客场哑火。（2）客队胜剧本：游击队赢 1-5 分，总分 150-165；触发：游击队防守反击。（3）胶着拉锯剧本：分差 ≤3 分；触发：双方交替领先。（4）节奏爆发或闷战剧本：总分 175+，或总分 <150；触发：大分—两队对攻；闷战—防守绞肉。</p>
+<p><b>收尾三件套：</b>推荐排序：小 166.5（70.1%，次选）＞ 让分主队（预计 +4.6 与 -5 线贴合）＞ 胜负主胜（1.51）。信心等级：中。风险评估：两方法分歧 10.9pp 偏大是主要风险；贝西克塔斯主场进攻上限（近 5 场 2 场 95+）与小分方向相反。</p></div>
 <div class="pvzone">
 <details class="pvfold">
 <summary class="pvbar">📅 预告（点击展开）</summary>
 <div class="pvbody">
-<p class="small pvempty">暂无预告场次。不在当天预选之列的热门比赛（如热门球队稍晚日期的赛程）会从简登记在这里，不占正文篇幅。</p>
+<div class="pvitem"><span class="pvteams">贝西克塔斯 vs 巴黎</span><span class="pvmeta">11-25 01:00 · EuroLeague · 下一轮，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">贝尔格莱德红星 vs 博洛尼亚维图斯</span><span class="pvmeta">11-25 02:00 · EuroLeague · 下一轮，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">拜仁慕尼黑 vs 特拉维夫马卡比</span><span class="pvmeta">11-25 03:00 · EuroLeague · 下一轮，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">瓦伦西亚 vs 帕纳辛奈科斯</span><span class="pvmeta">11-25 03:30 · EuroLeague · 下一轮，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">里昂阿斯维尔 vs 米兰奥林匹亚</span><span class="pvmeta">11-25 03:45 · EuroLeague · 下一轮，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">巴塞罗那 vs 费内巴切</span><span class="pvmeta">11-25 04:00 · EuroLeague · 下一轮，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">纽约尼克斯 vs 波特兰开拓者</span><span class="pvmeta">11-22 08:30 · NBA · 明日赛程，超 24 小时窗未定价</span></div>
+<div class="pvitem"><span class="pvteams">萨克拉门托国王 vs 波士顿凯尔特人</span><span class="pvmeta">11-22 11:00 · NBA · 明日赛程，超 24 小时窗未定价</span></div>
+<p class="small">预告条目只作赛程登记，不构成推荐、不落盘 picks、不进台账。</p>
 </div>
 </details>
 </div>
@@ -542,9 +610,9 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <tr><th>口径</th><th class="num">场次</th><th class="num">命中率</th><th class="num">Yield</th></tr>
 <tr><td>回测主选 · 英超（大小球+双进，ev_first）</td><td class="num">13</td><td class="num">61.5%</td><td class="num">+9.46%</td></tr>
 <tr><td>回测主选 · 多联赛</td><td class="num">76</td><td class="num">61.8%</td><td class="num">+7.96%</td></tr>
-<tr><td>实盘台账（已结算，与回测分开）</td><td class="num">15</td><td class="num">53.33%</td><td class="num">+9.75%</td></tr>
+<tr><td>实盘台账（已结算，与回测分开）</td><td class="num">30</td><td class="num">51.7%</td><td class="num">+2.00%</td></tr>
 </table>
-<p class="small">概率验证规模：5,024 场历史比赛样本外验证，1X2 Brier 0.6035。实盘台账净盈亏 +78，ROI +0.78%，CLV 暂不可测（缺可信收盘价快照）。</p>
+<p class="small">概率验证规模：5,024 场历史比赛样本外验证，1X2 Brier 0.6035。实盘台账净盈亏 +35，ROI +0.35%，CLV 暂不可测（缺可信收盘价快照）。</p>
 <p class="warn">注：回测主选样本量小（13 / 76 场），正收益脆弱，盈利未经证明。本站不保证胜率与盈利。</p>
 </section>
 
@@ -584,30 +652,45 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <h2>历史记录 · 实盘台账</h2>
 <table>
 <tr><th>比赛</th><th>推荐</th><th class="num">赔率</th><th>赛果</th><th class="num">盈亏</th></tr>
+<tr><td>法罗群岛 vs 摩尔多瓦</td><td>双进-是</td><td class="num">2.1</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">-50</td></tr>
 <tr><td>哈萨克斯坦 vs 斯洛伐克</td><td>大 2.5</td><td class="num">1.96</td><td><span class="win">红</span> 2-2</td><td class="num plus">+48</td></tr>
-<tr><td>瑞士 vs 苏格兰</td><td>双进-否</td><td class="num">1.80</td><td><span class="win">红</span></td><td class="num plus">+40</td></tr>
-<tr><td>菲尼克斯太阳 vs 丹佛（NBA）</td><td>太阳 +10</td><td class="num">1.99</td><td><span class="win">红</span> 掘金105-117太阳</td><td class="num plus">+49.5</td></tr>
+<tr><td>希腊 vs 塞尔维亚</td><td>双进-是</td><td class="num">1.97</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">-50</td></tr>
+<tr><td>北马其顿 vs 斯洛文尼亚</td><td>小 2.5</td><td class="num">1.67</td><td><span class="lose">黑</span> 0-3</td><td class="num minus">-50</td></tr>
+<tr><td>阿尔巴塞特 vs 塞尔塔福图纳</td><td>双进-是</td><td class="num">1.67</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">-50</td></tr>
+<tr><td>瑞士 vs 苏格兰</td><td>双进-否</td><td class="num">1.8</td><td><span class="win">红</span> 4-0</td><td class="num plus">+40</td></tr>
+<tr><td>丹佛掘金 vs 菲尼克斯太阳（NBA）</td><td>让分 菲尼克斯太阳（客）</td><td class="num">1.99</td><td><span class="win">红</span> 丹佛掘金105-117菲尼克斯太阳</td><td class="num plus">+49.5</td></tr>
 <tr><td>威尔士 vs 葡萄牙</td><td>客胜（外部重心 · Opta）</td><td class="num">1.44</td><td><span class="win">红</span> 2-3</td><td class="num plus">+44</td></tr>
-<tr><td>法罗群岛 vs 摩尔多瓦</td><td>双进-是</td><td class="num">2.10</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">−50</td></tr>
-<tr><td>希腊 vs 塞尔维亚</td><td>双进-是</td><td class="num">1.97</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">−50</td></tr>
-<tr><td>北马其顿 vs 斯洛文尼亚</td><td>小 2.5</td><td class="num">1.67</td><td><span class="lose">黑</span> 0-3</td><td class="num minus">−50</td></tr>
-<tr><td>阿尔巴塞特 vs 塞尔塔B队</td><td>双进-是</td><td class="num">1.67</td><td><span class="lose">黑</span> 1-0</td><td class="num minus">−50</td></tr>
-<tr><td>贝西克塔斯 vs 皇家马德里（欧联）</td><td>大分 179.5</td><td class="num">1.85</td><td><span class="lose">黑</span> 贝西克塔斯83-79皇马</td><td class="num minus">−50</td></tr>
-<tr><td>尤文图斯女足 vs 鲁汶女足</td><td>双进-是（模型重心）</td><td class="num">1.83</td><td><span class="lose">黑</span> 尤文2-0鲁汶</td><td class="num minus">−50</td></tr>
-<tr><td>切尔西女足 vs 巴黎圣日耳曼女足</td><td>双进-否</td><td class="num">2.05</td><td><span class="win">红</span> 切尔西1-0巴黎</td><td class="num plus">+52.5</td></tr>
-<tr><td>克鲁塞罗 vs 帕尔梅拉斯</td><td>大 2.5</td><td class="num">1.72</td><td><span class="win">红</span> 克鲁塞罗2-1帕尔梅拉斯</td><td class="num plus">+36</td></tr>
-<tr><td>赫根女足 vs 曼城女足</td><td>小 2.5</td><td class="num">3.25</td><td><span class="win">红</span> 赫根0-2曼城</td><td class="num plus">+112.5</td></tr>
-<tr><td>丹佛掘金 vs 波士顿凯尔特人（NBA）</td><td>让分 波士顿凯尔特人（客）</td><td class="num">1.94</td><td><span class="lose">黑</span> 掘金105-101凯尔特人</td><td class="num minus">−50</td></tr>
-<tr><td>萨克拉门托国王 vs 菲尼克斯太阳（NBA）</td><td>大分 227</td><td class="num">1.91</td><td><span class="win">红</span> 国王107-128太阳</td><td class="num plus">+45.5</td></tr>
+<tr><td>贝西克塔斯 vs 皇家马德里（欧联）</td><td>大分 179.5</td><td class="num">1.85</td><td><span class="lose">黑</span> 贝西克塔斯83-79皇家马德里</td><td class="num minus">-50</td></tr>
+<tr><td>尤文图斯女足 vs 鲁汶女足</td><td>双进-是（模型重心）</td><td class="num">1.83</td><td><span class="lose">黑</span> 2-0</td><td class="num minus">-50</td></tr>
+<tr><td>切尔西女足 vs 巴黎圣日耳曼女足</td><td>双进-否</td><td class="num">2.05</td><td><span class="win">红</span> 1-0</td><td class="num plus">+52.5</td></tr>
+<tr><td>克鲁塞罗 vs 帕尔梅拉斯</td><td>大 2.5</td><td class="num">1.72</td><td><span class="win">红</span> 2-1</td><td class="num plus">+36</td></tr>
+<tr><td>赫根女足 vs 曼城女足</td><td>小 2.5</td><td class="num">3.25</td><td><span class="win">红</span> 0-2</td><td class="num plus">+112.5</td></tr>
+<tr><td>扎尔吉里斯 vs 帕纳辛奈科斯（欧联）</td><td>小分 168.5</td><td class="num">1.9</td><td><span class="win">红</span> 扎尔吉里斯72-87帕纳辛奈科斯</td><td class="num plus">+90</td></tr>
+<tr><td>拜仁慕尼黑 vs 萨斯基巴斯科尼亚（欧联）</td><td>大分 175.5</td><td class="num">1.93</td><td><span class="win">红</span> 拜仁慕尼黑100-81萨斯基巴斯科尼亚</td><td class="num plus">+46.5</td></tr>
+<tr><td>米兰奥林匹亚 vs 费内巴切（欧联）</td><td>让分 费内巴切（客）</td><td class="num">1.93</td><td><span class="lose">黑</span> 米兰奥林匹亚78-70费内巴切</td><td class="num minus">-50</td></tr>
+<tr><td>瓦伦西亚 vs 博洛尼亚维图斯（欧联）</td><td>让分 瓦伦西亚（主）</td><td class="num">1.93</td><td><span class="lose">黑</span> 瓦伦西亚92-87博洛尼亚维图斯</td><td class="num minus">-100</td></tr>
+<tr><td>丹佛掘金 vs 波士顿凯尔特人（NBA）</td><td>让分 波士顿凯尔特人（客）</td><td class="num">1.94</td><td><span class="lose">黑</span> 丹佛掘金105-101波士顿凯尔特人</td><td class="num minus">-50</td></tr>
+<tr><td>萨克拉门托国王 vs 菲尼克斯太阳（NBA）</td><td>大分 227</td><td class="num">1.91</td><td><span class="win">红</span> 萨克拉门托国王107-128菲尼克斯太阳</td><td class="num plus">+45.5</td></tr>
+<tr><td>特拉维夫马卡比 vs 迪拜（欧联）</td><td>让分 迪拜（客）</td><td class="num">1.92</td><td><span class="win">红</span> 特拉维夫马卡比74-80迪拜</td><td class="num plus">+46</td></tr>
+<tr><td>扎尔吉里斯 vs 帕纳辛奈科斯（欧联）</td><td>小分 168.5</td><td class="num">1.8</td><td><span class="win">红</span> 扎尔吉里斯72-87帕纳辛奈科斯</td><td class="num plus">+80</td></tr>
+<tr><td>米兰奥林匹亚 vs 费内巴切（欧联）</td><td>让分 费内巴切（客）</td><td class="num">1.85</td><td><span class="lose">黑</span> 米兰奥林匹亚78-70费内巴切</td><td class="num minus">-50</td></tr>
+<tr><td>巴黎 vs 特拉维夫哈波尔（欧联）</td><td>让分 特拉维夫哈波尔（客）</td><td class="num">1.92</td><td><span class="lose">黑</span> 巴黎97-96特拉维夫哈波尔</td><td class="num minus">-50</td></tr>
+<tr><td>瓦伦西亚 vs 博洛尼亚维图斯（欧联）</td><td>小分 185.5</td><td class="num">1.93</td><td><span class="win">红</span> 瓦伦西亚92-87博洛尼亚维图斯</td><td class="num plus">+46.5</td></tr>
+<tr><td>特拉维夫马卡比 vs 迪拜（欧联）</td><td>大分 175.5</td><td class="num">1.94</td><td><span class="lose">黑</span> 特拉维夫马卡比74-80迪拜</td><td class="num minus">-50</td></tr>
+<tr><td>扎尔吉里斯 vs 帕纳辛奈科斯（欧联）</td><td>小分 166.5</td><td class="num">1.96</td><td><span class="win">红</span> 扎尔吉里斯72-87帕纳辛奈科斯</td><td class="num plus">+48</td></tr>
+<tr><td>米兰奥林匹亚 vs 费内巴切（欧联）</td><td>让分 费内巴切（客）</td><td class="num">1.95</td><td><span class="lose">黑</span> 米兰奥林匹亚78-70费内巴切</td><td class="num minus">-50</td></tr>
+<tr><td>巴黎 vs 特拉维夫哈波尔（欧联）</td><td>让分 特拉维夫哈波尔（客）</td><td class="num">1.98</td><td>走盘 巴黎97-96特拉维夫哈波尔</td><td class="num ">0</td></tr>
+<tr><td>孟菲斯灰熊 vs 金州勇士（NBA）</td><td>大分 226.5（模型重心）</td><td class="num">1.91</td><td><span class="lose">黑</span> 孟菲斯灰熊126-98金州勇士</td><td class="num minus">-100</td></tr>
+<tr><td>瓦伦西亚 vs 博洛尼亚维图斯（欧联）</td><td>小分 185.5</td><td class="num">2</td><td><span class="win">红</span> 瓦伦西亚92-87博洛尼亚维图斯</td><td class="num plus">+50</td></tr>
 </table>
-<p class="small">已结算 15 场：8 红 7 黑，命中率 53.33%，净 +78，Yield +9.75%，ROI +0.78%，CLV 不可测 0/15。其中模型自选 14 场：7 红 7 黑，净 +34；外部重心（Opta）1 场：威尔士 vs 葡萄牙客胜，红 +44，单独分段统计。月盈利 KPI：+78 / ¥3,000（2.6%）。配色总览、盈亏曲线与分段战绩见<a href="ledger.html">台账可视化总览 →</a></p>
+<p class="small">已结算 30 场：15 红 14 黑 1 走盘，命中率 51.7%，净 +35，Yield +2.00%，ROI +0.35%，CLV 不可测 0/30。其中模型自选 29 场：14 红 14 黑 1 走盘，净 -9；外部重心（Opta）1 场：威尔士 vs 葡萄牙客胜，红 +44，单独分段统计。月盈利 KPI：+35 / ¥3,000（1.2%）。配色总览、盈亏曲线与分段战绩见<a href="ledger.html">台账可视化总览 →</a></p>
 </section>
 
 <section id="faq">
 <h2>常见问题</h2>
 <details><summary>每天什么时候更新？</summary><p>篮球、足球主版、专家共识、竞彩二串一均为每日 21:00（北京时间）；周六、周日五大联赛/美职联比赛日足球另有 19:00 早版，那天 21:00 足球主版跳过不重复。</p></details>
 <details><summary>为什么有的日子没有模型重心？</summary><p>主选门槛不降：概率、EV、综合分、第二方法分歧四关全过才算主选。无主选时重心位先由模型重心补位，模型无可验证候选时才由外部 Opta 方向补位，并明确标注等级，绝不拿次选冒充主选。</p></details>
-<details><summary>推荐能保证盈利吗？</summary><p>不能。回测样本小、实盘目前只有 15 场（净 +78），样本太小不能证明盈利，任何声称保证胜率或盈利的模型都不可信。本站公开全部红黑记录，请自行判断。</p></details>
+<details><summary>推荐能保证盈利吗？</summary><p>不能。回测样本小、实盘目前只有 30 场（净 +35），样本太小不能证明盈利，任何声称保证胜率或盈利的模型都不可信。本站公开全部红黑记录，请自行判断。</p></details>
 <details><summary>数据来源有哪些？</summary><p>The Odds API（赔率）、StrikerAPI（真 xG 与收盘价）、Football-Data.org（赛果）、NBA 官方伤病报告、EuroLeague 官方 API，以及 Opta 超级计算机与 Oddspedia SmartBet 公开页交叉验证。API-Football 目前暂停（申诉中），期间足球伤停与首发覆盖受限，页面会如实标注。</p></details>
 </section>
 
