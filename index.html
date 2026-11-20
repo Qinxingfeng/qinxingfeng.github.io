@@ -176,6 +176,25 @@ table.fodds tr.fprow td{background:rgba(245,158,11,.13);font-weight:700;color:#f
 .candzone .jccell.cand{border-color:rgba(192,132,252,.7);background:rgba(168,85,247,.14);box-shadow:0 0 0 1px rgba(192,132,252,.3) inset}
 .candzone .jccell.cand .k{color:#e9d5ff}
 .candzone .jcfoot b{color:#e9d5ff}
+/* ===== passing picks mini cards (one card per pick, replaces text-wall list) ===== */
+.pkcards{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.pkcard{border:1px solid rgba(160,190,255,.18);background:linear-gradient(180deg,rgba(22,34,62,.8),rgba(10,17,36,.9));border-radius:12px;padding:10px 13px}
+.pkcard .pkhead{display:flex;align-items:baseline;gap:8px}
+.pkcard .pkteams{font-size:15.5px;font-weight:800;color:#fff}
+.pkcard .pktime{margin-left:auto;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pkcard .pkrow2{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.pkchip{display:inline-block;color:#fff;font-weight:800;font-size:14px;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:8px;padding:4px 11px}
+.pkbadge{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid rgba(170,200,255,.3);color:var(--muted)}
+.pkbadge.main{color:#fff;background:linear-gradient(90deg,#e11d48,#f59e0b);border-color:transparent}
+.pkbadge.sub{color:#ffd9a8;border-color:rgba(245,158,11,.45)}
+.pkbadge.rev{color:#e2e8f0;background:rgba(100,116,139,.4);border-color:rgba(148,163,184,.45)}
+.pkcard .pkstats{display:flex;flex-wrap:wrap;margin-top:8px;font-size:13px;color:var(--muted)}
+.pkcard .pkstats span{white-space:nowrap}
+.pkcard .pkstats span+span:before{content:"·";margin:0 8px;color:var(--muted2)}
+.pkcard .pkstats b{color:#fff;font-variant-numeric:tabular-nums}
+.pkcard.revoked{opacity:.62}
+.pkcard.revoked .pkteams{color:#cbd5e1}
+.pkcard.revoked .pkchip{background:linear-gradient(90deg,#475569,#64748b);text-decoration:line-through}
 .bar{height:10px;background:rgba(160,190,255,.15);border-radius:99px;margin:7px 0 3px;overflow:hidden}
 .bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#22d3ee);box-shadow:0 0 12px rgba(56,160,255,.55)}
 #pane-b .bar>i{background:linear-gradient(90deg,#ea580c,#facc15);box-shadow:0 0 12px rgba(250,160,60,.55)}
@@ -363,7 +382,54 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <div class="match">
 <div class="ttl">其余过关推荐</div>
-<p><strong>伤病更新撤销（11-20 06:00）：NBA 主选 勇士 vs 灰熊 大 226.5 已撤销——新版官方伤病报告显示 Curry、Draymond Green 双双缺阵，模型重跑后今日 NBA 无过关推荐（3 场定价全部被核心缺阵闸门封顶 59 分）。该注昨晚已发布，仍保留在台账中照常结算，但模型当前观点已撤销。</strong><br>勇士 vs 灰熊：大分 226.5，主选（已撤销），模型 61.6% @1.91，综合分 77，EV +17.6%，注码 1%（11-20 09:10）<br>迪拜 vs 特拉维夫马卡比：大分 175.5，次选，模型 56.5% @1.94，综合分 75，注码 0.5%（11-20 01:15）<br>帕纳辛奈科斯 vs 扎尔吉里斯：小分 166.5，次选，模型 57.0% @1.96，综合分 76，注码 0.5%（11-20 02:00）<br>费内巴切 vs 米兰奥林匹亚：让分客队（+4），次选，模型 64.5% @1.95，综合分 70，注码 0.5%（11-20 03:30）<br>特拉维夫哈波尔 vs 巴黎：让分客队（-1），次选，模型 64.3% @1.98，综合分 65，注码 0.5%（11-20 03:45）<br>博洛尼亚维图斯 vs 瓦伦西亚：小分 185.5，次选，模型 57.8% @2.00，综合分 75，注码 0.5%（11-20 04:00）<br>里昂阿斯维尔 vs 安纳多卢艾菲斯：大分 173.5，次选，模型 64.0% @1.96，综合分 74，注码 0.5%（11-21 01:30）<br>贝尔格莱德红星 vs 巴塞罗那：小分 172.5，次选，模型 63.0% @1.91，综合分 68，注码 0.5%（11-21 03:30）<br>贝西克塔斯 vs 贝尔格莱德游击：小分 167.5，次选，模型 71.8% @1.91，综合分 71，注码 0.5%（11-21 03:45）</p>
+<p><strong>伤病更新撤销（11-20 06:00）：NBA 主选 勇士 vs 灰熊 大 226.5 已撤销——新版官方伤病报告显示 Curry、Draymond Green 双双缺阵，模型重跑后今日 NBA 无过关推荐（3 场定价全部被核心缺阵闸门封顶 59 分）。该注昨晚已发布，仍保留在台账中照常结算，但模型当前观点已撤销。</strong></p>
+<div class="pkcards">
+<div class="pkcard revoked">
+<div class="pkhead"><span class="pkteams">勇士 vs 灰熊</span><span class="pktime">11-20 09:10</span></div>
+<div class="pkrow2"><span class="pkchip">大分 226.5</span><span class="pkbadge main">主选</span><span class="pkbadge rev">已撤销</span></div>
+<div class="pkstats"><span>模型 <b>61.6%</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>77</b></span><span>注码 <b>1%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">迪拜 vs 特拉维夫马卡比</span><span class="pktime">11-20 01:15</span></div>
+<div class="pkrow2"><span class="pkchip">大分 175.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>56.5%</b></span><span>赔率 <b>1.94</b></span><span>综合分 <b>75</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">帕纳辛奈科斯 vs 扎尔吉里斯</span><span class="pktime">11-20 02:00</span></div>
+<div class="pkrow2"><span class="pkchip">小分 166.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>57.0%</b></span><span>赔率 <b>1.96</b></span><span>综合分 <b>76</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">费内巴切 vs 米兰奥林匹亚</span><span class="pktime">11-20 03:30</span></div>
+<div class="pkrow2"><span class="pkchip">让分客队（+4）</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>64.5%</b></span><span>赔率 <b>1.95</b></span><span>综合分 <b>70</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">特拉维夫哈波尔 vs 巴黎</span><span class="pktime">11-20 03:45</span></div>
+<div class="pkrow2"><span class="pkchip">让分客队（-1）</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>64.3%</b></span><span>赔率 <b>1.98</b></span><span>综合分 <b>65</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">博洛尼亚维图斯 vs 瓦伦西亚</span><span class="pktime">11-20 04:00</span></div>
+<div class="pkrow2"><span class="pkchip">小分 185.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>57.8%</b></span><span>赔率 <b>2.00</b></span><span>综合分 <b>75</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">里昂阿斯维尔 vs 安纳多卢艾菲斯</span><span class="pktime">11-21 01:30</span></div>
+<div class="pkrow2"><span class="pkchip">大分 173.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>64.0%</b></span><span>赔率 <b>1.96</b></span><span>综合分 <b>74</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">贝尔格莱德红星 vs 巴塞罗那</span><span class="pktime">11-21 03:30</span></div>
+<div class="pkrow2"><span class="pkchip">小分 172.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>63.0%</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>68</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">贝西克塔斯 vs 贝尔格莱德游击</span><span class="pktime">11-21 03:45</span></div>
+<div class="pkrow2"><span class="pkchip">小分 167.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>71.8%</b></span><span>赔率 <b>1.91</b></span><span>综合分 <b>71</b></span><span>注码 <b>0.5%</b></span></div>
+</div>
+</div>
 </div>
 <p class="small">今日串子：无串子——NBA 仅 1 条合格腿，组串子至少需 2 条腿，不硬凑。</p>
 <div class="candzone">
