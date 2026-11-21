@@ -249,7 +249,7 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 </nav>
 </header>
 <div class="tiles">
-<a class="tile t1" href="#today"><div class="ic">⚽</div><div class="tt">今日场次</div><div class="ds">全球开盘场次</div><div class="row"><span class="cap">比赛池</span><span class="big">71 场</span></div></a>
+<a class="tile t1" href="#today"><div class="ic">⚽</div><div class="tt">今日场次</div><div class="ds">全球开盘场次</div><div class="row"><span class="cap">比赛池</span><span class="big">32 场</span></div></a>
 <a class="tile t2" href="#consensus"><div class="ic">🧭</div><div class="tt">专家共识</div><div class="ds">13 家专业预测站的公开推荐</div><div class="row"><span class="cap">专业预测站</span><span class="big">13 家</span></div></a>
 <a class="tile t3" href="#backtest"><div class="ic">🏆</div><div class="tt">模型回测战绩</div><div class="ds">5,024 场历史比赛样本外验证</div><div class="row"><span class="cap">多联赛主选 Yield</span><span class="big">+7.96%</span></div></a>
 <a class="tile t4" href="#history"><div class="ic">📒</div><div class="tt">实盘台账</div><div class="ds">逐场红黑</div><div class="row"><span class="cap">已结算</span><span class="big">34 场</span></div></a>
@@ -273,64 +273,156 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <div id="pane-f">
 <section id="today">
-<h2>今日场次 · 足球（2026-11-20 21:00 运行）</h2>
-<p class="small">筛查漏斗：比赛池 71 场（全球清单去重后：窗内 17 场 + 超 24 小时窗约 54 场；韩职 ESPN 接口报错，未计入）→ 超 24 小时窗未进池约 54 场 → 窗内筛查 17 场 → 取到赔率 4 场 → 第二方法可验证 5 场 → 过关主选 0 / 次选 4（拜仁慕尼黑一场模型过关后被交叉验证排除，见前瞻）。落选原因：无赔率覆盖 0 场；第二方法不可验证 12 场；概率/综合分/分歧不达标 0 场；交叉验证分歧过大 1 场。数据说明：API-Football 仍被停用（第三次申诉未回复），赛程走 ESPN + TheSportsDB 兜底；球队近 5 场状态、伤停、首发全部未查到，λ 用联赛均值代替——本日所有场次模型 1X2 均为 44.6%/25.7%/29.7%、双进是 55.0%，区分度只来自 StrikerAPI 真 xG 第二方法；BTTS 赔率在 uk/eu/us 三区均未取到（见下）。只做分析推荐，不下注、不碰钱。</p>
-
+<h2>今日场次 · 足球（2026-11-21 周末版 19:00 · 13:20 提前运行）</h2>
+<p class="small">筛查漏斗：比赛池 32 场（Football-Data.org 26 场 + TheSportsDB 3 场 + ESPN 美职联 3 场，全部在 24 小时推荐窗内）→ 超 24 小时窗未进池 18 场（ESPN 已核实部分，见预告区）→ 取到赔率 29 场 → 第二方法可验证 31 场 → 模型过关主选 0 / 次选 15 → 交叉验证后保留 6 场（另 9 场被交叉验证排除，见候选区）。落选原因：交叉验证分歧过大 9 场；概率/综合分/分歧不达标 17 场（含未取价 3 场）；无赔率覆盖 3 场（巴伊亚、帕尔梅拉斯、AIK）；第二方法不可验证 1 场（AIK，与未取价重叠）。数据说明：API-Football 仍被停用（第三次申诉未回复），赛程走 Football-Data.org + TheSportsDB + ESPN 兜底；球队近 5 场状态、伤停、首发全部未查到，λ 用联赛均值 1.55–1.22 代替——本日所有场次模型 1X2 均为 44.6%/25.7%/29.7%、双进是 55.0%，区分度只来自 StrikerAPI 真 xG 第二方法（12 小时缓存命中）；BTTS 与角球赔率未取到（ESPN 平替无此市场），角球 4 场均为无赔率次选。管线问题：① The Odds API 本轮实况取价返回的英超 20 场 + 意甲 20 场赔率，因队名后缀匹配失败（Football-Data.org 的 Manchester City FC、Parma Calcio 1913、SS Lazio 对不上 Odds API 的短名）未能挂接，已定位、待修，今晚 21:00 主版前须修好；② _pick_handicap_line 曾要求让球双边同点位、导致让球主线恒为 None，本轮已修（与 run_daily 的跨点位配对逻辑对齐），让球候选恢复。The Odds API 剩 2 credits（已用 498/500，12 月 1 日重置）——今晚 21:00 主版将全程走 ESPN 平替（DraftKings 单家，以让球为主）。日职/澳超/挪超等昨日补查场次本轮未能再核实（TheSportsDB 公开 key 仅返回 3 场），记为数据缺口，不计入漏斗。只做分析推荐，不下注、不碰钱。</p>
 <div class="match hero-match">
 <div class="fhero">
 <div class="frow">
-<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png" alt="曼城队徽"><div class="fname">曼城</div></div>
-<div class="fmid"><div class="ftime">20:30</div><div class="fdate">11月21日</div></div>
-<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/xwwvyt1448811086.png" alt="富勒姆队徽"><div class="fname">富勒姆</div></div>
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/vpsqqx1473502977.png" alt="塞维利亚队徽"><div class="fname">塞维利亚</div></div>
+<div class="fmid"><div class="ftime">01:30</div><div class="fdate">11月22日</div></div>
+<div class="fteam"><img src="https://r2.thesportsdb.com/images/media/team/badge/2oqulv1663245386.png" alt="皇家贝蒂斯队徽"><div class="fname">皇家贝蒂斯</div><div class="frank">西甲第4名</div></div>
 </div>
 </div>
-<div class="fmeta">英超 · 11月21日 · 北京时间 20:30<span class="badge focus">模型重心（当日模型最强方向）</span></div>
-<div class="fpick">重心：角球小 10.5 @1.80</div>
+<div class="fmeta">西甲 · 11月22日 · 北京时间 01:30<span class="badge focus">模型重心（当日模型最强方向）</span></div>
+<div class="fpick">重心：让球 塞维利亚（主） +0.5 @1.57</div>
 <table class="fodds">
 <tr><th>市场</th><th>选项</th><th class="num">赔率</th><th>模型概率</th></tr>
-<tr><td>胜平负</td><td>曼城 胜</td><td class="num">1.40</td><td>44.6%</td></tr>
-<tr><td></td><td>平</td><td class="num">5.70</td><td>25.7%</td></tr>
-<tr><td></td><td>富勒姆 胜</td><td class="num">8.60</td><td>29.7%</td></tr>
-<tr><td>大小球 2.5</td><td>大</td><td class="num">1.44</td><td>51.0%</td></tr>
-<tr><td></td><td>小</td><td class="num">2.50</td><td>49.0%</td></tr>
-<tr><td>大小球 3.5</td><td>大</td><td class="num">2.18</td><td>29.1%</td></tr>
-<tr><td></td><td>小</td><td class="num">1.66</td><td>70.9%</td></tr>
-<tr><td>大小球 3.25</td><td>大</td><td class="num">1.95</td><td>—</td></tr>
-<tr><td></td><td>小</td><td class="num">1.80</td><td>—</td></tr>
-<tr><td>让球</td><td>让球 曼城（主） −1.25</td><td class="num">1.85</td><td>—</td></tr>
-<tr><td></td><td>让球 富勒姆（客） +1.25</td><td class="num">2.08</td><td>—</td></tr>
-<tr><td>双进</td><td>是</td><td class="num">无此盘口</td><td>55.0%</td></tr>
-<tr><td></td><td>否</td><td class="num">无此盘口</td><td>45.0%</td></tr>
-<tr class="fprow"><td>角球 10.5</td><td>小</td><td class="num">1.80</td><td>57.9%（重心）</td></tr>
-<tr><td></td><td>大</td><td class="num">2.00</td><td>42.1%</td></tr>
+<tr><td>胜平负</td><td>塞维利亚 胜</td><td class="num">3.05</td><td>44.6%</td></tr>
+<tr><td></td><td>平</td><td class="num">3.35</td><td>25.7%</td></tr>
+<tr><td></td><td>皇家贝蒂斯 胜</td><td class="num">2.40</td><td>29.7%</td></tr>
+<tr><td>大小球 2.5</td><td>大</td><td class="num">1.91</td><td>51.0%</td></tr>
+<tr><td></td><td>小</td><td class="num">1.91</td><td>49.0%</td></tr>
+<tr class="fprow"><td>让球</td><td>让球 塞维利亚（主） +0.5</td><td class="num">1.57</td><td>65.8%（重心）</td></tr>
+<tr><td></td><td>让球 皇家贝蒂斯（客） −0.5</td><td class="num">2.25</td><td>34.2%</td></tr>
+<tr><td>双进</td><td>是</td><td class="num">未取价</td><td>55.0%</td></tr>
+<tr><td></td><td>否</td><td class="num">未取价</td><td>45.0%</td></tr>
 </table>
-<p>方向：角球小 10.5 @1.80 ｜ 模型概率 57.9% ｜ 第二方法 59.9% ｜ 分歧 2.0pp ｜ 综合分 73.5 ｜ 把握 中 ｜ 注码 0.5%（次选）</p>
-<div class="bar"><i style="width:57.9%"></i></div>
-<p class="small">本场最佳玩法：角球小 10.5（模型概率 57.9%，第二方法 59.9%，已取价候选中综合分最高）。比分佐证：最可能比分 1-1（12.3%）、1-0（10.1%）——低比分走向与角球偏少方向一致（主观推断，非直接佐证）。未过主选门槛的原因：① 模型概率 57.9% 未达主选 60%（差 2.1pp）；② 综合分 73.5 未达主选 75（差 1.5）；③ 样本不足：两队均无近 5 场实测数据（API-Football 停用），λ 用联赛均值 1.55-1.22，最高次选封顶。标题如实标注模型重心，绝不冒充主选。角球 λ_c 10.0（本地历史角球先验；富勒姆本赛季此前 76 场角球数据，曼城无角球率、回落联赛均值），第二方法近 10 场实际总角球均值回归 9.9。交叉验证：Opta 超级计算机主胜 66.1%/平 18.4%/客胜 15.5%（theanalyst.com 比赛中心总表），模型 1X2 主胜 44.6%，分歧 21.5pp——模型 1X2 由联赛均值 λ 推导、无球队区分度，不可与 Opta 直接比对胜负方向；角球玩法本身无 1X2 冲突。Oddspedia Winner 主胜 60%/平 22%/客胜 18%，最可能比分 1-0（11.0%）；SmartBet 未见带星级/模型概率的卡片（仅「双进是」文字预测，无概率、无星级）。Polymarket 胜负市场隐含主胜 70.5%/平 17.5%/客胜 11.5%，成交量 $37,692（24 小时 $14,234），流动性 $562,871；与博彩隐含主胜 71.0% 一致。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 2.16-0.87，拟合合格（最大偏差 1.6pp），推导大 2.5 56.6%、双进是 51.0%、最可能比分 2-0（11.4%）、1-0（11.0%）；xG 第二方法可用，推导不充当第二方法。双进赔率：The Odds API btts 市场在 uk 区返回 422（不支持），eu/us 区亦无报价，本场及另三场双进是推荐均未取价。</p>
+<p>方向：让球 塞维利亚（主） +0.5 @1.57 ｜ 模型概率 65.8% ｜ 第二方法 63.1% ｜ 分歧 2.7pp ｜ 综合分 76.7 ｜ 把握 中 ｜ 注码 0.5%（次选）｜ EV +3.4%</p>
+<div class="bar"><i style="width:65.8%"></i></div>
+<p class="small">比分佐证：模型最可能比分 1-1（12.3%）、1-0（10.1%）——平局与主胜一球均赢下 +0.5，与推荐方向一致；第二方法前三 1-1（10.9%）、2-1（9.0%）、1-2（7.5%），无矛盾。未过主选门槛的原因：① 让球非主推市场（主推为大小球、双进），按规则最高次选；② 样本不足：两队均无近 5 场实测数据，λ 用联赛均值 1.55–1.22，最高次选封顶。概率 65.8% 与综合分 76.7 均已过主选线（60%/75），仅因市场与样本两道封顶记次选，标题如实标注模型重心，绝不冒充主选。塞维利亚联赛排名未核实（TheSportsDB 西甲积分榜仅返回前 5 名），按规则省略；皇家贝蒂斯西甲第 4 名（12 战 8 胜 2 平 2 负，26 分）已核实。</p>
+<p class="small">交叉验证：Opta 超级计算机 32.6%/27.2%/40.2%（主/平/客），模型 1X2 最大分歧 12.0pp（客胜），在 15pp 上限内通过；Oddspedia 胜率 28%/24%/47%，最可能比分 1-1（10.9%），SmartBet 首条「Total Corners: Under 10.5」五星 70.69%（角球卡片，与让球无直接冲突）。Oddspedia 主胜 28% 与模型均值 1X2 分歧 16.6pp，已披露——模型 1X2 为联赛均值 λ 推导、无球队区分度，不可直接比对胜负方向。胜平负去水后主胜 32.3%/平 29.6%/客胜 38.1%，市场同样看好客队贝蒂斯不败，与 Opta 方向一致。Polymarket 无该场市场；predict.game 无该场预测（该站未收录本场）。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 1.22–1.38，拟合合格（最大偏差 0.3pp），推导小2.5 53.0%、双进是 52.2%、最可能比分 1-1（12.9%）、0-1（10.6%）、1-0（9.4%）。Opta 推导让球覆盖（塞维利亚 +0.5）59.7%，与模型 65.8% 同向（分歧 6.1pp）；xG 第二方法可用，推导不充当第二方法。同场竞彩提示：本场竞彩让球胜腿（周六021）因 SmartBet 1X2 分歧 15.1pp 已在竞彩区降级为纯参考——那是「让球胜（需主胜）」口径，与本场亚洲让球 +0.5（覆盖平局）不同市场、不同门槛，不冲突。角球：ESPN 平替无角球市场，未取价。</p>
 </div>
-
 <div class="pkcards">
 <div class="pkcard">
-<div class="pkhead"><span class="pkteams">阿拉维斯 vs 拉科鲁尼亚</span><span class="pktime">11-21 21:00</span></div>
-<div class="pkrow2"><span class="pkchip">双进是</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>55.0%</b></span><span>第二方法 <b>56.8%</b></span><span>分歧 <b>1.8pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>73.0</b></span><span>注码 <b>0.5%</b></span></div>
-<p class="small">比分佐证：最可能比分 1-1（12.3%）、1-0（10.1%），1-1 支持双进是。交叉验证：Opta 44.7%/26.4%/28.9%，最大分歧 0.8pp；Oddspedia Winner 主胜 29%/平 27%/客胜 45%，与 Opta 在主胜上相差 15.7pp（两家外部来源互相矛盾，已披露）；SmartBet 平局或拉科鲁尼亚五星 71.44%，无双进卡片；Polymarket 无该场市场。Opta 推导（仅展示）：λ 1.50-1.15，拟合合格（0.2pp），推导双进是 52.6%（分歧 2.4pp，同向）、大 2.5 48.2%。</p>
+<div class="pkhead"><span class="pkteams">曼城 vs 富勒姆</span><span class="pktime">11-21 20:30</span></div>
+<div class="pkrow2"><span class="pkchip">角球小 10.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>57.9%</b></span><span>第二方法 <b>59.9%</b></span><span>分歧 <b>2.0pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>73.5</b></span><span>注码 <b>0.5%</b></span><span>EV <b>—（未取价，未做 EV 筛选）</b></span></div>
+<p class="small">比分佐证：模型最可能比分 1-1（12.3%）、1-0（10.1%）、2-1（9.1%）——低比分走向与角球偏少方向一致（主观推断，非直接佐证；角球数与进球数无直接换算关系）。角球暂无赔率源，未做 EV 筛选。交叉验证：Opta 67.2%/17.5%/15.2%，最大分歧 22.6pp（角球玩法无 1X2 冲突，仅作披露）；Oddspedia 胜率 60%/22%/18%；SmartBet 首条“First team to score: Fulham”五星 32.59%；最可能比分 1-0（11.0%）。Polymarket 隐含主胜 70.5%/平 16.5%/客胜 11.5%，成交量 $69,228（24 小时 $40,729），流动性 $789,782；与博彩去水主胜 68.3% 分歧 2.2pp，无资金异动信号。 五家 AI 共识：6/6 主胜（Kimi Cool、Claude Keeper、DeepThinker、GPT Striker、Gemini Thunder 与统计基准 Baseline 全部主胜），预测比分众数 2-0；与本模型 1X2 方向一致（主胜）。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 2.22–0.87，拟合合格（最大偏差 2.0pp），推导大2.5 57.7%、双进是 51.2%、最可能比分 2-0（11.4%）、1-0（10.8%）、2-1（9.9%）。注意：本场角球小 10.5 与昨日（11-20）落盘的同一场次、同一玩法、同一模型概率（57.9%）重复——按惯例照常落盘，结算复核时请注意去重，勿重复记账。</p>
 </div>
 <div class="pkcard">
-<div class="pkhead"><span class="pkteams">特鲁瓦 vs 勒阿弗尔</span><span class="pktime">11-21 03:45</span></div>
-<div class="pkrow2"><span class="pkchip">双进是</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>55.0%</b></span><span>第二方法 <b>64.4%</b></span><span>分歧 <b>9.3pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>65.4</b></span><span>注码 <b>0.5%</b></span></div>
-<p class="small">比分佐证：最可能比分 1-1（12.3%）、1-0（10.1%），1-1 支持双进是。交叉验证：Opta 43.1%/26.1%/30.9%，最大分歧 1.5pp；Oddspedia Winner 主胜 54%/平 24%/客胜 22%；SmartBet 特鲁瓦或平局五星 77.55%、特鲁瓦胜四星 53.05%，无双进卡片；最可能比分 1-1（11.3%）支持双进是。Polymarket 隐含 44.5%/28.5%/27.5%，成交量 $7,204，流动性 $550,542，与博彩隐含最大分歧 2.8pp。Opta 推导（仅展示）：λ 1.49-1.22，拟合合格（0.03pp），推导双进是 54.1%（分歧 0.9pp，同向）、大 2.5 49.6%。</p>
+<div class="pkhead"><span class="pkteams">阿斯顿维拉 vs 桑德兰</span><span class="pktime">11-21 23:00</span></div>
+<div class="pkrow2"><span class="pkchip">角球小 10.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>56.3%</b></span><span>第二方法 <b>59.1%</b></span><span>分歧 <b>2.7pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>72.3</b></span><span>注码 <b>0.5%</b></span><span>EV <b>—（未取价，未做 EV 筛选）</b></span></div>
+<p class="small">比分佐证：模型最可能比分 1-1（12.3%）、1-0（10.1%）、2-1（9.1%）——低比分走向与角球偏少方向一致（主观推断，非直接佐证；角球数与进球数无直接换算关系）。角球暂无赔率源，未做 EV 筛选。交叉验证：Opta 54.0%/23.1%/22.9%，最大分歧 9.4pp（角球玩法无 1X2 冲突，仅作披露）；Oddspedia 胜率 47%/24%/29%；SmartBet“Double Chance: Draw or Sunderland”四星 53.66%；最可能比分 1-1（10.8%）。Polymarket 无该场市场；predict.game 无该场预测。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 1.80–1.07，拟合合格（最大偏差 0.7pp），推导大2.5 53.4%、双进是 54.4%、最可能比分 1-1（11.4%）、1-0（10.7%）、2-1（9.8%）。</p>
 </div>
 <div class="pkcard">
-<div class="pkhead"><span class="pkteams">毕尔巴鄂竞技 vs 西班牙人</span><span class="pktime">11-21 04:00</span></div>
-<div class="pkrow2"><span class="pkchip">双进是</span><span class="pkbadge sub">次选</span></div>
-<div class="pkstats"><span>模型 <b>55.0%</b></span><span>第二方法 <b>64.6%</b></span><span>分歧 <b>9.6pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>65.2</b></span><span>注码 <b>0.5%</b></span></div>
-<p class="small">比分佐证：最可能比分 1-1（12.3%）、1-0（10.1%），1-1 支持双进是。交叉验证：Opta 61.2%/21.1%/17.8%，主胜分歧 16.6pp（模型 1X2 为联赛均值 λ 推导、无球队区分度，已披露）；SmartBet 双进是四星 52.92%（分歧 2.1pp，同向）、平局或西班牙人五星 45.46%；最可能比分 1-1（11.6%）支持双进是；Polymarket 无该场市场。Opta 推导（仅展示）：λ 1.98-0.92，拟合合格（0.9pp），推导双进是 51.5%（分歧 3.5pp，同向）、大 2.5 53.9%。</p>
+<div class="pkhead"><span class="pkteams">拉齐奥 vs 莱切</span><span class="pktime">11-21 22:00</span></div>
+<div class="pkrow2"><span class="pkchip">角球小 10.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>57.7%</b></span><span>第二方法 <b>50.8%</b></span><span>分歧 <b>6.9pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>68.6</b></span><span>注码 <b>0.5%</b></span><span>EV <b>—（未取价，未做 EV 筛选）</b></span></div>
+<p class="small">比分佐证：模型最可能比分 1-1（12.3%）、1-0（10.1%）、2-1（9.1%）——低比分走向与角球偏少方向一致（主观推断，非直接佐证；角球数与进球数无直接换算关系）。角球暂无赔率源，未做 EV 筛选。交叉验证：Opta 64.2%/19.3%/16.5%，最大分歧 19.6pp（角球玩法无 1X2 冲突，仅作披露）；Oddspedia 胜率 60%/22%/17%；SmartBet“Total Corners: Under 10.5”五星 67.58%；最可能比分 1-0（11.5%）。Polymarket 无该场市场；predict.game 无该场预测。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 2.10–0.90，拟合合格（最大偏差 1.4pp），推导大2.5 56.0%、双进是 51.7%、最可能比分 2-0（11.0%）、1-0（11.0%）、2-1（9.9%）。</p>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">那不勒斯 vs 都灵</span><span class="pktime">11-22 03:45</span></div>
+<div class="pkrow2"><span class="pkchip">角球小 9.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>55.9%</b></span><span>第二方法 <b>58.7%</b></span><span>分歧 <b>2.8pp</b></span><span>赔率 <b>未取价</b></span><span>综合分 <b>72.1</b></span><span>注码 <b>0.5%</b></span><span>EV <b>—（未取价，未做 EV 筛选）</b></span></div>
+<p class="small">比分佐证：模型最可能比分 1-1（12.3%）、1-0（10.1%）、2-1（9.1%）——低比分走向与角球偏少方向一致（主观推断，非直接佐证；角球数与进球数无直接换算关系）。角球暂无赔率源，未做 EV 筛选。交叉验证：Opta 62.1%/20.4%/17.5%，最大分歧 17.5pp（角球玩法无 1X2 冲突，仅作披露）；Oddspedia 胜率 53%/25%/22%；SmartBet“Double Chance: Draw or Torino”五星 47.53%；最可能比分 1-1（11.7%）。Polymarket 无该场市场；predict.game 无该场预测。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 2.02–0.93，拟合合格（最大偏差 1.1pp），推导大2.5 54.9%、双进是 51.9%、最可能比分 1-0（11.2%）、2-0（10.8%）、1-1（10.3%）。</p>
+</div>
+<div class="pkcard">
+<div class="pkhead"><span class="pkteams">新英格兰革命 vs 费城联合</span><span class="pktime">11-22 03:00</span></div>
+<div class="pkrow2"><span class="pkchip">让球 新英格兰革命（主） +0.5</span><span class="pkbadge sub">次选</span></div>
+<div class="pkstats"><span>模型 <b>65.8%</b></span><span>第二方法 <b>53.9%</b></span><span>分歧 <b>11.9pp</b></span><span>赔率 <b>1.62</b></span><span>综合分 <b>67.6</b></span><span>注码 <b>0.5%</b></span><span>EV <b>+6.9%</b></span></div>
+<p class="small">比分佐证：模型最可能比分 1-1（12.3%）、1-0（10.1%）——均赢下 +0.5，与推荐方向一致；第二方法前三 1-1（10.5%）、1-2（8.5%）、2-1（8.1%），无矛盾。交叉验证：Opta 31.9%/24.7%/43.3%，最大分歧 13.6pp，在 15pp 上限内通过；Oddspedia 胜率 36%/23%/41%；SmartBet“Double Chance: New England or Draw”四星 59.46%；最可能比分 1-1（9.6%）。Polymarket 无该场市场；predict.game 无该场预测。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 1.30–1.56，拟合合格（最大偏差 0.6pp），推导大2.5 53.3%、双进是 57.0%、最可能比分 1-1（12.1%）、0-1（9.3%）、1-2（9.0%）。把握低：第二方法分歧 11.9pp 已接近次选 15pp 上限，Opta 推导让球覆盖（新英格兰 +0.5）56.9%，与模型 65.8% 同向但分歧 8.9pp。</p>
 </div>
 </div>
 
-<p class="small">落选 13 场：第二方法不可验证 12 场——特罗姆瑟 vs 维京（11-21 21:00，窗边）、京都不死鸟 vs 浦和红钻、町田泽维亚 vs 长崎成功丸、广岛三箭 vs 横滨水手、东京绿茵 vs 名古屋鲸八（11-21 13:00）、大阪樱花 vs FC 东京、川崎前锋 vs 福冈黄蜂（14:00）、大阪钢巴 vs 冈山绿雉（15:00）、中央海岸水手 vs 珀斯光荣（14:00）、布里斯班狮吼 vs 悉尼 FC（16:40）、莫尔德 vs 博德闪耀（11-21 02:00）、科布雷萨尔 vs 奥达克斯意大利人（11-21 05:00）；交叉验证排除 1 场——拜仁慕尼黑 vs 科隆：模型双进是 55.0%、第二方法 61.8% 过关，但 Opta 推导双进是仅 33.1%（分歧 21.9pp）、SmartBet 双进否四星 56.63%、Oddspedia 最可能比分 1-0/2-0 均为零封，三个独立来源均指向「不双进」，按分歧 &gt;15pp 规则排除，不落盘、不计入推荐。今日无主选过关；重心位由模型重心补位（曼城角球小 10.5）。The Odds API 本轮足球取价 12 credits（英超/西甲/法甲 h2h+totals+spreads，BTTS 三区均未取到）；StrikerAPI 预算 290/400。</p>
+<div class="candzone">
+<div class="candbar">💜 候选（均未达标，仅供参考，不构成推荐）——9 场模型过关后被交叉验证排除的让球候选</div>
+<div class="jccards">
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">英超</span><span class="jcleague">11-22 01:30</span></div><div class="jcteams">纽卡斯尔<span class="vs">VS</span>阿森纳</div><div class="chtime">北京时间 11-22 01:30</div></div>
+<div class="cpick">💜 本场最强方向：让球 纽卡斯尔（主） +1.5 · 模型 86.1% · 综合分 64.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 纽卡斯尔（主） +1.5</b> 模型 86.1%</span><span>第二方法 74.5%</span><span>分歧 11.6pp</span><span>综合分 64.0</span><span>EV +29.2%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">1.67</span></div><div class="jccell"><span class="k">小</span><span class="v">2.20</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 1.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">主 +1.5</span><span class="v">1.50</span></div><div class="jccell"><span class="k">客 −1.5</span><span class="v">2.40</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 18.2%/平 22.0%/客胜 59.8%，模型 1X2 最大分歧 30.1pp（客胜），超 15pp 上限。注意：+1.5 线的 86.1% 是盘口线本身的概率结构（受让 1.5 球天然高覆盖），不是球队实力信号。Opta 推导让球覆盖（纽卡 +1.5）65.4%，低于模型 86.1%（分歧 20.7pp）；推导最可能比分 0-1（11.8%）、1-1（10.9%）、0-2（10.7%）。深盘封顶：让球 +1.5 达深盘线，综合分封顶 64。交叉验证：Opta 18.2%/22.0%/59.8%；Oddspedia 胜率 19%/24%/57%；SmartBet“Total Corners: Under 10.5”五星 63.94%；最可能比分 0-1（11.1%）。Polymarket 隐含主胜 15.5%/平 22.5%/客胜 62.5%，成交量 $46,574（24 小时 $9,819），流动性 $623,932；与博彩去水主胜 16.7% 分歧 1.2pp，无资金异动信号。 五家 AI 共识：6/6 客胜，预测比分众数 0-1/0-2/1-2；与本模型 1X2 方向一致（模型均值主胜 44.6% 与五家 AI 客胜方向分歧——模型 1X2 无球队区分度，见交叉验证）。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">西甲</span><span class="jcleague">11-22 04:00</span></div><div class="jcteams">皇家马德里<span class="vs">VS</span>塞尔塔</div><div class="chtime">北京时间 11-22 04:00</div></div>
+<div class="cpick">💜 本场最强方向：让球 塞尔塔（客） +2.5 · 模型 69.0% · 综合分 64.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 塞尔塔（客） +2.5</b> 模型 69.0%</span><span>第二方法 61.7%</span><span>分歧 7.3pp</span><span>综合分 64.0</span><span>EV +12.2%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替仅 3.5 线有价，本轮未取 3.5 价</div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">客让 2.5</span></div><div class="jccells two"><div class="jccell"><span class="k">主 −2.5</span><span class="v">2.15</span></div><div class="jccell cand"><span class="k">客 +2.5</span><span class="v">1.62</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 75.8%/平 14.2%/客胜 10.0%，模型 1X2 最大分歧 31.2pp（主胜），超 15pp 上限。值得注意的细节：Opta 推导的让球覆盖（塞尔塔 +2.5）为 71.1%，与模型 69.0% 同向（分歧仅 2.1pp）——推导本身支持这个方向；但规则第 3 条按 1X2 分歧判定，第 8 条又规定推导「不改变第 3 条的降级/排除规则」，故仍按字面排除，推导分歧已如实记录，供赛后复盘检验规则本身。同场其他候选：双进是 55.0%（第二 57.7%，综合分 72.1）未取价、大小球 2.5 未取价，本场无其他过关玩法。深盘封顶：让球 +2.5 达深盘线，综合分封顶 64。交叉验证：Opta 75.8%/14.2%/10.0%；Oddspedia 胜率 70%/20%/10%；SmartBet“Total Goals: Under 3.5”五星 65.33%；最可能比分 1-0（13.6%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">意甲</span><span class="jcleague">11-21 22:00</span></div><div class="jcteams">科莫<span class="vs">VS</span>卡利亚里</div><div class="chtime">北京时间 11-21 22:00</div></div>
+<div class="cpick">💜 本场最强方向：让球 卡利亚里（客） +1.5 · 模型 56.9% · 综合分 64.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 卡利亚里（客） +1.5</b> 模型 56.9%</span><span>第二方法 52.9%</span><span>分歧 4.0pp</span><span>综合分 64.0</span><span>EV +11.1%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 3.5</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">2.25</span></div><div class="jccell"><span class="k">小</span><span class="v">1.62</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">客让 1.5</span></div><div class="jccells two"><div class="jccell"><span class="k">主 −1.5</span><span class="v">1.77</span></div><div class="jccell cand"><span class="k">客 +1.5</span><span class="v">1.95</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 69.7%/平 17.2%/客胜 13.1%，模型 1X2 最大分歧 25.1pp（主胜），超 15pp 上限。Opta 推导的让球覆盖（卡利亚里 +1.5）为 55.1%，与模型 56.9% 同向（分歧 1.8pp）——推导支持方向，但第 3 条按 1X2 分歧排除，推导不改变判定。同场角球小 9.5（模型 56.8%，第二 61.9%，综合分 70.2）曾以 0.1pp 之差落选本场最佳玩法；让球被排除后未递补（每场只取一条）。深盘封顶：让球 +1.5 达深盘线，综合分封顶 64。交叉验证：Opta 69.7%/17.2%/13.1%；Oddspedia 胜率 68%/20%/13%；SmartBet“Total Goals: Under 3.5”五星 66.82%；最可能比分 1-0（11.9%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">德甲</span><span class="jcleague">11-21 22:30</span></div><div class="jcteams">勒沃库森<span class="vs">VS</span>帕德博恩</div><div class="chtime">北京时间 11-21 22:30</div></div>
+<div class="cpick">💜 本场最强方向：让球 帕德博恩（客） +1.5 · 模型 56.9% · 综合分 64.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 帕德博恩（客） +1.5</b> 模型 56.9%</span><span>第二方法 54.7%</span><span>分歧 2.1pp</span><span>综合分 64.0</span><span>EV +19.4%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替仅 3.5 线有价，本轮未取 3.5 价</div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">客让 1.5</span></div><div class="jccells two"><div class="jccell"><span class="k">主 −1.5</span><span class="v">1.67</span></div><div class="jccell cand"><span class="k">客 +1.5</span><span class="v">2.10</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 70.5%/平 16.3%/客胜 13.2%，模型 1X2 最大分歧 25.9pp（主胜），超 15pp 上限。Opta 推导的让球覆盖（帕德博恩 +1.5）为 54.1%，与模型 56.9% 同向（分歧 2.8pp）——推导支持方向，但第 3 条按 1X2 分歧排除。同场其他候选：双进是 55.0%（第二 62.7%，综合分 67.1）未取价、大小球未达门槛，本场无其他过关玩法。深盘封顶：让球 +1.5 达深盘线，综合分封顶 64。交叉验证：Opta 70.5%/16.3%/13.2%；Oddspedia 胜率 59%/23%/19%；SmartBet“Total Goals: Under 4.5”五星 78.32%；最可能比分 1-0（11.8%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">德甲</span><span class="jcleague">11-21 22:30</span></div><div class="jcteams">柏林联合<span class="vs">VS</span>莱比锡红牛</div><div class="chtime">北京时间 11-21 22:30</div></div>
+<div class="cpick">💜 本场最强方向：让球 柏林联合（主） +1.5 · 模型 86.1% · 综合分 64.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 柏林联合（主） +1.5</b> 模型 86.1%</span><span>第二方法 76.4%</span><span>分歧 9.7pp</span><span>综合分 64.0</span><span>EV +40.0%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 3.5</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">2.05</span></div><div class="jccell"><span class="k">小</span><span class="v">1.74</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 1.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">主 +1.5</span><span class="v">1.62</span></div><div class="jccell"><span class="k">客 −1.5</span><span class="v">2.15</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 18.9%/平 21.2%/客胜 59.9%，模型 1X2 最大分歧 30.2pp（客胜），超 15pp 上限。Opta 推导让球覆盖（柏林联合 +1.5）65.0%，低于模型 86.1%（分歧 21.1pp）。注意两家外部来源互相矛盾：Oddspedia 胜率仅 35%/26%/39%（客胜 39%），与 Opta 客胜 59.9% 相差 20.9pp——外部共识本身不一致，已披露。深盘封顶：让球 +1.5 达深盘线，综合分封顶 64。交叉验证：Opta 18.9%/21.2%/59.9%；Oddspedia 胜率 35%/26%/39%；SmartBet“Total Goals: Under 2.5”五星 46.02%；最可能比分 1-1（11.2%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">德甲</span><span class="jcleague">11-21 22:30</span></div><div class="jcteams">埃沃斯堡<span class="vs">VS</span>弗赖堡</div><div class="chtime">北京时间 11-21 22:30</div></div>
+<div class="cpick">💜 本场最强方向：让球 埃沃斯堡（主） +0.5 · 模型 65.8% · 综合分 65.6</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 埃沃斯堡（主） +0.5</b> 模型 65.8%</span><span>第二方法 52.0%</span><span>分歧 13.8pp</span><span>综合分 65.6</span><span>EV +18.4%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 3.5</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">2.35</span></div><div class="jccell"><span class="k">小</span><span class="v">1.59</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 0.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">主 +0.5</span><span class="v">1.80</span></div><div class="jccell"><span class="k">客 −0.5</span><span class="v">1.91</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 28.7%/平 24.9%/客胜 46.4%，模型 1X2 最大分歧 16.7pp（客胜），仅超 15pp 上限 1.7pp。Opta 推导让球覆盖（埃沃斯堡 +0.5）53.8%，与模型 65.8% 同向（分歧 12.0pp）。值得注意的分裂：Oddspedia 胜率 44%/23%/32% 与模型 1X2 几乎一致（主胜分歧仅 0.6pp），是 9 场排除中唯一 Oddspedia 站在模型一边的场次——排除仅由 Opta 一家触发，边缘判定，赛后复盘重点检验。交叉验证：Opta 28.7%/24.9%/46.4%；Oddspedia 胜率 44%/23%/32%；SmartBet“Total Corners: Over 10.5”五星 50.9%；最可能比分 1-1（9.8%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">德甲</span><span class="jcleague">11-21 22:30</span></div><div class="jcteams">门兴格拉德巴赫<span class="vs">VS</span>多特蒙德</div><div class="chtime">北京时间 11-21 22:30</div></div>
+<div class="cpick">💜 本场最强方向：让球 门兴格拉德巴赫（主） +0.5 · 模型 65.8% · 综合分 70.4</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 门兴格拉德巴赫（主） +0.5</b> 模型 65.8%</span><span>第二方法 56.8%</span><span>分歧 9.0pp</span><span>综合分 70.4</span><span>EV +51.3%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 3.5</span></div><div class="jccells two"><div class="jccell"><span class="k">大</span><span class="v">2.25</span></div><div class="jccell"><span class="k">小</span><span class="v">1.62</span></div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 0.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">主 +0.5</span><span class="v">2.30</span></div><div class="jccell"><span class="k">客 −0.5</span><span class="v">1.56</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 20.8%/平 22.1%/客胜 57.1%，模型 1X2 最大分歧 27.4pp（客胜），超 15pp 上限。Opta 推导让球覆盖（门兴 +0.5）仅 43.2%（低于 50%，方向与模型相反），是 9 场排除中唯一推导也反向的一场——模型与 Opta 在让球方向上直接对立。predict.game 6/6 客胜，众数 1-2，与 Opta 方向一致。交叉验证：Opta 20.8%/22.1%/57.1%；Oddspedia 胜率 26%/23%/51%；SmartBet“Total Goals: Under 3.5”五星 66.93%；最可能比分 1-1（10.1%）。Polymarket 无该场市场。 五家 AI 共识：6/6 客胜，预测比分众数 1-2；与本模型 1X2 方向分歧（模型均值主胜 44.6% 无球队区分度，见交叉验证）。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">德甲</span><span class="jcleague">11-22 01:30</span></div><div class="jcteams">沙尔克04<span class="vs">VS</span>斯图加特</div><div class="chtime">北京时间 11-22 01:30</div></div>
+<div class="cpick">💜 本场最强方向：让球 沙尔克04（主） +0.5 · 模型 65.8% · 综合分 74.9</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 沙尔克04（主） +0.5</b> 模型 65.8%</span><span>第二方法 61.3%</span><span>分歧 4.5pp</span><span>综合分 74.9</span><span>EV +28.5%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替仅 3.5 线有价，本轮未取 3.5 价</div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 0.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">主 +0.5</span><span class="v">1.95</span></div><div class="jccell"><span class="k">客 −0.5</span><span class="v">1.74</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 25.9%/平 23.8%/客胜 50.3%，模型 1X2 最大分歧 20.6pp（客胜），超 15pp 上限。Opta 推导让球覆盖（沙尔克 +0.5）49.9%，与模型 65.8% 同向但分歧 15.9pp。同场其他候选：双进是 55.0%（第二 64.5%，综合分 65.3）未取价、大小球未达门槛，本场无其他过关玩法。交叉验证：Opta 25.9%/23.8%/50.3%；Oddspedia 胜率 28%/23%/50%；SmartBet“Total Goals: Under 3.5”五星 65.96%；最可能比分 1-1（10.4%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+<div class="jccard">
+<div class="chero"><div class="jchead"><span class="jcno">法甲</span><span class="jcleague">11-22 00:15</span></div><div class="jcteams">尼斯<span class="vs">VS</span>巴黎圣日耳曼</div><div class="chtime">北京时间 11-22 00:15</div></div>
+<div class="cpick">💜 本场最强方向：让球 尼斯（主） +1.5 · 模型 86.1% · 综合分 64.0</div>
+<div class="jcplay pick"><span><span class="candtag">候选</span> <b>让球 尼斯（主） +1.5</b> 模型 86.1%</span><span>第二方法 73.2%</span><span>分歧 12.9pp</span><span>综合分 64.0</span><span>EV +43.6%</span></div>
+<div class="jcgrid"><div class="jclab">大小球<span class="jcline">线 2.5</span></div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替仅 3.5 线有价，本轮未取 3.5 价</div></div></div>
+<div class="jcgrid"><div class="jclab">让球<span class="jchand">主让 1.5</span></div><div class="jccells two"><div class="jccell cand"><span class="k">主 +1.5</span><span class="v">1.67</span></div><div class="jccell"><span class="k">客 −1.5</span><span class="v">2.10</span></div></div></div>
+<div class="jcgrid"><div class="jclab">双进</div><div class="jccells one"><div class="jccell note">未取价 · ESPN 平替无 BTTS 市场</div></div></div>
+<div class="jcfoot">交叉验证排除：Opta 超级计算机主胜 18.3%/平 20.3%/客胜 61.4%，模型 1X2 最大分歧 31.7pp（客胜），超 15pp 上限，为 9 场中最大。Opta 推导让球覆盖（尼斯 +1.5）63.5%，低于模型 86.1%（分歧 22.6pp）；推导最可能比分 0-1（10.8%）、0-2（10.4%）。同场其他候选：双进是 55.0%（第二 64.3%，综合分 65.5）未取价、大小球未达门槛，本场无其他过关玩法。深盘封顶：让球 +1.5 达深盘线，综合分封顶 64。交叉验证：Opta 18.3%/20.3%/61.4%；Oddspedia 胜率 15%/19%/67%；SmartBet“Total Corners: Under 10.5”五星 60.25%；最可能比分 0-2（9.7%）。Polymarket 无该场市场。 predict.game 无该场预测。</div>
+</div>
+</div>
+</div>
+
+<p class="small">落选 26 场：交叉验证排除 9 场（见上方候选区，逐场原因原文保留）；概率/综合分/分歧不达标 17 场——切尔西 vs 利兹联、伯恩茅斯 vs 诺丁汉森林、热刺 vs 伊普斯维奇、考文垂 vs 水晶宫、阿拉维斯 vs 拉科鲁尼亚、巴列卡诺 vs 瓦伦西亚、帕尔马 vs 罗马、法兰克福 vs 霍芬海姆、摩纳哥 vs 欧塞尔、朗斯 vs 图卢兹、里尔 vs 里昂、斯特拉斯堡 vs 布雷斯特、达拉斯 vs 波特兰、迈阿密 vs 哥伦布（以上 14 场已取价，但大小球/双进/角球候选概率或综合分未达次选门槛）；巴伊亚 vs 科里蒂巴、帕尔梅拉斯 vs 弗拉门戈、AIK vs 代格福什（3 场未取价，其中 AIK 同时第二方法不可验证）。今日无主选过关；重心位由模型重心补位（塞维利亚让球 +0.5）。The Odds API 本轮足球取价 8 credits（英超/意甲 h2h+totals+spreads，BTTS 三区均未取到，返回赔率因队名匹配失败未挂接）；StrikerAPI 预算内缓存命中。</p>
 
 <h3>今日串子（2 串 1）</h3>
 <div class="match">
@@ -342,55 +434,54 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 
 <h3>热门前瞻</h3>
 <div class="match">
-<div class="ttl">曼城 vs 富勒姆 <span class="badge focus">模型重心</span></div>
+<div class="ttl">曼城 vs 富勒姆 <span class="pkbadge sub">次选</span></div>
 <p class="small">英超 · 11月21日 · 北京时间 20:30</p>
-<p>近期状态：曼城近 5 场 2 胜 3 负，最近三场连败（1-3 诺丁汉森林、0-1 布莱顿、1-2 阿斯顿维拉），此前 3-2 伊普斯维奇、3-0 利物浦，进 8 失 8；富勒姆近 5 场 2 胜 2 平 1 负（1-1 纽卡斯尔、1-1 阿斯顿维拉、1-0 考文垂、1-0 赫尔城、1-2 伊普斯维奇），进 5 失 4。伤停：未查到（API-Football 停用，ESPN 未提供伤停清单）。交锋：本季暂无直接交锋（ESPN 2026 赛季赛程内未见两队交手）。</p>
-<p>盘口解剖：胜平负 1.40/5.70/8.60（Betfred/Smarkets），去水后隐含主胜 71.0%/平 17.4%/客胜 11.6%；大小球 2.5 大 1.44/小 2.50（William Hill），3.5 大 2.18/小 1.66；让球 −1.25 主 1.85/+1.25 客 2.08（Matchbook）。初盘未查到（无初盘数据源），无法做初盘→即时盘变化。市场定价：曼城大胜预期强烈，但大小球 2.5 大仅 1.44 说明市场同样预期进球偏少。欧亚一致性：欧洲主胜 1.40 的强势与亚洲让球 −1.25 方向一致（均指向曼城赢 1 球以上），无方向分歧。亚盘：仅 Matchbook 一家有此盘口（The Odds API 返回中仅一家，标注数据缺口）。Polymarket 隐含主胜 70.5%，与博彩一致，无资金异动信号。黄牌：数据缺口，无可靠来源，不给数字。</p>
-<p>模型判定：角球小 10.5（57.9%，第二方法 59.9%，分歧 2.0pp），综合分 73.5，次选。模型 1X2 44.6%/25.7%/29.7% 为联赛均值 λ 推导，不作胜负判断。Opta 推导：λ 2.16-0.87，拟合合格（1.6pp），大 2.5 56.6%、双进是 51.0%、最可能比分 2-0（11.4%）、1-0（11.0%）。</p>
-<p>四种剧本：① 主胜剧本 2-0：曼城控场压制，富勒姆反击受限，角球总量偏低，与重心一致；② 平局剧本 1-1：富勒姆偷分，曼城久攻不下；③ 客胜剧本 1-2：富勒姆反击爆冷（小概率）；④ 闷战剧本 1-0：曼城小胜收场，角球偏少，与重心一致。</p>
-<p>推荐排序：角球小 10.5 ＞ 大 2.5（51.0%）＞ 双进是（55.0%，未取价）。信心等级：中。风险评估：最大风险是角球 λ_c 为历史先验、曼城无本季角球率回落均值，若曼城狂攻刷角球（单场 12+），小 10.5 直接被击穿；其次富勒姆若早早落后被迫压上，总角球可能超线。</p>
+<p>近期状态：曼城近 5 场 1 胜 1 平 3 负（1-3 诺丁汉森林、3-2 莱比锡（欧冠）、0-1 布莱顿、2-2 布莱顿（联赛杯，点球 3-4）、1-2 阿斯顿维拉），进 7 失 10，最近三场联赛全败；富勒姆近 5 场 2 胜 2 平 1 负（1-1 纽卡斯尔、1-1 阿斯顿维拉、0-1 水晶宫（联赛杯）、1-0 考文垂、1-0 赫尔城），进 4 失 3。伤停：曼城中场安托万·塞门约伤缺；富勒姆无缺阵。交锋：2026-02-11 曼城 3-0 富勒姆；2025-12-02 富勒姆 4-5 曼城；近 9 年 15 次交手曼城全胜。</p>
+<p>盘口解剖：胜平负 1.39/5.25/7.00（DraftKings 单家，ESPN 平替），去水后隐含主胜 68.3%/18.1%/13.6%；大小球 2.5 未取价（仅 3.5 线：大 2.00/小 1.80）；让球曼城 −1.5 @1.95/富勒姆 +1.5 @1.77。初盘未查到（无初盘数据源），无法做初盘→即时盘变化。市场定价曼城大胜预期强烈，但大小球 3.5 小仅 1.80 说明市场同样预期进球偏少。欧亚一致性：欧洲主胜 1.39 的强势与亚洲主让 −1.5 方向一致，无方向分歧。亚盘：仅 1 家有此盘口（ESPN 平替期间只有 DraftKings 单家）。Polymarket 隐含主胜 70.5%，与博彩去水 68.3% 分歧 2.2pp，无资金异动信号。predict.game 6/6 主胜，众数 2-0，与模型 1X2 方向一致。黄牌：数据缺口，无可靠来源，不给数字。</p>
+<p>模型判定：角球小 10.5（57.9%，第二方法 59.9%，分歧 2.0pp），综合分 73.5，次选，注码 0.5%。模型 1X2 44.6%/25.7%/29.7% 为联赛均值 λ 推导，不作胜负判断。Opta 1X2 主胜 67.2% 与模型 1X2 最大分歧 22.6pp——角球玩法本身无 1X2 冲突，仅作披露。Oddspedia 胜率 60%/22%/18%，SmartBet「First team to score: Fulham」五星 32.59%，最可能比分 1-0（11.0%）。Opta 推导（仅展示）：由 Opta 1X2 反推 λ 2.22–0.87，拟合合格（最大偏差 2.0pp），推导大2.5 57.7%、双进是 51.2%、最可能比分 2-0（11.4%）、1-0（10.8%）、2-1（9.9%）。</p>
+<p>四种剧本：① 主胜剧本 2-0：曼城控场压制，富勒姆反击受限，角球总量偏低，与重心一致；触发：曼城早早进球、富勒姆被迫回收。② 平局剧本 1-1：富勒姆偷分，曼城久攻不下；触发：富勒姆定位球或反击得手。③ 客胜剧本 1-2：富勒姆反击爆冷（小概率）；触发：曼城三连败的防线继续失误。④ 闷战剧本 1-0：曼城小胜收场，角球偏少，与重心一致；触发：曼城领先后控节奏、不刷角球。</p>
+<p>推荐排序：角球小 10.5（57.9%）＞ 双进是（55.0%，未取价）＞ 大 2.5（51.0%，2.5 线未取价）。信心等级：中。风险评估：最大风险是角球 λ_c 为历史先验、曼城无本季角球率回落均值，若曼城狂攻刷角球（单场 12+），小 10.5 直接被击穿；其次富勒姆若早早落后被迫压上，总角球可能超线。曼城三连败后急需反弹，进攻欲望本身就是角球小 10.5 的最大敌人。</p>
 </div>
 
 <div class="match">
-<div class="ttl">阿拉维斯 vs 拉科鲁尼亚 <span class="pkbadge sub">次选</span></div>
-<p class="small">西甲 · 11月21日 · 北京时间 21:00</p>
-<p>近期状态：阿拉维斯近 5 场 0 胜 2 平 3 负（0-0 塞维利亚、1-6 巴塞罗那、1-1 马拉加、1-2 塞尔塔、1-2 马德里竞技），进 3 失 11，进攻乏力；拉科鲁尼亚近 5 场 1 胜 2 平 2 负（0-0 西班牙人、2-1 奥萨苏纳、0-1 马德里竞技、1-1 莱万特、2-3 皇家社会），进 5 失 6。伤停：未查到。交锋：本季暂无直接交锋。</p>
-<p>盘口解剖：胜平负 2.26/3.45/3.65（Betfair），去水后 44.0%/28.8%/27.2%，与模型 1X2 最大分歧 3.1pp，市场与模型一致判定为均势；大小球 2.5 大 2.28/小 1.75，2.25 大 1.85/小 1.85；让球 −0.25 主 1.93/+0.25 客 2.04（Matchbook）。初盘未查到。欧亚一致性：欧赔主胜 2.26 的微弱优势与亚盘主让 0.25 方向一致。亚盘仅 Matchbook 一家。Polymarket 无该场市场。黄牌：数据缺口。</p>
-<p>双进是 55.0%，第二方法 56.8%，分歧 1.8pp，综合分 73.0，次选。Opta 推导双进是 52.6%（分歧 2.4pp，同向）。注意：双进是未取价（BTTS 三区无报价），无赔率不计 ROI。</p>
-<p>四种剧本：① 主胜剧本 1-0：阿拉维斯主场小胜（但客队不进球，与推荐矛盾）；② 平局剧本 1-1：双方各进一球，最支持推荐；③ 客胜剧本 0-1：拉科鲁尼亚零封取胜（与推荐矛盾）；④ 进球爆发剧本 2-1：主胜且双进，支持推荐。</p>
-<p>推荐排序：双进是（55.0%）＞ 大 2.5（51.0%，@2.28）。信心等级：中低。风险评估：阿拉维斯近 5 场仅进 3 球，若主场继续哑火，双进是直接落空；拉科鲁尼亚近 5 场仅进 5 球，客场进球同样不稳。</p>
+<div class="ttl">纽卡斯尔 vs 阿森纳 <span class="pkbadge rev">已排除 · 交叉验证分歧过大</span></div>
+<p class="small">英超 · 11月22日 · 北京时间 01:30</p>
+<p>近期状态：纽卡斯尔近 5 场 1 胜 1 平 3 负（1-1 富勒姆、0-1 埃弗顿、1-3 埃弗顿（联赛杯）、2-0 水晶宫、0-1 阿斯顿维拉），进 3 失 6；阿森纳近 5 场 4 胜 1 平（1-0 赫尔城、2-1 布拉格斯拉维亚（欧冠）、1-0 利物浦、1-1 弗利特伍德（联赛杯，点球 3-5）、2-0 埃弗顿），进 7 失 2。伤停：纽卡门将埃文·若昂、中锋若埃林顿伤缺；阿森纳前锋布卡约·萨卡伤缺、前锋马克斯·道曼停赛。交锋：2026-04-25 阿森纳 1-0 纽卡斯尔；2025-09-28 纽卡斯尔 1-2 阿森纳；近 9 年 21 场：纽卡 6 胜 1 平，阿森纳 14 胜。</p>
+<p>盘口解剖：胜平负 5.75/4.40/1.56（DraftKings 单家），去水后隐含主胜 16.7%/21.8%/61.6%；大小球 2.5 大 1.67/小 2.20；让球纽卡 +1.5 @1.50/阿森纳 −1.5 @2.40。初盘未查到。市场定价阿森纳客胜为大概率事件（去水客胜 61.6%），且让球 −1.5 的 2.40 说明市场只给了阿森纳赢 2 球以上约 42% 的定价。欧亚一致性：欧洲客胜 1.56 的强势与亚洲客让 −1.5 方向一致。亚盘：仅 1 家有此盘口。Polymarket 隐含客胜 62.5%，与博彩去水 61.6% 分歧 0.9pp，无资金异动。predict.game 6/6 客胜，众数 0-1/0-2/1-2。黄牌：数据缺口。</p>
+<p>模型判定：让球纽卡 +1.5 模型 86.1%（第二 74.5%，分歧 11.6pp），综合分 64.0（深盘封顶），赔率 1.50，EV +29.2%——曾达次选门槛，但 Opta 18.2/22.0/59.8，最大分歧 30.1pp 超 15pp 上限，按规则排除，不落盘、不计入推荐。Opta 推导让球覆盖（纽卡 +1.5）65.4%，低于模型 86.1%（分歧 20.7pp）；推导最可能比分 0-1（11.8%）。+1.5 的 86.1% 是线位概率而非球队信号：市场只给了阿森纳赢 2 球以上约 42% 的定价，模型的高概率来自受让 1.5 球的天然覆盖，与 Opta 的客胜强势并不直接矛盾——排除的真正依据是 1X2 方向分歧，而非让球概率本身。</p>
+<p>四种剧本：① 客胜剧本 0-1：阿森纳控场小胜（最可能，Opta 推导第一比分）；触发：阿森纳中场压制、纽卡缺若埃林顿导致中场失势。② 客胜剧本 0-2：阿森纳完胜；触发：纽卡防线在若埃林顿缺阵后中场失势、阿森纳持续施压。③ 平局剧本 1-1：纽卡主场硬扛偷分；触发：圣詹姆斯公园氛围+定位球。④ 主胜剧本 1-0：纽卡主场爆冷（小概率）；触发：阿森纳客场哑火+纽卡反击得手。</p>
+<p>推荐排序：本场无推荐（已排除）；若硬排，让球纽卡 +1.5（86.1%）＞ 双进是（55.0%，未取价）＞ 大 2.5（51.0%，@1.67）。信心等级：不适用（已排除）。风险评估：排除依据是 Opta 1X2 分歧 30.1pp；若模型是对的（阿森纳赢 2 球以上的真实概率低于市场定价），排除会错失一单——该分歧已记录，待赛后复盘验证哪边正确。萨卡伤缺削弱阿森纳边路爆破力，是纽卡 +1.5 方向上唯一的基本面支撑。</p>
 </div>
 
 <div class="match">
-<div class="ttl">特鲁瓦 vs 勒阿弗尔 <span class="pkbadge sub">次选</span></div>
-<p class="small">法甲 · 11月21日 · 北京时间 03:45</p>
-<p>近期状态：特鲁瓦近 5 场 1 胜 1 平 3 负（0-1 巴黎圣日耳曼、2-0 勒芒、0-0 图卢兹、1-3 朗斯、0-2 马赛），进 2 失 6；勒阿弗尔近 5 场 0 胜 0 平 5 负（0-2 洛里昂、1-5 巴黎圣日耳曼、3-4 马赛、1-3 欧塞尔、0-1 里尔），进 5 失 15，五连败且场均失 3 球。伤停：未查到（PitchAPI 影子信号：特鲁瓦 Jérémy Le Douaron 在替补席，未生效）。交锋：本季暂无直接交锋。</p>
-<p>盘口解剖：胜平负 2.26/3.55/3.55，去水后 44.0%/28.0%/28.0%，与模型最大分歧 2.3pp；大小球 2.5 大 1.91/小 1.94；让球：The Odds API 返回中无让球盘口（标注数据缺口）。初盘未查到。欧亚一致性：欧赔主胜微优，亚盘无盘可比，无法判断一致性。Polymarket 隐含 44.5%/28.5%/27.5%，与博彩一致（最大分歧 2.8pp），无资金异动。黄牌：数据缺口。</p>
-<p>双进是 55.0%，第二方法 64.4%（StrikerAPI 真 xG：特鲁瓦 xGF 2.28、勒阿弗尔 xGF 1.95），分歧 9.3pp，综合分 65.4，次选。Opta 推导双进是 54.1%（分歧 0.9pp，同向）。勒阿弗尔五连败失球如麻是双进是的核心支撑。</p>
-<p>四种剧本：① 主胜剧本 2-1：特鲁瓦主场取胜且双进，最支持推荐；② 平局剧本 1-1：各进一球，支持推荐；③ 客胜剧本 1-2：勒阿弗尔止住连败（小概率）；④ 闷战剧本 1-0：特鲁瓦零封小胜（与推荐矛盾）。</p>
-<p>推荐排序：双进是（55.0%）＞ 大 2.5（51.0%，@1.91）。信心等级：中。风险评估：特鲁瓦自身进攻同样疲软（近 5 场进 2 球），若主队不进球则推荐落空；勒阿弗尔虽失球多，但客场进球能力未经证实。</p>
+<div class="ttl">皇家马德里 vs 塞尔塔 <span class="pkbadge rev">已排除 · 交叉验证分歧过大</span></div>
+<p class="small">西甲 · 11月22日 · 北京时间 04:00</p>
+<p>近期状态：皇马近 5 场全胜（3-0 瓦伦西亚、3-2 雅典 AEK（欧冠）、3-0 桑坦德、2-1 巴塞罗那、4-1 莱比锡（欧冠）），进 15 失 4；塞尔塔近 5 场 1 胜 2 平 2 负（5-0 萨尔曼蒂诺（国王杯）、0-0 莱万特、1-2 圣吉罗斯（欧联）、0-3 巴列卡诺、0-0 皇家贝蒂斯），进 6 失 5。伤停：皇马后卫劳尔·阿森西奥、前锋罗德里戈伤缺；塞尔塔中场米格尔·罗曼·冈萨雷斯、前锋博尔哈·伊格莱西亚斯伤缺。交锋：2026-03-06 塞尔塔 1-2 皇马；2025-12-07 皇马 0-2 塞尔塔；近 9 年 19 场：皇马 16 胜 2 平，塞尔塔 1 胜。</p>
+<p>盘口解剖：胜平负 1.17/8.00/16.00（DraftKings 单家），去水后隐含主胜 82.1%/12.0%/6.0%；大小球 2.5 未取价（仅 3.5 线有价，本轮未取 3.5 价）；让球皇马 −2.5 @2.15/塞尔塔 +2.5 @1.63。初盘未查到。市场定价皇马胜出为压倒性预期（去水主胜 82.1%），但让球 −2.5 的 2.15 说明市场只给了皇马赢 3 球以上约 47% 的定价——深盘的定价分歧正在于此：胜负无悬念，赢几个球有悬念。欧亚一致性：欧洲主胜 1.17 的强势与亚洲主让 −2.5 方向一致。亚盘：仅 1 家有此盘口。Polymarket 无该场市场；predict.game 无该场预测。黄牌：数据缺口。</p>
+<p>模型判定：让球塞尔塔 +2.5 模型 69.0%（第二 61.7%，分歧 7.3pp），综合分 64.0（深盘封顶），赔率 1.63，EV +12.2%——曾达次选门槛，但 Opta 75.8/14.2/10.0，最大分歧 31.2pp 超 15pp 上限，按规则排除。Opta 推导让球覆盖（塞尔塔 +2.5）71.1%，与模型 69.0% 同向（分歧 2.1pp）——推导支持方向，但第 3 条按 1X2 分歧判定、推导不改变判定，故仍排除（规则字面执行，推导分歧已记录，供赛后复盘检验规则本身）。同场双进是 55.0%（第二 57.7%，综合分 72.1）未取价、大小球 2.5 未取价，本场无其他过关玩法。</p>
+<p>四种剧本：① 主胜剧本 2-0：皇马零封取胜（最可能，Opta 推导第一比分）；触发：皇马五连胜势头延续、塞尔塔进攻乏力。② 主胜剧本 3-1：皇马赢球但丢球；触发：塞尔塔反击或定位球偷一球。③ 平局剧本 1-1：塞尔塔死守偷分；触发：皇马久攻不下、心态急躁。④ 客胜剧本 0-2：塞尔塔爆冷（极小概率，去年 12 月曾 2-0 赢皇马）；触发：皇马轮换或轻敌、塞尔塔反击高效。</p>
+<p>推荐排序：本场无推荐（已排除）；若硬排，让球塞尔塔 +2.5（69.0%）＞ 双进是（55.0%，未取价）＞ 大 2.5（51.0%，未取价）。信心等级：不适用（已排除）。风险评估：排除的最大争议是 Opta 推导本身支持让球方向（71.1% vs 69.0%）——若赛后证明推导是对的、1X2 分歧是模型 artifact（联赛均值 λ 无球队区分度），本条排除规则值得复检；反之若皇马赢 3 球以上，排除正确。</p>
 </div>
 
 <div class="match">
-<div class="ttl">毕尔巴鄂竞技 vs 西班牙人 <span class="pkbadge sub">次选</span></div>
-<p class="small">西甲 · 11月21日 · 北京时间 04:00</p>
-<p>近期状态：毕尔巴鄂竞技近 5 场 2 胜 2 平 1 负（1-1 奥萨苏纳、2-1 皇家社会、4-0 赫塔费、1-3 莱万特、0-0 瓦伦西亚），进 8 失 5；西班牙人近 5 场 1 胜 2 平 2 负（0-0 拉科鲁尼亚、1-0 比利亚雷亚尔、1-2 桑坦德、0-1 马德里竞技、1-1 马拉加），进 3 失 4。伤停：未查到（PitchAPI 影子信号：毕尔巴鄂 Daniel Vivian 缺阵、西班牙人 Marcos Fernández 在替补席，未生效）。交锋：本季暂无直接交锋。</p>
-<p>盘口解剖：胜平负 1.51/4.70/7.60，去水后 65.8%/21.1%/13.1%，模型 1X2 主胜 44.6%，分歧 21.2pp（联赛均值 λ artifact，不可直接比对）；大小球 2.5 大 1.74/小 2.30，2.75 大 1.85/小 1.91；让球 −1.25 主 2.16/+1.25 客 1.84（Matchbook）。初盘未查到。欧亚一致性：欧赔主胜 1.51 的强势与亚盘主让 1.25 方向一致。亚盘仅 Matchbook 一家。Polymarket 无该场市场。黄牌：数据缺口。</p>
-<p>双进是 55.0%，第二方法 64.6%，分歧 9.6pp，综合分 65.2，次选。SmartBet 双进是四星 52.92%（分歧 2.1pp，同向）；Opta 推导双进是 51.5%（分歧 3.5pp，同向）。Opta 1X2 主胜 61.2% 与模型 1X2 分歧 16.6pp（artifact，已披露）。</p>
-<p>四种剧本：① 主胜剧本 2-1：毕尔巴鄂主场取胜且双进，最支持推荐；② 平局剧本 1-1：各进一球，支持推荐；③ 客胜剧本 0-1：西班牙人零封爆冷（与推荐矛盾）；④ 闷战剧本 1-0：毕尔巴鄂零封小胜（与推荐矛盾）。</p>
-<p>推荐排序：双进是（55.0%）＞ 大 2.5（51.0%，@1.74）。信心等级：中低。风险评估：西班牙人近 5 场仅进 3 球，客场进球能力存疑；毕尔巴鄂若早早两球领先可能收着踢，客队进球窗口收窄。</p>
+<div class="ttl">尼斯 vs 巴黎圣日耳曼 <span class="pkbadge rev">已排除 · 交叉验证分歧过大</span></div>
+<p class="small">法甲 · 11月22日 · 北京时间 00:15</p>
+<p>近期状态：尼斯近 5 场 4 胜 1 负（2-0 昂热、5-2 雷恩、2-1 布雷斯特、1-2 里昂、2-1 斯特拉斯堡），进 12 失 6；巴黎近 5 场全胜（1-0 特鲁瓦、6-0 比利亚雷亚尔（欧冠）、5-1 勒阿弗尔、2-0 里昂、4-2 巴塞罗那（欧冠）），进 18 失 3。伤停：尼斯后卫安托万·门迪、穆罕默德·阿卜杜勒莫内姆、莫伊兹·邦比托、中场洛朗·阿贝热尔伤缺；巴黎门将亚历山德罗·隆戈尼、前锋克瓦拉茨赫利亚伤缺。注：Oddspedia 本页伤停栏与可能首发名单有重叠（阿卜杜勒莫内姆同时出现），以上伤停取自伤停栏，个别存疑。交锋：2026-03-21 尼斯 0-4 巴黎；2025-11-01 巴黎 1-0 尼斯；近 9 年 18 场：尼斯 4 胜 3 平，巴黎 11 胜。</p>
+<p>盘口解剖：胜平负 5.75/5.00/1.48（DraftKings 单家），去水后隐含主胜 16.5%/19.0%/64.4%；大小球 2.5 未取价（仅 3.5 线有价，本轮未取 3.5 价）；让球尼斯 +1.5 @1.67/巴黎 −1.5 @2.10。初盘未查到。市场定价巴黎客胜为大概率事件（去水客胜 64.4%），让球 −1.5 的 2.10 说明市场只给了巴黎赢 2 球以上约 48% 的定价。欧亚一致性：欧洲客胜 1.48 的强势与亚洲客让 −1.5 方向一致。亚盘：仅 1 家有此盘口。Polymarket 无该场市场；predict.game 无该场预测。黄牌：数据缺口。</p>
+<p>模型判定：让球尼斯 +1.5 模型 86.1%（第二 73.2%，分歧 12.9pp），综合分 64.0（深盘封顶），赔率 1.67，EV +43.6%——曾达次选门槛，但 Opta 18.3/20.3/61.4，最大分歧 31.7pp（9 场中最大）超 15pp 上限，按规则排除。Opta 推导让球覆盖（尼斯 +1.5）63.5%，低于模型 86.1%（分歧 22.6pp）。同场双进是 55.0%（第二 64.3%，综合分 65.5）未取价、大小球未达门槛，本场无其他过关玩法。尼斯近 5 场 4 胜且主场 3 连胜，但巴黎五连胜且欧冠 6-0 大胜，实力差距是市场定价的主线；+1.5 的高概率同样来自线位，排除依据是 1X2 方向分歧。</p>
+<p>四种剧本：① 客胜剧本 0-2：巴黎完胜（最可能，Opta 推导前二比分）；触发：巴黎五连胜的进攻火力碾压尼斯缺员防线。② 客胜剧本 1-2：尼斯主场抵抗、进一球；触发：尼斯主场三连胜的势头+巴黎轮换。③ 平局剧本 1-1：尼斯主场偷分；触发：巴黎欧冠后体能轮换、尼斯死守。④ 主胜剧本 2-1：尼斯爆冷（小概率）；触发：巴黎轻敌+尼斯反击高效。</p>
+<p>推荐排序：本场无推荐（已排除）；若硬排，让球尼斯 +1.5（86.1%）＞ 双进是（55.0%，未取价）＞ 大 2.5（51.0%，未取价）。信心等级：不适用（已排除）。风险评估：尼斯主场三连胜、巴黎欧冠后可能轮换，是 +1.5 方向上仅有的基本面支撑；但巴黎实力差距过大（Opta 客胜 61.4%），排除的容错空间较大。</p>
 </div>
 
 <div class="match">
-<div class="ttl">拜仁慕尼黑 vs 科隆 <span class="pkbadge rev">已排除 · 交叉验证分歧过大</span></div>
-<p class="small">德甲 · 11月21日 · 北京时间 03:30</p>
-<p>近期状态：拜仁近 5 场 3 胜 2 平 0 负（2-1 美因茨、2-2 多特蒙德、3-1 弗赖堡、6-1 莱比锡红牛、2-2 奥格斯堡），进 15 失 7；科隆近 5 场 1 胜 2 平 2 负（1-2 勒沃库森、1-1 柏林联合、0-0 沙尔克、0-1 法兰克福、2-1 门兴），进 5 失 5。伤停：未查到。交锋：本季暂无直接交锋。</p>
-<p>盘口解剖：本场未取价（德甲不在本轮 2 联赛取价上限内，无胜平负/大小球/让球/双进赔率）。Opta 超级计算机主胜 82.8%/平 10.0%/客胜 7.3%，模型 1X2 主胜 44.6%，分歧 38.2pp（联赛均值 λ artifact，但方向上 Opta 的主胜压倒性优势与拜仁实力相符）。Oddspedia Winner 主胜 76%/平 16%/客胜 7%，最可能比分 1-0（12.3%）、2-0（12.2%）均为零封。SmartBet 双进否四星 56.63%（隐含双进是 43.37%）。Polymarket 无该场市场。黄牌：数据缺口。</p>
-<p>模型双进是 55.0%，第二方法 61.8%（StrikerAPI 真 xG：拜仁 xGF 3.50、科隆 xGF 2.04），分歧 6.7pp，综合分 68.0，曾达次选门槛。但 Opta 推导双进是仅 33.1%（分歧 21.9pp，反向），SmartBet 双进否 56.63%（双进是隐含 43.4%，分歧 11.6pp，反向），Oddspedia 前二比分均为零封——三个独立来源均指向「不双进」，与模型方向相反。按分歧 &gt;15pp 降级或排除规则，本场从次选排除，不落盘、不计入推荐、不进台账。教训：StrikerAPI xG 高估了科隆的进球能力（xGF 2.04 vs Opta 反推 λ 0.45），xG 第二方法在强弱悬殊场次需警惕进攻端高估。</p>
-<p>四种剧本：① 主胜剧本 2-0：拜仁零封取胜（最可能，Opta 推导第一比分）；② 主胜剧本 3-0：拜仁大胜零封；③ 平局剧本 1-1：科隆偷分且双进（唯一支持原推荐的剧本）；④ 客胜剧本 0-1：科隆爆冷零封（极小概率）。</p>
-<p>推荐排序：本场无推荐（已排除）；若硬排，双进否 ＞ 双进是。信心等级：不适用（已排除）。风险评估：排除依据是三个独立来源一致反向，若 StrikerAPI xG 是对的（科隆真实进球能力被 Opta 低估），排除会错失一单——该分歧已记录，待赛后复盘验证哪边正确。</p>
+<div class="ttl">门兴格拉德巴赫 vs 多特蒙德 <span class="pkbadge rev">已排除 · 交叉验证分歧过大</span></div>
+<p class="small">德甲 · 11月21日 · 北京时间 22:30</p>
+<p>近期状态：门兴近 5 场 3 胜 1 平 1 负（1-0 标准列日（友谊赛）、1-3 汉堡、0-0 帕德博恩、2-0 卡尔斯鲁厄（德国杯）、3-2 斯图加特），进 7 失 5；多特近 5 场 4 胜 1 平（2-1 埃沃斯堡、2-1 皇家贝蒂斯（欧冠）、2-2 拜仁、3-2 不莱梅（德国杯）、1-0 法兰克福），进 9 失 6。伤停：门兴 7 人伤缺（后卫板仓滉、桥冈大树、卢卡斯·乌尔里希、扬·莱什琴斯基，中场恩佐·莱奥波德、雨果·博林，前锋蒂姆·克莱因丁斯特）；多特中场埃姆雷·詹、扬尼斯·康斯坦特利亚斯、卡尼·楚克乌梅卡、贾斯汀·勒尔马伤缺。注：Oddspedia 本页伤停栏与可能首发名单有重叠（板仓滉、乌尔里希、楚克乌梅卡同时出现），以上伤停取自伤停栏，个别存疑。交锋：2026-05-03 门兴 1-0 多特；2025-12-19 多特 2-0 门兴；近 9 年 19 场：门兴 4 胜 1 平，多特 14 胜。</p>
+<p>盘口解剖：胜平负 4.80/4.20/1.57（DraftKings 单家），去水后隐含主胜 19.2%/22.0%/58.8%；大小球 2.5 未取价（仅 3.5 线：大 2.25/小 1.62）；让球门兴 +0.5 @2.30/多特 −0.5 @1.56。初盘未查到。市场定价多特客胜为大概率事件（去水客胜 58.8%）。欧亚一致性：欧洲客胜 1.57 与亚洲客让 −0.5（1.56）几乎同价，方向与幅度均一致。亚盘：仅 1 家有此盘口。Polymarket 无该场市场；predict.game 6/6 客胜，众数 1-2。黄牌：数据缺口。</p>
+<p>模型判定：让球门兴 +0.5 模型 65.8%（第二 56.8%，分歧 9.0pp），综合分 70.4，赔率 2.30，EV +51.3%——曾达次选门槛，但 Opta 20.8/22.1/57.1，最大分歧 27.4pp 超 15pp 上限，按规则排除；且 Opta 推导让球覆盖（门兴 +0.5）仅 43.2%（低于 50%，方向与模型相反），是 9 场排除中唯一推导也反向的一场。predict.game 6/6 客胜，众数 1-2，与 Opta 方向一致。门兴 7 人伤缺（4 名后卫）是多特方向的核心支撑，模型因无伤停数据未能定价这一信息——这是本场排除后最值得复盘的一点：若门兴防线缺口属实，模型 65.8% 高估了主队不败概率。</p>
+<p>四种剧本：① 客胜剧本 1-2：多特客胜（最可能，predict.game 众数）；触发：多特进攻压制门兴缺员防线。② 平局剧本 1-1：门兴主场顽强；触发：门兴主场氛围+多特客场慢热。③ 主胜剧本 1-0：门兴爆冷（5 月曾 1-0 赢多特）；触发：多特客场哑火、门兴反击得手。④ 进球爆发剧本 2-2：双方对攻；触发：门兴防线缺口+多特防线同样不稳，对攻拉开。</p>
+<p>推荐排序：本场无推荐（已排除）；若硬排，让球门兴 +0.5（65.8%）＞ 双进是（55.0%，未取价）＞ 大 2.5（51.0%，未取价）。信心等级：不适用（已排除）。风险评估：排除依据除 Opta 1X2 分歧 27.4pp 外，推导也反向（43.2%）——是 9 场中排除最扎实的一场；唯一的风险是门兴 7 人伤缺的名单若有水分（Oddspedia 伤停栏与首发名单重叠存疑），模型 65.8% 可能被低估。</p>
 </div>
-
 
 <h3>竞彩二串一（2026-11-21 13:16 运行）</h3>
 <p>今日竞彩二串一（过关主选 · 周六021已降级 · 不记账）：两条腿均为过关腿（模型概率 67.1%，第二方法同向，分歧 ≤10pp）。筛查漏斗：竞彩在售 20 场（周六组 003–022，001/002 已截止）→ 模型逐场算概率 20 场 → 第二方法（xG-λ）可验证 18 场（日职/澳超无覆盖）→ 按竞彩腿门槛过关 5 条（让球胜 67.1%，均为 +1 线场次）→ 取分歧最小的两条组串。组合概率 45.0%（67.1% × 67.1%，按独立性假设）；组合赔率 2.09（官方让球胜 1.47 × 1.42）。</p>
@@ -619,12 +710,23 @@ footer{color:var(--muted2);font-size:12.5px;text-align:center;padding:12px 0}
 <details class="pvfold">
 <summary class="pvbar">📅 预告（点击展开）</summary>
 <div class="pvbody">
-<div class="pvitem"><span class="pvteams">纽卡斯尔 vs 阿森纳</span><span class="pvmeta">11月22日 01:30 · 英超</span><span>阿森纳客战圣詹姆斯公园，争冠集团对决。</span></div>
-<div class="pvitem"><span class="pvteams">塞维利亚 vs 皇家贝蒂斯</span><span class="pvmeta">11月22日 01:30 · 西甲</span><span>塞维利亚德比。</span></div>
-<div class="pvitem"><span class="pvteams">尼斯 vs 巴黎圣日耳曼</span><span class="pvmeta">11月22日 00:15 · 法甲</span><span>巴黎客战尼斯。</span></div>
-<div class="pvitem"><span class="pvteams">皇家马德里 vs 塞尔塔</span><span class="pvmeta">11月22日 04:00 · 西甲</span><span>皇马主场迎战塞尔塔。</span></div>
-<div class="pvitem"><span class="pvteams">国际迈阿密 vs 哥伦布机员</span><span class="pvmeta">11月22日 07:00 · 美职联</span><span>美职联季后赛。</span></div>
 <div class="pvitem"><span class="pvteams">利物浦 vs 曼联</span><span class="pvmeta">11月23日 00:30 · 英超</span><span>双红会。</span></div>
+<div class="pvitem"><span class="pvteams">巴塞罗那 vs 比利亚雷亚尔</span><span class="pvmeta">11月22日 21:00 · 西甲</span><span>巴萨主场迎战黄潜。</span></div>
+<div class="pvitem"><span class="pvteams">桑坦德 vs 皇家社会</span><span class="pvmeta">11月22日 23:15 · 西甲</span><span>升班马主场迎战皇家社会。</span></div>
+<div class="pvitem"><span class="pvteams">奥萨苏纳 vs 马拉加</span><span class="pvmeta">11月23日 01:30 · 西甲</span><span>奥萨苏纳主场。</span></div>
+<div class="pvitem"><span class="pvteams">赫塔费 vs 马德里竞技</span><span class="pvmeta">11月23日 04:00 · 西甲</span><span>马竞客战赫塔费。</span></div>
+<div class="pvitem"><span class="pvteams">尤文图斯 vs 威尼斯</span><span class="pvmeta">11月22日 19:30 · 意甲</span><span>尤文主场。</span></div>
+<div class="pvitem"><span class="pvteams">博洛尼亚 vs 乌迪内斯</span><span class="pvmeta">11月22日 22:00 · 意甲</span><span>博洛尼亚主场。</span></div>
+<div class="pvitem"><span class="pvteams">萨索洛 vs 热那亚</span><span class="pvmeta">11月22日 22:00 · 意甲</span><span>萨索洛主场。</span></div>
+<div class="pvitem"><span class="pvteams">AC米兰 vs 弗罗西诺内</span><span class="pvmeta">11月23日 01:00 · 意甲</span><span>米兰主场。</span></div>
+<div class="pvitem"><span class="pvteams">亚特兰大 vs 国际米兰</span><span class="pvmeta">11月23日 03:45 · 意甲</span><span>意甲强强对话。</span></div>
+<div class="pvitem"><span class="pvteams">奥格斯堡 vs 美因茨</span><span class="pvmeta">11月22日 22:30 · 德甲</span><span>奥格斯堡主场。</span></div>
+<div class="pvitem"><span class="pvteams">巴黎FC vs 昂热</span><span class="pvmeta">11月22日 22:00 · 法甲</span><span>巴黎FC主场。</span></div>
+<div class="pvitem"><span class="pvteams">洛里昂 vs 雷恩</span><span class="pvmeta">11月23日 00:15 · 法甲</span><span>洛里昂主场。</span></div>
+<div class="pvitem"><span class="pvteams">马赛 vs 勒芒</span><span class="pvmeta">11月23日 03:45 · 法甲</span><span>马赛主场。</span></div>
+<div class="pvitem"><span class="pvteams">纳什维尔 vs 辛辛那提</span><span class="pvmeta">11月23日 05:00 · 美职联</span><span>美职联季后赛。</span></div>
+<div class="pvitem"><span class="pvteams">芝加哥火焰 vs 夏洛特</span><span class="pvmeta">11月23日 07:30 · 美职联</span><span>美职联季后赛。</span></div>
+<div class="pvitem"><span class="pvteams">温哥华白浪 vs 皇家盐湖城</span><span class="pvmeta">11月23日 09:30 · 美职联</span><span>美职联季后赛。</span></div>
 
 </div>
 </details>
