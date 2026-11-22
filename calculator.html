@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>足球价值计算器 · 特助模型</title>
+<meta name="description" content="把庄家的赔率去掉抽水，还原成真实概率，再跟竞彩固定奖金比一比：差不到 3 个百分点就是没优势。纯网页计算，不联网、不保存。">
+<style>
+:root{
+  --bg:#f6f1e7; --card:#fffdf8; --ink:#22302a; --muted:#7a7263; --muted2:#a29885;
+  --line:#e7dfcd; --line2:#efe8d8; --green:#0a6b4f; --green-d:#07503a; --green-soft:#e3f0e9;
+  --red:#c0392b; --amber:#b97e10; --input-bg:#fffefa;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:18px 14px 30px}
+.topnav{display:flex;gap:8px;margin-bottom:14px}
+.topnav a{font-size:13px;color:var(--green-d);text-decoration:none;background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:5px 13px}
+h1{font-size:27px;margin:2px 0 6px;letter-spacing:.5px}
+.sub{color:#4c463c;font-size:15px;margin:0 0 18px}
+.sub b{color:var(--green)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:18px 16px 16px;margin-bottom:16px;box-shadow:0 1px 3px rgba(90,75,40,.05)}
+.card h2{font-size:18.5px;margin:0 0 12px;display:flex;align-items:center;gap:9px}
+.num{width:27px;height:27px;border-radius:50%;background:var(--green);color:#fff;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;font-size:15.5px;font-weight:700}
+.note{font-size:13.5px;color:var(--muted);margin:8px 0}
+.seg{display:flex;background:#efe9da;border-radius:12px;padding:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:transparent;padding:9px 0;border-radius:9px;font-size:15.5px;
+  color:#5c5546;cursor:pointer;font-family:inherit}
+.seg button.on{background:#fff;color:var(--green);font-weight:700;box-shadow:0 1px 4px rgba(90,75,40,.15)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label.flabel{display:block;font-size:13.5px;color:var(--muted);margin:10px 0 5px}
+input[type=number],input[type=text]{width:100%;padding:13px 14px;font-size:17px;border:1px solid var(--line);
+  border-radius:12px;background:var(--input-bg);color:var(--ink);font-family:inherit;outline:none}
+input:focus{border-color:var(--green)}
+input::placeholder{color:#c6bda6}
+.bookrow{border:1px solid var(--line2);border-radius:14px;padding:10px 12px 12px;margin-bottom:10px;position:relative}
+.bookrow .bhead{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:2px}
+.bookrow .rm{border:0;background:none;color:var(--muted2);font-size:16px;cursor:pointer;padding:2px 6px}
+.addbtn{width:100%;padding:13px;border:1.6px dashed var(--green);border-radius:12px;background:transparent;
+  color:var(--green);font-size:15.5px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:4px}
+.addbtn:active{background:var(--green-soft)}
+.linklike{display:block;text-align:center;margin-top:12px;color:var(--green);font-size:14.5px;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:0;width:100%;font-family:inherit}
+.result{border-top:1px solid var(--line2);margin-top:14px;padding-top:12px;font-size:15px}
+.result:empty{border-top:0;margin-top:0;padding-top:0}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:3.5px 0}
+.kv .k{color:var(--muted)} .kv .v{font-weight:700;text-align:right}
+.good{color:var(--green)} .bad{color:var(--red)} .warn{color:var(--amber)}
+.hint{color:var(--muted);font-size:14px}
+.verdict{border-radius:14px;padding:14px 15px;margin-top:14px;font-size:15px}
+.verdict.pick{background:var(--green-soft);border:1px solid #bcdcc9}
+.verdict.pass{background:#f6ecdd;border:1px solid #e8d5ae}
+.verdict .vtitle{font-size:18px;font-weight:800;margin-bottom:6px}
+.verdict ul{margin:8px 0 2px;padding-left:2px;list-style:none}
+.verdict li{margin:5px 0;padding-left:24px;position:relative;font-size:14.5px}
+.verdict li .mk{position:absolute;left:0;top:0;font-weight:800}
+.mini{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+.mini th,.mini td{border-top:1px solid var(--line2);padding:7px 4px;text-align:right}
+.mini th:first-child,.mini td:first-child{text-align:left}
+.mini th{color:var(--muted);font-weight:600}
+.legrow{display:grid;grid-template-columns:1fr 1fr 34px;gap:8px;align-items:end;margin-bottom:8px}
+.legrow .rm{border:0;background:none;color:var(--muted2);font-size:17px;cursor:pointer;padding:10px 4px}
+.rules{font-size:15px;margin:0;padding-left:20px}
+.rules li{margin:9px 0}
+.rules b{color:var(--ink)}
+.foot{color:var(--muted2);font-size:13px;text-align:center;margin-top:6px}
+select{width:100%;padding:13px 14px;font-size:16.5px;border:1px solid var(--line);border-radius:12px;
+  background:var(--input-bg);color:var(--ink);font-family:inherit;outline:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav">
+    <a href="index.html">← 预测主页</a>
+    <a href="ledger.html">实盘台账</a>
+  </div>
+
+  <h1>足球价值计算器</h1>
+  <p class="sub">把庄家的赔率去掉抽水，还原成真实概率，再跟竞彩固定奖金比一比。<b>差不到 3 个百分点就是没优势，直接放弃。</b></p>
+
+  <!-- ===== 1 市场参考 ===== -->
+  <section class="card">
+    <h2><span class="num">1</span>市场参考 · 庄家开价</h2>
+    <div class="seg" id="modeSeg">
+      <button type="button" data-mode="hk" class="on">亚盘水位</button>
+      <button type="button" data-mode="eu">欧式赔率</button>
+    </div>
+    <p class="note" id="modeNote">填香港水位，例如 0.95 就是欧式 1.95。整数盘、平半盘有走盘的，在下面填走盘概率，不填按 0 算；半球盘留空。</p>
+    <div id="bookList"></div>
+    <button type="button" class="addbtn" id="addBook">＋ 再加一家庄家</button>
+    <label class="flabel" for="pushPct">走盘概率（可留空）</label>
+    <input type="number" id="pushPct" inputmode="decimal" placeholder="0" min="0" max="90" step="0.1">
+    <div class="result" id="sec1Out"></div>
+    <button type="button" class="linklike" id="fillExample">不会填？点这里填一组示例</button>
+  </section>
+
+  <!-- ===== 2 对竞彩 ===== -->
+  <section class="card">
+    <h2><span class="num">2</span>对竞彩 · 值不值得下</h2>
+    <div class="grid2">
+      <div>
+        <label class="flabel" for="jcUp">竞彩固定奖金 · 上盘（让球方）</label>
+        <input type="number" id="jcUp" inputmode="decimal" placeholder="例如 2.10" min="1.01" step="0.01">
+      </div>
+      <div>
+        <label class="flabel" for="jcDown">竞彩固定奖金 · 下盘（受让方）</label>
+        <input type="number" id="jcDown" inputmode="decimal" placeholder="例如 1.75" min="1.01" step="0.01">
+      </div>
+    </div>
+    <label class="flabel" for="bankroll">准备用的资金（元）</label>
+    <input type="number" id="bankroll" inputmode="decimal" value="10000" min="0" step="100">
+    <div class="result" id="sec2Out"></div>
+    <div id="verdictBox"></div>
+  </section>
+
+  <!-- ===== 3 串关 ===== -->
+  <section class="card">
+    <h2><span class="num">3</span>串关 · 连乘计算</h2>
+    <p class="note">每行填一关：竞彩赔率和这一关的去水概率。可以用下面的按钮把第 2 节选出的方向直接带进来。</p>
+    <div id="legList"></div>
+    <button type="button" class="addbtn" id="addLeg">＋ 加一关</button>
+    <button type="button" class="addbtn" id="importLeg">把第 2 节的这一注加进来</button>
+    <div class="result" id="sec3Out"></div>
+  </section>
+
+  <!-- ===== 4 规则 ===== -->
+  <section class="card">
+    <h2><span class="num">4</span>用之前先记住这几条</h2>
+    <ul class="rules">
+      <li><b>3 个百分点是门槛。</b>1.95 的赔率本身要吃掉 2.6% 的抽水，差距小于 3 个点，赢了也是白忙。</li>
+      <li><b>抽水是相乘的。</b>两关各自 2.6%，串起来就吃掉 5.2%，关数越多越亏。</li>
+      <li><b>单场方向命中率天花板约 55%。</b>这套算法管的是「值不值得下、下多少」，不是「这场一定中」。</li>
+      <li><b>走盘要看盘口。</b>半球盘（0.5）没有走盘；整数盘（1、2）赢一球走盘退款；1.25 赢一球赢一半；1.5 与半球同，无走盘。</li>
+      <li><b>两种公平赔率别看混。</b>亚盘按「走盘退款」算；竞彩让球胜平负没有退款，所以对比时用「公平赔率（竞彩口径）＝ 1 ÷ 概率」。</li>
+      <li><b>这是算术，不是推荐。</b>数字全靠您填的盘口，盘口随时会变，落注前再看一眼。</li>
+    </ul>
+  </section>
+
+  <p class="foot">纯网页计算，不联网、不保存、不上传任何数字。关掉页面数据就没了。</p>
+</div>
+
+<script>
+/* ================= 纯计算（无 DOM 依赖） ================= */
+var Calc = (function(){
+  function devigTwoWay(o1, o2, pushPct){
+    var q = Math.min(Math.max(pushPct || 0, 0), 90) / 100;
+    var r1 = 1 / o1, r2 = 1 / o2, sum = r1 + r2;
+    return {
+      overround: sum - 1,                 // 抽水率（小数）
+      p1: (1 - q) * r1 / sum,             // 上盘全赢概率
+      p2: (1 - q) * r2 / sum,             // 下盘全赢概率
+      q: q
+    };
+  }
+  function fairAsianOdds(p, q){ return (1 - q) / p; }   // 走盘退款口径
+  function fairJcOdds(p){ return 1 / p; }               // 竞彩口径（无退款）
+  function sideValue(pWin, jcOdds){
+    var implied = 1 / jcOdds;
+    return {
+      implied: implied,
+      diffPp: (pWin - implied) * 100,     // 差值（百分点）
+      ev: pWin * jcOdds - 1,              // 每元期望收益
+      fairJc: 1 / pWin
+    };
+  }
+  function kelly(p, odds){
+    var b = odds - 1;
+    if (b <= 0) return 0;
+    return (p * b - (1 - p)) / b;
+  }
+  function suggestStake(p, odds, bankroll){
+    if (!(bankroll > 0) || p * odds - 1 <= 0) return 0;
+    var f = 0.5 * kelly(p, odds);         // 半凯利
+    if (f < 0) f = 0;
+    if (f > 0.02) f = 0.02;               // 封顶本金 2%
+    return Math.round(bankroll * f);
+  }
+  function judge(diffPp){
+    if (diffPp >= 3) return "good";       // 过门槛
+    if (diffPp >= 0) return "thin";       // 有差但没过 3 个点
+    return "bad";                          // 竞彩开得比市场还低
+  }
+  function parlay(legs){
+    var O = 1, P = 1, E = 1;
+    for (var i = 0; i < legs.length; i++){ O *= legs[i].odds; P *= legs[i].p; E *= legs[i].p * legs[i].odds; }
+    return { odds: O, prob: P, ev: E - 1, fair: 1 / P };
+  }
+  return { devigTwoWay: devigTwoWay, fairAsianOdds: fairAsianOdds, fairJcOdds: fairJcOdds,
+           sideValue: sideValue, kelly: kelly, suggestStake: suggestStake, judge: judge, parlay: parlay };
+})();
+
+/* ================= 页面逻辑 ================= */
+if (typeof document !== "undefined") {
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var mode = "hk";
+  var lastPick = null;      // 第 2 节判定结果，供串关带入
+  var importMsg = "";
+
+  function fmtPct(x){ return (x * 100).toFixed(1) + "%"; }
+  function fmtPp(x){ return (x >= 0 ? "+" : "") + x.toFixed(1); }
+  function fmtOdds(x){ return x.toFixed(2); }
+  function fmtMoney(x){ return "¥" + x.toLocaleString("zh-CN"); }
+  function num(v){ var n = parseFloat(v); return isNaN(n) ? null : n; }
+  function clsFor(j){ return j === "good" ? "good" : (j === "thin" ? "warn" : "bad"); }
+
+  /* ---------- 第 1 节：庄家行 ---------- */
+  function bookRow(){
+    var div = document.createElement("div");
+    div.className = "bookrow";
+    div.innerHTML =
+      '<div class="bhead"><span class="bname"></span><button type="button" class="rm" title="删掉这一家">✕</button></div>' +
+      '<div class="grid2">' +
+      '<div><label class="flabel labUp"></label><input type="number" inputmode="decimal" step="0.01" class="inUp"></div>' +
+      '<div><label class="flabel labDown"></label><input type="number" inputmode="decimal" step="0.01" class="inDown"></div>' +
+      '</div>';
+    div.querySelector(".rm").addEventListener("click", function(){
+      if (document.querySelectorAll(".bookrow").length > 1){ div.remove(); recalc(); }
+    });
+    return div;
+  }
+  function legRow(){
+    var div = document.createElement("div");
+    div.className = "legrow";
+    div.innerHTML =
+      '<div><label class="flabel">竞彩赔率</label><input type="number" inputmode="decimal" step="0.01" class="legOdds" placeholder="例如 2.10"></div>' +
+      '<div><label class="flabel">去水概率 %</label><input type="number" inputmode="decimal" step="0.1" class="legP" placeholder="例如 51.3"></div>' +
+      '<button type="button" class="rm" title="删掉这一关">✕</button>';
+    div.querySelector(".rm").addEventListener("click", function(){
+      if (document.querySelectorAll(".legrow").length > 1){ div.remove(); recalc(); }
+    });
+    return div;
+  }
+  function refreshLabels(){
+    var rows = document.querySelectorAll(".bookrow");
+    for (var i = 0; i < rows.length; i++){
+      rows[i].querySelector(".bname").textContent = "庄家 " + (i + 1);
+      rows[i].querySelector(".labUp").textContent = mode === "hk" ? "上盘水位" : "上盘赔率";
+      rows[i].querySelector(".labDown").textContent = mode === "hk" ? "下盘水位" : "下盘赔率";
+      rows[i].querySelector(".inUp").placeholder = mode === "hk" ? "0.95" : "1.95";
+      rows[i].querySelector(".inDown").placeholder = mode === "hk" ? "0.95" : "1.95";
+    }
+    $("modeNote").textContent = mode === "hk"
+      ? "填香港水位，例如 0.95 就是欧式 1.95。整数盘、平半盘有走盘的，在下面填走盘概率，不填按 0 算；半球盘留空。"
+      : "填欧式十进制赔率，例如 1.95。整数盘、平半盘有走盘的，在下面填走盘概率，不填按 0 算；半球盘留空。";
+  }
+
+  function readMarket(){
+    var push = num($("pushPct").value) || 0;
+    var rows = document.querySelectorAll(".bookrow"), books = [];
+    for (var i = 0; i < rows.length; i++){
+      var a = num(rows[i].querySelector(".inUp").value);
+      var b = num(rows[i].querySelector(".inDown").value);
+      if (a === null || b === null) continue;
+      var o1 = mode === "hk" ? a + 1 : a;
+      var o2 = mode === "hk" ? b + 1 : b;
+      if (o1 <= 1.01 || o2 <= 1.01 || o1 > 20 || o2 > 20) continue;
+      books.push(Calc.devigTwoWay(o1, o2, push));
+    }
+    if (!books.length) return null;
+    var p1 = 0, p2 = 0, ov = 0, min1 = 1, max1 = 0;
+    books.forEach(function(d){
+      p1 += d.p1; p2 += d.p2; ov += d.overround;
+      if (d.p1 < min1) min1 = d.p1;
+      if (d.p1 > max1) max1 = d.p1;
+    });
+    var n = books.length;
+    return { pUp: p1 / n, pDown: p2 / n, overround: ov / n, q: books[0].q,
+             n: n, spreadPp: (max1 - min1) * 100, books: books };
+  }
+
+  /* ---------- 渲染 ---------- */
+  function render1(m){
+    var out = $("sec1Out");
+    if (!m){ out.innerHTML = '<span class="hint">把上面这一节的赔率或水位填上，这里出抽水率和去水概率。</span>'; return; }
+    var h = "";
+    h += '<div class="kv"><span class="k">抽水率' + (m.n > 1 ? "（" + m.n + " 家平均）" : "") + '</span><span class="v">' + fmtPct(m.overround) + '</span></div>';
+    if (m.n > 1){
+      m.books.forEach(function(d, i){
+        h += '<div class="kv"><span class="k">庄家 ' + (i + 1) + ' 抽水 / 上盘去水</span><span class="v">' + fmtPct(d.overround) + " / " + fmtPct(d.p1) + '</span></div>';
+      });
+    }
+    h += '<div class="kv"><span class="k">上盘去水概率（全赢）</span><span class="v">' + fmtPct(m.pUp) + '</span></div>';
+    h += '<div class="kv"><span class="k">下盘去水概率（全赢）</span><span class="v">' + fmtPct(m.pDown) + '</span></div>';
+    if (m.q > 0) h += '<div class="kv"><span class="k">走盘概率</span><span class="v">' + fmtPct(m.q) + '</span></div>';
+    h += '<div class="kv"><span class="k">公平赔率 · 亚盘口径（走盘退款）</span><span class="v">上 ' + fmtOdds(Calc.fairAsianOdds(m.pUp, m.q)) + " / 下 " + fmtOdds(Calc.fairAsianOdds(m.pDown, m.q)) + '</span></div>';
+    h += '<div class="kv"><span class="k">公平赔率 · 竞彩口径（1 ÷ 概率）</span><span class="v">上 ' + fmtOdds(Calc.fairJcOdds(m.pUp)) + " / 下 " + fmtOdds(Calc.fairJcOdds(m.pDown)) + '</span></div>';
+    out.innerHTML = h;
+  }
+
+  function sideCalc(label, pWin, jcOdds, bankroll){
+    var v = Calc.sideValue(pWin, jcOdds);
+    return { label: label, p: pWin, odds: jcOdds, implied: v.implied, diffPp: v.diffPp,
+             ev: v.ev, fairJc: v.fairJc, judge: Calc.judge(v.diffPp),
+             stake: Calc.suggestStake(pWin, jcOdds, bankroll) };
+  }
+
+  function render2(m){
+    var out = $("sec2Out"), box = $("verdictBox");
+    lastPick = null;
+    if (!m){ out.innerHTML = '<span class="hint">先把第 1 节的赔率或水位填好。</span>'; box.innerHTML = ""; return; }
+    var bankroll = num($("bankroll").value) || 0;
+    var jcU = num($("jcUp").value), jcD = num($("jcDown").value);
+    var sides = [];
+    if (jcU !== null && jcU > 1) sides.push(sideCalc("上盘（让球方）", m.pUp, jcU, bankroll));
+    if (jcD !== null && jcD > 1) sides.push(sideCalc("下盘（受让方）", m.pDown, jcD, bankroll));
+    if (!sides.length){ out.innerHTML = '<span class="hint">把这一边（或两边）的竞彩固定奖金填上，这里出对比和结论。</span>'; box.innerHTML = ""; return; }
+
+    var h = '<table class="mini"><tr><th>方向</th><th>竞彩</th><th>隐含</th><th>去水</th><th>差值</th><th>EV</th><th>公平(竞彩)</th><th>建议注额</th></tr>';
+    sides.forEach(function(s){
+      h += "<tr><td>" + s.label + '</td><td>' + fmtOdds(s.odds) + "</td><td>" + fmtPct(s.implied) +
+        "</td><td>" + fmtPct(s.p) + '</td><td class="' + clsFor(s.judge) + '">' + fmtPp(s.diffPp) + " 点</td>" +
+        '<td class="' + (s.ev > 0 ? "good" : "bad") + '">' + fmtPp(s.ev * 100) + "%</td><td>" + fmtOdds(s.fairJc) +
+        "</td><td>" + (s.stake > 0 ? fmtMoney(s.stake) : "—") + "</td></tr>";
+    });
+    h += "</table>";
+    out.innerHTML = h;
+
+    /* ----- 选方向 + 注释原因 ----- */
+    var best = sides[0];
+    sides.forEach(function(s){ if (s.diffPp > best.diffPp) best = s; });
+    var other = sides.length > 1 ? (sides[0] === best ? sides[1] : sides[0]) : null;
+    var reasons = [];
+    function R(mark, cls, text){ reasons.push({ mark: mark, cls: cls, text: text }); }
+
+    if (best.judge === "good"){
+      lastPick = best;
+      R("✓", "good", best.label + "去水概率 " + fmtPct(best.p) + "，竞彩 " + fmtOdds(best.odds) +
+        " 只隐含 " + fmtPct(best.implied) + "，差 " + fmtPp(best.diffPp) + " 个百分点，过了 3 点门槛。");
+      R("✓", "good", "竞彩 " + fmtOdds(best.odds) + " 高于公平赔率（竞彩口径）" + fmtOdds(best.fairJc) +
+        "，每下 1 元的期望收益 " + fmtPp(best.ev * 100) + "%。");
+    } else if (best.judge === "thin"){
+      R("✗", "bad", "最好的一边是" + best.label + "：差值只有 " + fmtPp(best.diffPp) +
+        " 个百分点，没到 3 点门槛——光抽水就吃掉约 " + fmtPct(m.overround) + "，这点差距赢了也是白忙。");
+    } else {
+      R("✗", "bad", "最好的一边是" + best.label + "：竞彩隐含 " + fmtPct(best.implied) + " 比去水概率 " +
+        fmtPct(best.p) + " 还高 " + fmtPp(-best.diffPp) + " 个百分点，等于开得比庄家还低，期望收益 " +
+        fmtPp(best.ev * 100) + "%，下了就是负期望。");
+    }
+    if (m.overround <= 0.03) R("✓", "good", "庄家抽水 " + fmtPct(m.overround) + "，不高，去水概率可信。");
+    else if (m.overround <= 0.05) R("·", "warn", "庄家抽水 " + fmtPct(m.overround) + "，中等，去水概率还能用，但优势会被吃掉一截。");
+    else R("✗", "bad", "庄家抽水 " + fmtPct(m.overround) + "，偏高，去水概率要打折看。");
+    if (m.q > 0) R("·", "warn", "走盘概率 " + fmtPct(m.q) + "：这是整数盘 / 平半盘的口径。竞彩没有走盘退款，走盘那部分在竞彩算输——上面用的已经是全赢概率，别再拿亚盘的概率来比。");
+    if (m.n >= 2){
+      if (m.spreadPp <= 2) R("✓", "good", m.n + " 家庄家的上盘去水概率极差只有 " + m.spreadPp.toFixed(1) + " 个百分点，各家看法一致。");
+      else R("·", "warn", m.n + " 家庄家的上盘去水概率极差 " + m.spreadPp.toFixed(1) + " 个百分点，各家有分歧，上面取的是平均，谨慎。");
+    }
+    if (other){
+      if (other.judge === "good" && best.judge === "good")
+        R("·", "", other.label + "差值 " + fmtPp(other.diffPp) + " 个百分点也过了门槛，但低于" + best.label + "，优先选差值大的。");
+      else
+        R("✗", "bad", other.label + "差值 " + fmtPp(other.diffPp) + " 个百分点，" +
+          (other.judge === "bad" ? "竞彩开得比市场还低" : "没过 3 点门槛") + "，不选这一边。");
+    }
+    var title, vcls;
+    if (best.judge === "good"){
+      title = "选：" + best.label;
+      vcls = "pick";
+      R("·", "", "建议注额 " + fmtMoney(best.stake) + "（半凯利，封顶本金 2%）。这是算术给的上限，不是必须下满。");
+    } else {
+      title = "结论：这一注不下";
+      vcls = "pass";
+      R("·", "", "等竞彩奖金涨上去、或者庄家盘口变了再算一次；盘口随时会变，落注前再看一眼。");
+    }
+    var vh = '<div class="verdict ' + vcls + '"><div class="vtitle">' + title + "</div><ul>";
+    reasons.forEach(function(r){
+      vh += '<li><span class="mk ' + r.cls + '">' + r.mark + "</span>" + r.text + "</li>";
+    });
+    vh += "</ul></div>";
+    box.innerHTML = vh;
+  }
+
+  function render3(){
+    var out = $("sec3Out");
+    var rows = document.querySelectorAll(".legrow"), legs = [], legDiffs = [];
+    for (var i = 0; i < rows.length; i++){
+      var o = num(rows[i].querySelector(".legOdds").value);
+      var p = num(rows[i].querySelector(".legP").value);
+      if (o !== null && o > 1 && p !== null && p > 0 && p < 100){
+        legs.push({ odds: o, p: p / 100 });
+        legDiffs.push((p / 100 - 1 / o) * 100);
+      }
+    }
+    if (importMsg){ out.innerHTML = '<span class="hint">' + importMsg + "</span>"; importMsg = ""; return; }
+    if (!legs.length){ out.innerHTML = '<span class="hint">至少填一关：竞彩赔率加这一关的概率。全空就是不算。</span>'; return; }
+    var r = Calc.parlay(legs);
+    var h = "";
+    h += '<div class="kv"><span class="k">关数</span><span class="v">' + legs.length + " 关</span></div>";
+    h += '<div class="kv"><span class="k">组合赔率</span><span class="v">' + fmtOdds(r.odds) + '</span></div>';
+    h += '<div class="kv"><span class="k">组合去水概率</span><span class="v">' + fmtPct(r.prob) + '</span></div>';
+    h += '<div class="kv"><span class="k">组合公平赔率（1 ÷ 概率）</span><span class="v">' + fmtOdds(r.fair) + '</span></div>';
+    h += '<div class="kv"><span class="k">组合 EV</span><span class="v ' + (r.ev > 0 ? "good" : "bad") + '">' + fmtPp(r.ev * 100) + "%</span></div>";
+    var weak = -1;
+    legDiffs.forEach(function(d, i){ if (d < 3) weak = i; });
+    if (r.ev > 0 && weak < 0) h += '<p class="note good">每一关都过了 3 点门槛，串起来仍是正期望。</p>';
+    else if (r.ev > 0) h += '<p class="note warn">组合 EV 为正，但第 ' + (weak + 1) + " 关差值只有 " + fmtPp(legDiffs[weak]) + " 个百分点，没过门槛——串关里最弱的一关决定成色。</p>";
+    else h += '<p class="note bad">组合 EV 为负：抽水是相乘的，关数越多吃得越多，这一串不值。</p>';
+    out.innerHTML = h;
+  }
+
+  function recalc(){
+    refreshLabels();
+    var m = readMarket();
+    render1(m);
+    render2(m);
+    render3();
+  }
+
+  /* ---------- 事件 ---------- */
+  $("bookList").appendChild(bookRow());
+  $("legList").appendChild(legRow());
+  $("legList").appendChild(legRow());
+  $("addBook").addEventListener("click", function(){
+    if (document.querySelectorAll(".bookrow").length < 5){ $("bookList").appendChild(bookRow()); recalc(); }
+  });
+  $("addLeg").addEventListener("click", function(){
+    if (document.querySelectorAll(".legrow").length < 8){ $("legList").appendChild(legRow()); recalc(); }
+  });
+  $("importLeg").addEventListener("click", function(){
+    if (!lastPick){ importMsg = "先在第 2 节填出一个过了门槛的方向，再带进来。"; render3(); return; }
+    var rows = document.querySelectorAll(".legrow"), target = null;
+    for (var i = 0; i < rows.length; i++){
+      if (!rows[i].querySelector(".legOdds").value && !rows[i].querySelector(".legP").value){ target = rows[i]; break; }
+    }
+    if (!target){
+      if (rows.length >= 8){ importMsg = "关数已满（8 关）。"; render3(); return; }
+      target = legRow(); $("legList").appendChild(target);
+    }
+    target.querySelector(".legOdds").value = lastPick.odds.toFixed(2);
+    target.querySelector(".legP").value = (lastPick.p * 100).toFixed(1);
+    recalc();
+  });
+  $("fillExample").addEventListener("click", function(){
+    if (mode !== "hk"){
+      mode = "hk";
+      var btns = $("modeSeg").querySelectorAll("button");
+      btns[0].classList.add("on"); btns[1].classList.remove("on");
+    }
+    var rows = document.querySelectorAll(".bookrow");
+    rows[0].querySelector(".inUp").value = "0.90";
+    rows[0].querySelector(".inDown").value = "1.00";
+    $("pushPct").value = "";
+    $("jcUp").value = "2.10";
+    $("jcDown").value = "1.75";
+    if (!$("bankroll").value) $("bankroll").value = "10000";
+    recalc();
+    $("verdictBox").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+  $("modeSeg").addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if (!b || b.dataset.mode === mode) return;
+    mode = b.dataset.mode;
+    var btns = $("modeSeg").querySelectorAll("button");
+    for (var i = 0; i < btns.length; i++) btns[i].classList.toggle("on", btns[i] === b);
+    recalc();
+  });
+  document.addEventListener("input", function(e){
+    if (e.target.tagName === "INPUT") recalc();
+  });
+  recalc();
+})();
+}
+</script>
+</body>
+</html>
